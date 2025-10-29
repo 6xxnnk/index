@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&family=Crafty+Girls&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        window.pageSwiper = new Swiper('.pageSwiper', {
+            direction: 'vertical',
+            slidesPerView: 1,
+            speed: 800,
+            loop: false,
+            mousewheel: { sensitivity: 1, releaseOnEdges: true },
+            nested: true,               // 내부에 다른 스와이퍼 있어도 충돌 줄임
+            allowTouchMove: true,
+        });
+        });
+    </script>
+
+</head>
+<body>
+    <div class="wrap">
+<!-- ================================= HEADER (overlay glass) ============================== -->
+<header class="header" role="banner">
+    <div class="top">
+        <span class="top_text">머신 구매 시, 오리지널 커피 7캡슐로 구성된 웰컴 기프트 증정</span>
+    </div>
+    <div class="inner">
+        <nav class="nav nav--left" aria-label="Primary Left">
+        <ul>
+            <li><a href="#">coffee</a></li>
+            <li><a href="#">machine</a></li>
+            <li><a href="#">about</a></li>
+        </ul>
+        </nav>
+
+        <div class="logo" aria-label="Nespresso home">
+        <img src="img/Nespresso-Wordmark-2021-RGB-White.svg" alt="Nespresso" />
+        </div>
+
+        <nav class="nav nav--right" aria-label="Primary Right">
+        <ul>
+            <li><a href="#">login</a></li>
+            <li><a href="#">cart</a></li>
+            <li><a href="#">search</a></li>
+        </ul>
+</nav>
+    </div><!-- .inner -->
+</header>
+
+
+<!-- ================================= HERO =============================================== -->
+
+<section class="section-hero" aria-label="Hero">
+    <div class="hero__media" aria-hidden="true">
+        <!-- <video src="img/4132631-hd_1280_720_25f.mp4" autoplay muted loop></video> -->
+        <img src="img/hero_coffee_2x.jpg" alt="Nespresso Coffee"/>
+    </div>
+    <div class="hero__content">
+        <div class="hero__caption">
+            <div class="hero__en">Nothing Tastes Like Nespresso Coffee</div>
+            <!-- <h1 class="hero__kor">깊고 진한 크레마, 한 잔의 여유</h1> -->
+        </div><!-- .hero__caption -->
+        <div class="hero__btn">
+            <a href="#">
+                <span>더 알아보기</span>
+            </a>
+        </div>
+    </div><!-- .hero__content -->
+</section>
+
+
+<!-- ================================= CLUB (4 cards) ===================================== -->
+<section class="section-club" aria-labelledby="clubTitle">
+
+    <div class="container">
+        <div class="club__head">
+            <h2 id="clubTitle">Join the Nespresso Club!</h2>
+            <p class="sr-only">멤버십 가입 혜택, 머신 가이드, 리사이클, 캡슐 구독 안내</p>
+        </div>
+    </div><!-- .container -->
+
+    <div class="club__grid">
+        <!-- card 1 -->
+        <article class="club-card">
+        <div class="club-card__img"><img src="img/club-1.jpg" alt="바리스타 레시피"/></div>
+        <div class="club-card__body">
+        <span class="club-card__tag">바리스타 레시피</span>
+        <a class="club-card__cta" href="#">더보기 →</a>
+        </div>
+        </article>
+
+        <!-- card 2 -->
+        <article class="club-card">
+        <div class="club-card__img"><img src="img/club-2.jpg" alt="머신 가이드"/></div>
+        <div class="club-card__body">
+        <span class="club-card__tag">머신 가이드</span>
+        <a class="club-card__cta" href="#">자세히 →</a>
+        </div>
+        </article>
+
+        <!-- card 3 -->
+        <article class="club-card">
+        <div class="club-card__img"><img src="img/club-3.jpg" alt="캡슐 보관 팁"/></div>
+        <div class="club-card__body">
+        <span class="club-card__tag">캡슐 보관 팁</span>
+        <a class="club-card__cta" href="#">자세히 →</a>
+        </div>
+        </article>
+
+        <!-- card 4 -->
+        <article class="club-card">
+        <div class="club-card__img"><img src="img/club-4.jpg" alt="리사이클"/></div>
+        <div class="club-card__body">
+        <span class="club-card__tag">리사이클</span>
+        <a class="club-card__cta" href="#">신청하기 →</a>
+        </div>
+        </article>
+</div>
+</section>
+
+<!-- =========================== ORIGINAL vs VERTUO (4 items) ============================= -->
+<section class="section-compare" aria-labelledby="compareTitle">
+    <div class="compare__intro">
+        <h3 id="compareTitle">Original or Vertuo?</h3>
+        <p class="sr-only">네스프레소의 두 가지 시스템 비교</p>
+    </div>
+
+    <div class="compare__grid">
+        <!-- Original machine feature -->
+        <article class="compare-card compare-card--tint">
+        <div class="compare-card__media" aria-hidden="true"> <video src="img/RTB_original_2.mp4" autoplay muted loop></video> </div>
+        <div class="compare-card__content">
+        <div class="compare-card__kicker">오리지널 라인</div>
+        <h4 class="compare-card__title">클래식한 에스프레소 경험</h4>
+        </div>
+        <a href="#" class="compare-card__btn" aria-label="자세히">→</a>
+        </article>
+
+        <!-- Vertuo system feature -->
+        <article class="compare-card">
+        <div class="compare-card__media" aria-hidden="true"><video src="img/RTB_vertuo_2.mp4" autoplay muted loop></video></div>
+        <div class="compare-card__content">
+        <div class="compare-card__kicker">Vertuo 시스템</div>
+        <h4 class="compare-card__title">센트리퓨전™으로 더 풍성한 크레마</h4>
+        </div>
+        <a href="#" class="compare-card__btn" aria-label="자세히">→</a>
+        </article>
+
+        <!-- Original accessory -->
+        <article class="compare-card">
+        <div class="compare-card__media" aria-hidden="true"><img src="img/original_pixie.jpg" alt=""/></div>
+        <div class="compare-card__content">
+        <div class="compare-card__kicker">오리지널 액세서리</div>
+        <h4 class="compare-card__title">머그 & 글라스 컬렉션</h4>
+        </div>
+        <a href="#" class="compare-card__btn" aria-label="자세히">→</a>
+        </article>
+
+        <!-- Vertuo machine colors -->
+        <article class="compare-card compare-card--tint">
+        <div class="compare-card__media" aria-hidden="true"><img src="img/vertuo_plus.jpg" alt=""/></div>
+        <div class="compare-card__content">
+        <div class="compare-card__kicker">Vertuo 머신</div>
+        <h4 class="compare-card__title">두 가지 컬러, 두 가지 무드</h4>
+        </div>
+        <a href="#" class="compare-card__btn" aria-label="자세히">→</a>
+        </article>
+    </div><!-- .compare__grid -->
+</section>
+
+<!-- ================================= 3 STEPS ============================================ -->
+<section class="section-steps" aria-labelledby="stepsTitle">
+    <div class="steps container">
+        <h3 id="stepsTitle" class="sr-only">3Steps</h3>
+    <div class="steps__row">
+        <article class="step">
+            <div class="step__icon">1</div>
+            <div>
+            <div class="step__title">가까운 부티크 방문</div>
+            <p class="step__desc">머신 시연과 무료 시음을 통해 나에게 맞는 커피를 찾아보세요.</p>
+            </div><!-- .step__content -->
+        </article>
+        <article class="step">
+            <div class="step__icon">2</div>
+            <div>
+            <div class="step__title">온라인 주문 & 배송</div>
+            <p class="step__desc">주문 다음 날 빠르게 도착하는 편리한 배송 서비스.</p>
+            </div>
+        </article>
+        <article class="step">
+            <div class="step__icon">3</div>
+            <div>
+            <div class="step__title">리사이클 프로그램</div>
+            <p class="step__desc">알루미늄 캡슐은 100% 재활용됩니다. 지구를 위한 작은 실천.</p>
+            </div>
+        </article>
+    </div><!-- .steps__row -->
+
+<p class="steps__note">* 70여종 이상의 커피 라인업과 계절 한정 에디션을 부티크에서 만나보세요.</p>
+</div><!-- .steps -->
+</section>
+
+<!-- ============================== COLLAB PROMO (Blue Bottle) ============================ -->
+<section class="section-collab" aria-labelledby="collabTitle">
+    <div class="collab">
+        <div class="collab__inner">
+            <h3 id="collabTitle" class="sr-only">Nespresso × Blue Bottle</h3>
+
+
+            <a href="#" class="pill" aria-label="블루보틀 블렌드 No.2 자세히 보기">
+            <div class="pill__thumb"><img src="img/blue-bottle-2_2x.jpg" alt="블루보틀 블렌드 No.2"/></div>
+            <div class="pill__body">
+            <div class="pill__title">블루보틀 블렌드 No.2</div>
+            <div class="pill__meta">루이보스의 은은함, 잘 익은 베리의 산뜻한 향미</div>
+            </div>
+            <div class="pill__cta">바로가기 →</div>
+            </a>
+
+
+            <a href="#" class="pill" aria-label="블루보틀 에센셜 세트 자세히 보기">
+            <div class="pill__thumb"><img src="img/250908-BB-AERO-SET-2000x2000.jpg" alt="블루보틀 에센셜 세트"/></div>
+            <div class="pill__body">
+            <div class="pill__title">블루보틀 에센셜 세트</div>
+            <div class="pill__meta">머신 + 글라스 + 시즌 한정 캡슐 구성</div>
+            </div>
+            <div class="pill__cta">구매하기 →</div>
+            </a>
+
+
+            <div class="sus__note" style="margin-top:18px">
+            <i>♻</i>
+            <span>머신 구매 시, 되돌려 쓸 수 있는 리사이클 백 제공 — 수거된 알루미늄은 다시 자원으로.</span>
+            </div>
+    </div><!-- .collab -->
+    </div><!-- .collab__inner -->
+    </div><!-- .collab__outer -->
+</section>
+
+<!-- ================================= SUSTAINABILITY CUT ================================= -->
+<section class="section-sus" aria-labelledby="susTitle">
+    <div class="sus container">
+        <div class="sus__media"><img src="img/sus-beans.jpg" alt="지속가능한 커피 조달" /></div>
+    <div>
+    <h4 id="susTitle" style="font-weight:900; font-size:22px; margin-bottom:10px">머신 구매 시, 되자널 커피 7컵을 즐길 수 있는 친환경 공정</h4>
+    <p style="color:#555">네스프레소는 AAA Sustainable Quality™ 프로그램을 통해 지속가능한 커피 조달을 실천합니다.</p>
+    </div>
+    </div><!-- .sus -->
+</section>
+
+<!-- ================================= COFFEE LETTER ===================================== -->
+<section class="section-letter" aria-labelledby="letterTitle">
+    <div class="letter">
+        <div class="letter__head">
+            <h4 id="letterTitle">nespresso coffee letter</h4>
+            <p style="color:#777; font-size:14px">매월 새로운 레시피와 일상에 영감을 주는 이야기</p>
+        </div>
+    <div class="letter__grid">
+        <article class="letter-card">
+            <div class="letter-card__img"><img src="img/letter-1.png" alt="계절의 레시피"/></div>
+            <div class="letter-card__body">
+                <div class="letter-card__title">계절 레시피 — 시나몬 라떼</div>
+                <p class="letter-card__desc">따뜻한 시나몬 향과 진한 에스프레소의 조화.</p>
+            </div><!-- .letter-card__body -->
+            <div class="letter-card__meta"><span>5 min read</span><a href="#">자세히 →</a></div>
+        </article>
+        <article class="letter-card">
+            <div class="letter-card__img"><img src="img/letter-2.png" alt="취향 가이드"/></div>
+            <div class="letter-card__body">
+                <div class="letter-card__title">취향 가이드 — 가벼운 바디</div>
+                <p class="letter-card__desc">산뜻한 하루를 위한 브라이트 테이스트.</p>
+            </div>
+        <div class="letter-card__meta"><span>3 min read</span><a href="#">자세히 →</a></div>
+        </article>
+        <article class="letter-card">
+            <div class="letter-card__img"><img src="img/letter-3.png" alt="홈카페 인테리어 팁"/></div>
+            <div class="letter-card__body">
+                <div class="letter-card__title">홈카페 인테리어 — 따뜻한 무드</div>
+                <p class="letter-card__desc">원목과 크림톤으로 완성하는 커피 코너.</p>
+            </div>
+            <div class="letter-card__meta"><span>4 min read</span><a href="#">자세히 →</a></div>
+        </article>
+    </div><!-- .letter__grid -->
+    <a href="#" class="letter__cta">더 많은 소식 받아보기</a>
+</div><!-- .letter -->
+</section>
+
+<!-- ================================= FOOTER ============================================= -->
+<footer class="footer" role="contentinfo">
+    <div class="cols">
+        <div class="f-col">
+            <h5>고객센터</h5>
+                <ul>
+                <li><a href="#">문의하기</a></li>
+                <li><a href="#">배송/반품</a></li>
+                <li><a href="#">자주 묻는 질문</a></li>
+                </ul>
+        </div>
+        <div class="f-col">
+                <h5>멤버십</h5>
+                <ul>
+                <li><a href="#">클럽 소개</a></li>
+                <li><a href="#">혜택 안내</a></li>
+                <li><a href="#">리사이클</a></li>
+                </ul>
+        </div>
+    <div class="f-col">
+        <h5>브랜드</h5>
+        <ul>
+        <li><a href="#">지속가능성</a></li>
+        <li><a href="#">뉴스룸</a></li>
+        <li><a href="#">기업 정보</a></li>
+        </ul>
+        </div>
+    <div class="f-col">
+        <h5>팔로우</h5>
+        <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">YouTube</a></li>
+        <li><a href="#">Facebook</a></li>
+        </ul>
+        </div>
+        </div>
+    <div class="footer__bottom">
+    <span>© Nestlé Nespresso S.A. 2025</span>
+    <span>대한민국</span>
+    </div>
+    </footer>
+    </div><!-- footer -->
+
+</body>
+</html>
