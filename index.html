@@ -5,28 +5,191 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&family=Crafty+Girls&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-        window.pageSwiper = new Swiper('.pageSwiper', {
-            direction: 'vertical',
-            slidesPerView: 1,
-            speed: 800,
-            loop: false,
-            mousewheel: { sensitivity: 1, releaseOnEdges: true },
-            nested: true,               // 내부에 다른 스와이퍼 있어도 충돌 줄임
-            allowTouchMove: true,
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js" defer></script>
+    <script src="app.js" defer></script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  initApp();
+
+  // .switch 노출/고정: .container가 화면 상단에 닿아 있고(진입) 아직 끝나지 않았을 때만
+  const container = document.querySelector(".container");
+  const switchEl = document.getElementById("switch");
+  if (container && switchEl) {
+    const updateSwitchPin = () => {
+      const rect = container.getBoundingClientRect(); // {top, bottom}
+      if (rect.top <= 0 && rect.bottom > 0) {
+        switchEl.classList.add("is-visible");
+      } else {
+        switchEl.classList.remove("is-visible");
+      }
+    };
+    window.addEventListener("scroll", updateSwitchPin, { passive: true });
+    window.addEventListener("resize", updateSwitchPin);
+    updateSwitchPin();
+  }
+});
+
+function initApp() {
+  if (typeof gsap === "undefined" || typeof Flip === "undefined") return;
+
+  if (typeof CustomEase !== "undefined") {
+    CustomEase.create("mainEase", "M0,0 C0.65,0.05 0.36,1 1,1");
+    CustomEase.create("sideEase", "M0,0 C0.86,0 0.07,1 1,1");
+  }
+
+  const TIMING = { BASE:.512, SHORT:.384, SHORTEST:.256, LONG:.768, STAGGER_TINY:.032, STAGGER_SMALL:.064 };
+
+  const grid = document.getElementById("grid");
+  const gridItems = document.querySelectorAll(".grid-item");
+  const sliderImage = document.getElementById("slider-image");
+  const sliderImageNext = document.getElementById("slider-image-next");
+  const sliderImageBg = document.getElementById("slider-image-bg");
+  const transitionOverlay = document.getElementById("transition-overlay");
+  const content = document.getElementById("content");
+  const contentTitleSpan = content.querySelector(".content-title span");
+  const contentParagraph = document.getElementById("content-paragraph");
+  const thumbnails = document.querySelectorAll(".thumbnail");
+  const switchGrid = document.querySelector(".switch-button-grid");
+  const switchSlider = document.querySelector(".switch-button-slider");
+
+  let currentMode = "grid";
+  let isAnimating = false;
+  let activeIndex = 4;
+
+  const imageUrls = Array.from(gridItems).map(i => i.querySelector(".grid-item-img").style.backgroundImage);
+
+  const slideContent = [
+    { title:"URBAN GEOMETRY", paragraph:"The city speaks in angles and lines..." },
+    { title:"NATURAL ABSTRACTIONS", paragraph:"Nature doesn't try to be beautiful..." },
+    { title:"SHADOW PLAY", paragraph:"Light creates shadow. Shadow defines light..." },
+    { title:"MINIMALIST FORMS", paragraph:"When we strip away the unnecessary..." },
+    { title:"MONOCHROME SERIES", paragraph:"Without color, we see differently..." },
+    { title:"TEXTURAL STUDIES", paragraph:"Touch with your eyes. Feel the rough and smooth..." }
+  ];
+
+  const updateContent = (idx) => {
+    contentTitleSpan.textContent = slideContent[idx].title;
+    contentParagraph.textContent = slideContent[idx].paragraph;
+  };
+
+  const toggleView = (mode) => {
+    if (isAnimating || currentMode === mode) return;
+    isAnimating = true;
+    document.querySelector(".switch-button-current")?.classList.remove("switch-button-current");
+    document.querySelector(`.switch-button-${mode}`).classList.add("switch-button-current");
+    currentMode = mode;
+    (mode === "slider" ? showSliderView() : showGridView()).then(() => isAnimating = false);
+  };
+
+  const showSliderView = () => new Promise((resolve) => {
+    const activeItem = gridItems[activeIndex];
+    const rect = activeItem.getBoundingClientRect();
+    const url = imageUrls[activeIndex];
+
+    sliderImage.style.backgroundImage = url;
+    sliderImageBg.style.backgroundImage = url;
+    updateContent(activeIndex);
+
+    gsap.set(sliderImage, { width:rect.width, height:rect.height, x:rect.left, y:rect.top, opacity:1, visibility:"visible" });
+
+    const h = Flip.getState(sliderImage);
+    gsap.set(sliderImage, { height:"100vh", y:0, width:rect.width, x:rect.left });
+    Flip.from(h, {
+      duration:TIMING.BASE, ease:"mainEase",
+      onComplete: () => {
+        const w = Flip.getState(sliderImage);
+        gsap.set(sliderImage, { width:"100vw", x:0 });
+        Flip.from(w, {
+          duration:TIMING.BASE, ease:"mainEase",
+          onComplete: () => {
+            gsap.to(grid, { opacity:0, duration:TIMING.SHORTEST });
+            gsap.to(content, { opacity:1, duration:TIMING.SHORT });
+            gsap.to(contentTitleSpan, { y:0, duration:TIMING.BASE });
+            gsap.to(contentParagraph, { opacity:1, duration:TIMING.BASE });
+            gsap.to(thumbnails, { opacity:1, y:0, duration:TIMING.SHORT, stagger:TIMING.STAGGER_TINY });
+            resolve();
+          }
         });
+      }
+    });
+  });
+
+  const showGridView = () => new Promise((resolve) => {
+    const activeItem = gridItems[activeIndex];
+    const rect = activeItem.getBoundingClientRect();
+
+    gsap.to([contentParagraph], { opacity:0, duration:TIMING.SHORT });
+    gsap.to(contentTitleSpan, { y:"100%", duration:TIMING.SHORT });
+    gsap.to(thumbnails, { opacity:0, y:20, duration:TIMING.SHORT });
+
+    gsap.to(grid, { opacity:1, duration:TIMING.SHORTEST });
+
+    const w = Flip.getState(sliderImage);
+    gsap.set(sliderImage, { width:rect.width, x:rect.left, height:"100vh", y:0 });
+    Flip.from(w, {
+      duration:TIMING.BASE, ease:"mainEase",
+      onComplete: () => {
+        const h = Flip.getState(sliderImage);
+        gsap.set(sliderImage, { height:rect.height, y:rect.top });
+        Flip.from(h, {
+          duration:TIMING.BASE, ease:"mainEase",
+          onComplete: () => {
+            gsap.to(sliderImage, { opacity:0, duration:TIMING.SHORTEST, onComplete: () => {
+              sliderImage.style.visibility = "hidden";
+              gsap.to(content, { opacity:0, duration:TIMING.SHORT });
+              resolve();
+            }});
+          }
         });
-    </script>
+      }
+    });
+  });
+
+  const transitionToSlide = (index) => {
+    if (isAnimating || index === activeIndex || currentMode !== "slider") return;
+    isAnimating = true;
+
+    document.querySelector(".thumbnail.active")?.classList.remove("active");
+    document.querySelector(`.thumbnail[data-index="${index}"]`)?.classList.add("active");
+
+    const url = imageUrls[index];
+    sliderImageNext.style.backgroundImage = sliderImageBg.style.backgroundImage = url;
+    gsap.set([sliderImageNext, sliderImageBg], { visibility:"visible" });
+
+    gsap.to(sliderImage, { x:"-35%", opacity:1, duration:TIMING.LONG, ease:"mainEase" });
+    gsap.to(sliderImageNext, {
+      x:0, opacity:1, duration:TIMING.LONG, ease:"sideEase",
+      onComplete: () => {
+        sliderImage.style.backgroundImage = url;
+        gsap.set([sliderImageNext, sliderImageBg], { opacity:0, visibility:"hidden" });
+        updateContent(index);
+        activeIndex = index;
+        isAnimating = false;
+      }
+    });
+  };
+
+  thumbnails.forEach(t => t.addEventListener("click", () => {
+    const idx = parseInt(t.getAttribute("data-index"), 10);
+    transitionToSlide(idx);
+  }));
+
+  document.querySelector(".switch-button-grid").onclick  = () => toggleView("grid");
+  document.querySelector(".switch-button-slider").onclick = () => toggleView("slider");
+}
+</script>
 
 </head>
+
 <body>
     <div class="wrap">
 <!-- ================================= HEADER (overlay glass) ============================== -->
@@ -72,9 +235,15 @@
         </div><!-- .hero__caption -->
         <div class="hero__btn">
             <a href="#">
-                <span>더 알아보기</span>
+                <li>
+                더 알아보기
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </li>
             </a>
-        </div>
+        </div><!-- .hero__btn -->
     </div><!-- .hero__content -->
 </section>
 
@@ -82,7 +251,7 @@
 <!-- ================================= CLUB (4 cards) ===================================== -->
 <section class="section-club" aria-labelledby="clubTitle">
 
-    <div class="container">
+    <div class="club__container">
         <div class="club__head">
             <h2 id="clubTitle">Join the Nespresso Club!</h2>
             <p class="sr-only">멤버십 가입 혜택, 머신 가이드, 리사이클, 캡슐 구독 안내</p>
@@ -247,52 +416,78 @@
 </section>
 
 <!-- ================================= SUSTAINABILITY CUT ================================= -->
-<section class="section-sus" aria-labelledby="susTitle">
-    <div class="sus container">
-        <div class="sus__media"><img src="img/sus-beans.jpg" alt="지속가능한 커피 조달" /></div>
-    <div>
-    <h4 id="susTitle" style="font-weight:900; font-size:22px; margin-bottom:10px">머신 구매 시, 되자널 커피 7컵을 즐길 수 있는 친환경 공정</h4>
-    <p style="color:#555">네스프레소는 AAA Sustainable Quality™ 프로그램을 통해 지속가능한 커피 조달을 실천합니다.</p>
-    </div>
+<section class="section-sus">
+    <div class="sus__container">
+        <div class="img">
+            <img src="img/sus-beans.jpg" alt="">
+        </div>
+        <div class="sus__content">
+            <strong>머신 구매 시,오리지널 커피 7캡슐로 구성된 웰컴 기프트 증정</strong>
+            <button>더알아보기</button>
+        </div>
     </div><!-- .sus -->
+
 </section>
 
-<!-- ================================= COFFEE LETTER ===================================== -->
-<section class="section-letter" aria-labelledby="letterTitle">
-    <div class="letter">
-        <div class="letter__head">
-            <h4 id="letterTitle">nespresso coffee letter</h4>
-            <p style="color:#777; font-size:14px">매월 새로운 레시피와 일상에 영감을 주는 이야기</p>
+<!-- =============================== GRID / SLIDER =============================== -->
+  <!-- Grid -->
+  <div class="container">
+
+    <div class="grid-container">
+      <div class="grid" id="grid">
+        <div class="grid-item" data-index="0">
+          <div class="grid-item-img" style="background-image:url(img/letter-1.png)"></div>
         </div>
-    <div class="letter__grid">
-        <article class="letter-card">
-            <div class="letter-card__img"><img src="img/letter-1.png" alt="계절의 레시피"/></div>
-            <div class="letter-card__body">
-                <div class="letter-card__title">계절 레시피 — 시나몬 라떼</div>
-                <p class="letter-card__desc">따뜻한 시나몬 향과 진한 에스프레소의 조화.</p>
-            </div><!-- .letter-card__body -->
-            <div class="letter-card__meta"><span>5 min read</span><a href="#">자세히 →</a></div>
-        </article>
-        <article class="letter-card">
-            <div class="letter-card__img"><img src="img/letter-2.png" alt="취향 가이드"/></div>
-            <div class="letter-card__body">
-                <div class="letter-card__title">취향 가이드 — 가벼운 바디</div>
-                <p class="letter-card__desc">산뜻한 하루를 위한 브라이트 테이스트.</p>
-            </div>
-        <div class="letter-card__meta"><span>3 min read</span><a href="#">자세히 →</a></div>
-        </article>
-        <article class="letter-card">
-            <div class="letter-card__img"><img src="img/letter-3.png" alt="홈카페 인테리어 팁"/></div>
-            <div class="letter-card__body">
-                <div class="letter-card__title">홈카페 인테리어 — 따뜻한 무드</div>
-                <p class="letter-card__desc">원목과 크림톤으로 완성하는 커피 코너.</p>
-            </div>
-            <div class="letter-card__meta"><span>4 min read</span><a href="#">자세히 →</a></div>
-        </article>
-    </div><!-- .letter__grid -->
-    <a href="#" class="letter__cta">더 많은 소식 받아보기</a>
-</div><!-- .letter -->
-</section>
+        <div class="grid-item" data-index="1">
+          <div class="grid-item-img" style="background-image:url(img/letter-2.png)"></div>
+        </div>
+        <div class="grid-item" data-index="2">
+          <!-- URL 오탈자 '.' 제거 -->
+          <div class="grid-item-img" style="background-image:url(img/letter-3.png)"></div>
+        </div>
+        <div class="grid-item" data-index="3">
+          <div class="grid-item-img" style="background-image:url(img/letter-1.png)"></div>
+        </div>
+        <div class="grid-item target" id="target-item" data-index="4">
+          <div class="grid-item-img" style="background-image:url(img/letter-1.png)"></div>
+        </div>
+        <div class="grid-item" data-index="5">
+          <div class="grid-item-img" style="background-image:url(img/letter-1.png)"></div>
+        </div>
+
+      </div>
+    </div>
+
+  <!-- Slide layers -->
+  <div class="slider-image" id="slider-image"></div>
+  <div class="slider-image-bg" id="slider-image-bg"></div>
+  <div class="slider-image-next" id="slider-image-next"></div>
+  <div class="transition-overlay" id="transition-overlay"></div>
+
+  <!-- Content -->
+  <div class="content" id="content">
+    <h1 class="content-title"><span>MONOCHROME SERIES</span></h1>
+    <div class="content-paragraph" id="content-paragraph">
+      Without color, we see differently. Form and texture speak louder. The world simplified to light and dark reveals truths that color often conceals. In this space between extremes, we find clarity. The photograph becomes a mirror reflecting not just what we see, but how we see.
+    </div>
+  </div>
+
+  <!-- Thumbnails -->
+  <div class="thumbnails">
+    <div class="thumbnail" data-index="0"><div class="thumbnail-img" style="background-image:url(https://cdn.cosmos.so/dfff1381-f09c-454b-b98d-8a79161c3d25?format=jpeg)"></div></div>
+    <div class="thumbnail" data-index="1"><div class="thumbnail-img" style="background-image:url(https://cdn.cosmos.so/c7af8b26-313a-40e4-9081-85f7fde00c22?format=jpeg)"></div></div>
+    <div class="thumbnail" data-index="2"><div class="thumbnail-img" style="background-image:url(https://cdn.cosmos.so/03a36d87-af8c-4cfe-bfed-7a3dd502404b?format=jpeg)"></div></div>
+    <div class="thumbnail" data-index="3"><div class="thumbnail-img" style="background-image:url(https://cdn.cosmos.so/bdb2a659-2838-4055-a82e-f145c3fd4467?format=jpeg)"></div></div>
+    <div class="thumbnail active" data-index="4"><div class="thumbnail-img" style="background-image:url(https://cdn.cosmos.so/fddfc757-d9c3-44f1-af6e-a607c3746738?format=jpeg)"></div></div>
+    <div class="thumbnail" data-index="5"><div class="thumbnail-img" style="background-image:url(https://cdn.cosmos.so/51a307de-a9ba-4c9e-ad24-beff1ce023d0?format=jpeg)"></div></div>
+  </div>
+
+  <!-- Switch -->
+  <div class="switch" id="switch">
+    <button class="switch-button switch-button-grid switch-button-current"><span class="indicator-dot"></span>GRID</button>
+    <button class="switch-button switch-button-slider"><span class="indicator-dot"></span>SLIDER</button>
+  </div>
+
 
 <!-- ================================= FOOTER ============================================= -->
 <footer class="footer" role="contentinfo">
