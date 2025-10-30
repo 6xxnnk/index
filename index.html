@@ -1,197 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/index.css">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&family=Crafty+Girls&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nespresso Project</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js" defer></script>
-    <script src="app.js" defer></script>
-  <script>
-document.addEventListener("DOMContentLoaded", () => {
-  initApp();
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cantarell:wght@400;700&family=Crafty+Girls&family=Manrope:wght@200..800&display=swap"
+    rel="stylesheet"
+  />
 
-  // .switch 노출/고정: .container가 화면 상단에 닿아 있고(진입) 아직 끝나지 않았을 때만
-  const container = document.querySelector(".container");
-  const switchEl = document.getElementById("switch");
-  if (container && switchEl) {
-    const updateSwitchPin = () => {
-      const rect = container.getBoundingClientRect(); // {top, bottom}
-      if (rect.top <= 0 && rect.bottom > 0) {
-        switchEl.classList.add("is-visible");
-      } else {
-        switchEl.classList.remove("is-visible");
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js" defer></script>
+
+  <!-- ✅ 통합 실행 스크립트 -->
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      /* ========================== HERO SWIPER ========================== */
+      const swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        loop: true,
+        speed: 1000,
+        effect: "fade",
+        autoplay: {
+          delay: 4500,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+
+      /* ========================== NEWSLETTER ========================== */
+      if (typeof gsap === "undefined" || typeof Flip === "undefined") {
+        console.error("GSAP/Flip not loaded");
+        return;
       }
-    };
-    window.addEventListener("scroll", updateSwitchPin, { passive: true });
-    window.addEventListener("resize", updateSwitchPin);
-    updateSwitchPin();
-  }
-});
 
-function initApp() {
-  if (typeof gsap === "undefined" || typeof Flip === "undefined") return;
+      // Custom Easing 설정
+      if (typeof CustomEase !== "undefined") {
+        CustomEase.create("mainEase", "M0,0 C0.65,0.05 0.36,1 1,1");
+        CustomEase.create("sideEase", "M0,0 C0.86,0 0.07,1 1,1");
+      }
 
-  if (typeof CustomEase !== "undefined") {
-    CustomEase.create("mainEase", "M0,0 C0.65,0.05 0.36,1 1,1");
-    CustomEase.create("sideEase", "M0,0 C0.86,0 0.07,1 1,1");
-  }
+      // .switch 노출 조건
+      const container = document.querySelector(".container");
+      const switchEl = document.getElementById("switch");
 
-  const TIMING = { BASE:.512, SHORT:.384, SHORTEST:.256, LONG:.768, STAGGER_TINY:.032, STAGGER_SMALL:.064 };
-
-  const grid = document.getElementById("grid");
-  const gridItems = document.querySelectorAll(".grid-item");
-  const sliderImage = document.getElementById("slider-image");
-  const sliderImageNext = document.getElementById("slider-image-next");
-  const sliderImageBg = document.getElementById("slider-image-bg");
-  const transitionOverlay = document.getElementById("transition-overlay");
-  const content = document.getElementById("content");
-  const contentTitleSpan = content.querySelector(".content-title span");
-  const contentParagraph = document.getElementById("content-paragraph");
-  const thumbnails = document.querySelectorAll(".thumbnail");
-  const switchGrid = document.querySelector(".switch-button-grid");
-  const switchSlider = document.querySelector(".switch-button-slider");
-
-  let currentMode = "grid";
-  let isAnimating = false;
-  let activeIndex = 4;
-
-  const imageUrls = Array.from(gridItems).map(i => i.querySelector(".grid-item-img").style.backgroundImage);
-
-  const slideContent = [
-    { title:"URBAN GEOMETRY", paragraph:"The city speaks in angles and lines..." },
-    { title:"NATURAL ABSTRACTIONS", paragraph:"Nature doesn't try to be beautiful..." },
-    { title:"SHADOW PLAY", paragraph:"Light creates shadow. Shadow defines light..." },
-    { title:"MINIMALIST FORMS", paragraph:"When we strip away the unnecessary..." },
-    { title:"MONOCHROME SERIES", paragraph:"Without color, we see differently..." },
-    { title:"TEXTURAL STUDIES", paragraph:"Touch with your eyes. Feel the rough and smooth..." }
-  ];
-
-  const updateContent = (idx) => {
-    contentTitleSpan.textContent = slideContent[idx].title;
-    contentParagraph.textContent = slideContent[idx].paragraph;
-  };
-
-  const toggleView = (mode) => {
-    if (isAnimating || currentMode === mode) return;
-    isAnimating = true;
-    document.querySelector(".switch-button-current")?.classList.remove("switch-button-current");
-    document.querySelector(`.switch-button-${mode}`).classList.add("switch-button-current");
-    currentMode = mode;
-    (mode === "slider" ? showSliderView() : showGridView()).then(() => isAnimating = false);
-  };
-
-  const showSliderView = () => new Promise((resolve) => {
-    const activeItem = gridItems[activeIndex];
-    const rect = activeItem.getBoundingClientRect();
-    const url = imageUrls[activeIndex];
-
-    sliderImage.style.backgroundImage = url;
-    sliderImageBg.style.backgroundImage = url;
-    updateContent(activeIndex);
-
-    gsap.set(sliderImage, { width:rect.width, height:rect.height, x:rect.left, y:rect.top, opacity:1, visibility:"visible" });
-
-    const h = Flip.getState(sliderImage);
-    gsap.set(sliderImage, { height:"100vh", y:0, width:rect.width, x:rect.left });
-    Flip.from(h, {
-      duration:TIMING.BASE, ease:"mainEase",
-      onComplete: () => {
-        const w = Flip.getState(sliderImage);
-        gsap.set(sliderImage, { width:"100vw", x:0 });
-        Flip.from(w, {
-          duration:TIMING.BASE, ease:"mainEase",
-          onComplete: () => {
-            gsap.to(grid, { opacity:0, duration:TIMING.SHORTEST });
-            gsap.to(content, { opacity:1, duration:TIMING.SHORT });
-            gsap.to(contentTitleSpan, { y:0, duration:TIMING.BASE });
-            gsap.to(contentParagraph, { opacity:1, duration:TIMING.BASE });
-            gsap.to(thumbnails, { opacity:1, y:0, duration:TIMING.SHORT, stagger:TIMING.STAGGER_TINY });
-            resolve();
+      if (container && switchEl) {
+        const updateSwitchVisibility = () => {
+          const rect = container.getBoundingClientRect();
+          if (rect.top <= 0 && rect.bottom > 0) {
+            switchEl.classList.add("is-visible");
+          } else {
+            switchEl.classList.remove("is-visible");
           }
+        };
+        window.addEventListener("scroll", updateSwitchVisibility, { passive: true });
+        window.addEventListener("resize", updateSwitchVisibility);
+        updateSwitchVisibility();
+      }
+
+      // GSAP 기반 Newsletter Grid 초기화
+      initNewsletterApp();
+    });
+
+    /* ========================== FUNCTION: initNewsletterApp ========================== */
+    function initNewsletterApp() {
+      const TIMING = {
+        BASE: 0.512,
+        SHORT: 0.384,
+        SHORTEST: 0.256,
+        LONG: 0.768,
+        STAGGER_TINY: 0.032,
+        STAGGER_SMALL: 0.064,
+      };
+
+      const grid = document.getElementById("grid");
+      const gridItems = document.querySelectorAll(".grid-item");
+      const sliderImage = document.getElementById("slider-image");
+      const sliderImageNext = document.getElementById("slider-image-next");
+      const sliderImageBg = document.getElementById("slider-image-bg");
+      const transitionOverlay = document.getElementById("transition-overlay");
+      const content = document.getElementById("content");
+      const contentTitleSpan = content.querySelector(".content-title span");
+      const contentParagraph = document.getElementById("content-paragraph");
+      const thumbnails = document.querySelectorAll(".thumbnail");
+
+      if (!grid) return;
+
+      let currentMode = "grid";
+      let isAnimating = false;
+      let activeIndex = 4;
+
+      const imageUrls = Array.from(gridItems).map(
+        (i) => i.querySelector(".grid-item-img").style.backgroundImage
+      );
+
+      const slideContent = [
+        { title: "URBAN GEOMETRY", paragraph: "The city speaks in angles and lines..." },
+        { title: "NATURAL ABSTRACTIONS", paragraph: "Nature doesn't try to be beautiful..." },
+        { title: "SHADOW PLAY", paragraph: "Light creates shadow. Shadow defines light..." },
+        { title: "MINIMALIST FORMS", paragraph: "When we strip away the unnecessary..." },
+        { title: "MONOCHROME SERIES", paragraph: "Without color, we see differently..." },
+        { title: "TEXTURAL STUDIES", paragraph: "Touch with your eyes. Feel the rough and smooth..." },
+      ];
+
+      const updateContent = (idx) => {
+        contentTitleSpan.textContent = slideContent[idx].title;
+        contentParagraph.textContent = slideContent[idx].paragraph;
+      };
+
+      /* --- Slider/Grid 전환 --- */
+      const toggleView = (mode) => {
+        if (isAnimating || currentMode === mode) return;
+        isAnimating = true;
+        document.querySelector(".switch-button-current")?.classList.remove("switch-button-current");
+        document.querySelector(`.switch-button-${mode}`).classList.add("switch-button-current");
+        currentMode = mode;
+        (mode === "slider" ? showSliderView() : showGridView()).then(() => (isAnimating = false));
+      };
+
+      /* --- Slider 전환 --- */
+      const showSliderView = () =>
+        new Promise((resolve) => {
+          const activeItem = gridItems[activeIndex];
+          const rect = activeItem.getBoundingClientRect();
+          const url = imageUrls[activeIndex];
+
+          sliderImage.style.backgroundImage = url;
+          sliderImageBg.style.backgroundImage = url;
+          updateContent(activeIndex);
+
+          gsap.set(sliderImage, {
+            width: rect.width,
+            height: rect.height,
+            x: rect.left,
+            y: rect.top,
+            opacity: 1,
+            visibility: "visible",
+          });
+
+          const h = Flip.getState(sliderImage);
+          gsap.set(sliderImage, { height: "100vh", y: 0, width: rect.width, x: rect.left });
+          Flip.from(h, {
+            duration: TIMING.BASE,
+            ease: "mainEase",
+            onComplete: () => {
+              const w = Flip.getState(sliderImage);
+              gsap.set(sliderImage, { width: "100vw", x: 0 });
+              Flip.from(w, {
+                duration: TIMING.BASE,
+                ease: "mainEase",
+                onComplete: () => {
+                  gsap.to(grid, { opacity: 0, duration: TIMING.SHORTEST });
+                  gsap.to(content, { opacity: 1, duration: TIMING.SHORT });
+                  gsap.to(contentTitleSpan, { y: 0, duration: TIMING.BASE });
+                  gsap.to(contentParagraph, { opacity: 1, duration: TIMING.BASE });
+                  gsap.to(thumbnails, {
+                    opacity: 1,
+                    y: 0,
+                    duration: TIMING.SHORT,
+                    stagger: TIMING.STAGGER_TINY,
+                  });
+                  resolve();
+                },
+              });
+            },
+          });
         });
-      }
-    });
-  });
 
-  const showGridView = () => new Promise((resolve) => {
-    const activeItem = gridItems[activeIndex];
-    const rect = activeItem.getBoundingClientRect();
+      const showGridView = () =>
+        new Promise((resolve) => {
+          const activeItem = gridItems[activeIndex];
+          const rect = activeItem.getBoundingClientRect();
 
-    gsap.to([contentParagraph], { opacity:0, duration:TIMING.SHORT });
-    gsap.to(contentTitleSpan, { y:"100%", duration:TIMING.SHORT });
-    gsap.to(thumbnails, { opacity:0, y:20, duration:TIMING.SHORT });
+          gsap.to([contentParagraph], { opacity: 0, duration: TIMING.SHORT });
+          gsap.to(contentTitleSpan, { y: "100%", duration: TIMING.SHORT });
+          gsap.to(thumbnails, { opacity: 0, y: 20, duration: TIMING.SHORT });
+          gsap.to(grid, { opacity: 1, duration: TIMING.SHORTEST });
 
-    gsap.to(grid, { opacity:1, duration:TIMING.SHORTEST });
-
-    const w = Flip.getState(sliderImage);
-    gsap.set(sliderImage, { width:rect.width, x:rect.left, height:"100vh", y:0 });
-    Flip.from(w, {
-      duration:TIMING.BASE, ease:"mainEase",
-      onComplete: () => {
-        const h = Flip.getState(sliderImage);
-        gsap.set(sliderImage, { height:rect.height, y:rect.top });
-        Flip.from(h, {
-          duration:TIMING.BASE, ease:"mainEase",
-          onComplete: () => {
-            gsap.to(sliderImage, { opacity:0, duration:TIMING.SHORTEST, onComplete: () => {
-              sliderImage.style.visibility = "hidden";
-              gsap.to(content, { opacity:0, duration:TIMING.SHORT });
-              resolve();
-            }});
-          }
+          const w = Flip.getState(sliderImage);
+          gsap.set(sliderImage, { width: rect.width, x: rect.left, height: "100vh", y: 0 });
+          Flip.from(w, {
+            duration: TIMING.BASE,
+            ease: "mainEase",
+            onComplete: () => {
+              const h = Flip.getState(sliderImage);
+              gsap.set(sliderImage, { height: rect.height, y: rect.top });
+              Flip.from(h, {
+                duration: TIMING.BASE,
+                ease: "mainEase",
+                onComplete: () => {
+                  gsap.to(sliderImage, {
+                    opacity: 0,
+                    duration: TIMING.SHORTEST,
+                    onComplete: () => {
+                      sliderImage.style.visibility = "hidden";
+                      gsap.to(content, { opacity: 0, duration: TIMING.SHORT });
+                      resolve();
+                    },
+                  });
+                },
+              });
+            },
+          });
         });
-      }
-    });
-  });
-
-  const transitionToSlide = (index) => {
-    if (isAnimating || index === activeIndex || currentMode !== "slider") return;
-    isAnimating = true;
-
-    document.querySelector(".thumbnail.active")?.classList.remove("active");
-    document.querySelector(`.thumbnail[data-index="${index}"]`)?.classList.add("active");
-
-    const url = imageUrls[index];
-    sliderImageNext.style.backgroundImage = sliderImageBg.style.backgroundImage = url;
-    gsap.set([sliderImageNext, sliderImageBg], { visibility:"visible" });
-
-    gsap.to(sliderImage, { x:"-35%", opacity:1, duration:TIMING.LONG, ease:"mainEase" });
-    gsap.to(sliderImageNext, {
-      x:0, opacity:1, duration:TIMING.LONG, ease:"sideEase",
-      onComplete: () => {
-        sliderImage.style.backgroundImage = url;
-        gsap.set([sliderImageNext, sliderImageBg], { opacity:0, visibility:"hidden" });
-        updateContent(index);
-        activeIndex = index;
-        isAnimating = false;
-      }
-    });
-  };
-
-  thumbnails.forEach(t => t.addEventListener("click", () => {
-    const idx = parseInt(t.getAttribute("data-index"), 10);
-    transitionToSlide(idx);
-  }));
-
-  document.querySelector(".switch-button-grid").onclick  = () => toggleView("grid");
-  document.querySelector(".switch-button-slider").onclick = () => toggleView("slider");
-}
-</script>
-
+    }
+  </script>
 </head>
 
 <body>
-    <div class="wrap">
+<div class="wrap">
 <!-- ================================= HEADER (overlay glass) ============================== -->
 <header class="header" role="banner">
     <div class="top">
@@ -223,29 +254,106 @@ function initApp() {
 
 <!-- ================================= HERO =============================================== -->
 
-<section class="section-hero" aria-label="Hero">
-    <div class="hero__media" aria-hidden="true">
-        <!-- <video src="img/4132631-hd_1280_720_25f.mp4" autoplay muted loop></video> -->
-        <img src="img/hero_coffee_2x.jpg" alt="Nespresso Coffee"/>
-    </div>
-    <div class="hero__content">
-        <div class="hero__caption">
+<!-- Swiper -->
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+
+    <!-- Slide 1 -->
+    <div class="swiper-slide">
+      <section class="section-hero" aria-label="Hero">
+        <div class="hero__media" aria-hidden="true">
+          <img src="img/hero_coffee_2x.jpg" alt="Nespresso Coffee"/>
+        </div>
+        <div class="hero__content">
+          <div class="hero__caption">
             <div class="hero__en">Nothing Tastes Like Nespresso Coffee</div>
-            <!-- <h1 class="hero__kor">깊고 진한 크레마, 한 잔의 여유</h1> -->
-        </div><!-- .hero__caption -->
-        <div class="hero__btn">
+          </div>
+          <div class="hero__btn">
             <a href="#">
-                <li>
+              <li>
                 더 알아보기
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </li>
+                <span></span><span></span><span></span><span></span>
+              </li>
             </a>
-        </div><!-- .hero__btn -->
-    </div><!-- .hero__content -->
-</section>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="swiper-slide">
+      <section class="section-hero" aria-label="Hero">
+        <div class="hero__media" aria-hidden="true">
+          <img src="img/Frame.jpg" alt="Vertuo Plus Chrome Edition"/>
+        </div>
+        <div class="hero__content">
+          <div class="hero__caption">
+            <div class="hero__en">Vertuo Plus Chrome Edition</div>
+          </div>
+          <div class="hero__btn">
+            <a href="#">
+              <li>
+                더 알아보기
+                <span></span><span></span><span></span><span></span>
+              </li>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="swiper-slide">
+      <section class="section-hero" aria-label="Hero">
+        <div class="hero__media" aria-hidden="true">
+          <img src="img/jesper-brouwers-ioxmlrwJPBI-unsplash.jpg" alt="Coffee Moments"/>
+        </div>
+        <div class="hero__content">
+          <div class="hero__caption">
+            <div class="hero__en">Awaken Your Everyday Moments</div>
+          </div>
+          <div class="hero__btn">
+            <a href="#">
+              <li>
+                더 알아보기
+                <span></span><span></span><span></span><span></span>
+              </li>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="swiper-slide">
+      <section class="section-hero" aria-label="Hero">
+        <div class="hero__media" aria-hidden="true">
+          <img src="img/monody-le-OuxB9C_-Kw8-unsplash.jpg" alt="Starbucks by Nespresso"/>
+        </div>
+        <div class="hero__content">
+          <div class="hero__caption">
+            <div class="hero__en">Starbucks® by Nespresso</div>
+          </div>
+          <div class="hero__btn">
+            <a href="#">
+              <li>
+                더 알아보기
+                <span></span><span></span><span></span><span></span>
+              </li>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </div><!-- .swiper-wrapper -->
+
+  <!-- Pagination -->
+  <div class="swiper-pagination"></div>
+
+</div><!-- .swiper -->
+
+
 
 
 <!-- ================================= CLUB (4 cards) ===================================== -->
@@ -349,7 +457,7 @@ function initApp() {
 
 <!-- ================================= 3 STEPS ============================================ -->
 <section class="section-steps" aria-labelledby="stepsTitle">
-    <div class="steps container">
+    <div class="step">
         <h3 id="stepsTitle" class="sr-only">3Steps</h3>
     <div class="steps__row">
         <article class="step">

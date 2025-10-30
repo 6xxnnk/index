@@ -116,7 +116,7 @@ img {
 
   .nav ul li:hover {
     text-decoration: underline;
-    color: #8ACE00;
+    color: #95FF00;
     
     cursor: pointer;
 
@@ -130,6 +130,12 @@ img {
 
   
 /* Hero */
+  .swiper {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+  }
+
   .section-hero {
     position: relative;
     margin-top: 0;
@@ -145,6 +151,13 @@ img {
     object-fit: cover;
   }
 
+  .hero__content {
+  position: absolute;
+  bottom: 20%;
+  left: 10%;
+  color: #fff;
+  z-index: 10;
+}
 
   .hero__caption {
     position: absolute;
@@ -156,12 +169,41 @@ img {
   }
 
 .hero__en {
-    font-size: 40px;
+    font-size: 2.5rem;
     letter-spacing: 0.1em;
     font-weight: 400;
-    font-style: normal;
 
 }
+
+.swiper-pagination {
+  position: absolute;   /* 슬라이드 위에 겹치도록 */
+  left: 0; right: 0; bottom: 60px;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.swiper-pagination-bullet {
+  width: 48px;
+  height: 48px;
+  background-color: transparent;
+  background-image: url('img/bullet.png'); /* 🔹 네가 설정한 기본 이미지 */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  border-radius: 0; /* 🔹 네모형 bullet */
+  opacity: 0.5;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background-image: url('img/bullet-active.png'); /* 🔹 활성 bullet 이미지 (같게 써도 됨) */
+  opacity: 1;
+  transform: scale(1.1);
+}
+
 
 .hero__btn {
     position: absolute;
@@ -223,6 +265,14 @@ img {
 .hero__btn li:hover span {
   transform: translateY(0) scale(2);
 }
+
+
+
+
+
+
+
+
 
 /* Club Section */
 .section-club {
@@ -387,9 +437,17 @@ img {
 
 
 /* Coffee Letter */
-.container { position: relative; width: 100%; height: 100vh; overflow: hidden; }
+.container { 
+  position: relative; 
+  width: 100%; 
+  height: 100vh; 
+  overflow: hidden;
+}
 
-    .grid-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; }
+    .grid-container { 
+      position: absolute; 
+      top: 0; left: 0; width: 100%; height:700px; overflow: hidden; 
+      padding: 0 40px;}
     .grid {
       display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr);
       gap: 0; width: 100%; height: 100%; will-change: transform;
@@ -414,7 +472,10 @@ img {
       text-transform:uppercase; letter-spacing:-0.02em; margin-bottom:1.5rem; overflow:hidden; }
     .content-title span { display:block; transform: translateY(100%); }
     .content-paragraph {
-      text-align:left; font-family:"TheGoodMonolith", monospace; font-size:1rem; color:#f0f0f0; max-width:600px;
+      text-align:left; 
+      font-size:1rem; 
+      color:#f0f0f0; 
+      max-width:600px;
       line-height:1.3; margin-bottom:10%; opacity:0;
     }
 
@@ -425,12 +486,32 @@ img {
     .thumbnail.active { border:2px solid #fff; }
 
     .switch {
-      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-      display: flex; gap: 20px; background: #222; padding: 10px 20px; border-radius: 4px;
-      z-index: 1000; transition: padding .3s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    background: #222;
+    padding: 10px 20px;
+    border-radius: 8px;
+    z-index: 1000;
+    transition: opacity .25s ease, visibility .25s ease;
+
     }
+
+
+.switch.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
     .switch-button {
-      background: none; border: none; color: #666; cursor: pointer; font-family: "TheGoodMonolith", monospace;
+      background: none; border: none; color: #666; cursor: pointer;
       font-size: 14px; padding: 5px 10px; position: relative; transition: all .3s ease-in-out;
     }
     .switch-button-current { color: #f0f0f0; }
