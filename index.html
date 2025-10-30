@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nespresso Project</title>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/index.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="css/index.css">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,212 +18,19 @@
   />
 
   <!-- Libraries -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
 
-  <!-- ✅ 통합 실행 스크립트 -->
-  <script defer>
-    document.addEventListener("DOMContentLoaded", () => {
-      /* ========================== HERO SWIPER ========================== */
-      const swiper = new Swiper(".mySwiper", {
-        slidesPerView: 1,
-        loop: true,
-        speed: 1000,
-        effect: "fade",
-        autoplay: {
-          delay: 4500,
-          disableOnInteraction: false,
-        },
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-      });
 
-      /* ========================== NEWSLETTER ========================== */
-      if (typeof gsap === "undefined" || typeof Flip === "undefined") {
-        console.error("GSAP/Flip not loaded");
-        return;
-      }
 
-      // Custom Easing 설정
-      if (typeof CustomEase !== "undefined") {
-        CustomEase.create("mainEase", "M0,0 C0.65,0.05 0.36,1 1,1");
-        CustomEase.create("sideEase", "M0,0 C0.86,0 0.07,1 1,1");
-      }
-
-      // .switch 노출 조건
-      const container = document.querySelector(".container");
-      const switchEl = document.getElementById("switch");
-
-      if (container && switchEl) {
-        const updateSwitchVisibility = () => {
-          const rect = container.getBoundingClientRect();
-          if (rect.top <= 0 && rect.bottom > 0) {
-            switchEl.classList.add("is-visible");
-          } else {
-            switchEl.classList.remove("is-visible");
-          }
-        };
-        window.addEventListener("scroll", updateSwitchVisibility, { passive: true });
-        window.addEventListener("resize", updateSwitchVisibility);
-        updateSwitchVisibility();
-      }
-
-      // GSAP 기반 Newsletter Grid 초기화
-      initNewsletterApp();
-    });
-
-    /* ========================== FUNCTION: initNewsletterApp ========================== */
-    function initNewsletterApp() {
-      const TIMING = {
-        BASE: 0.512,
-        SHORT: 0.384,
-        SHORTEST: 0.256,
-        LONG: 0.768,
-        STAGGER_TINY: 0.032,
-        STAGGER_SMALL: 0.064,
-      };
-
-      const grid = document.getElementById("grid");
-      const gridItems = document.querySelectorAll(".grid-item");
-      const sliderImage = document.getElementById("slider-image");
-      const sliderImageNext = document.getElementById("slider-image-next");
-      const sliderImageBg = document.getElementById("slider-image-bg");
-      const transitionOverlay = document.getElementById("transition-overlay");
-      const content = document.getElementById("content");
-      const contentTitleSpan = content.querySelector(".content-title span");
-      const contentParagraph = document.getElementById("content-paragraph");
-      const thumbnails = document.querySelectorAll(".thumbnail");
-
-      if (!grid) return;
-
-      let currentMode = "grid";
-      let isAnimating = false;
-      let activeIndex = 4;
-
-      const imageUrls = Array.from(gridItems).map(
-        (i) => i.querySelector(".grid-item-img").style.backgroundImage
-      );
-
-      const slideContent = [
-        { title: "URBAN GEOMETRY", paragraph: "The city speaks in angles and lines..." },
-        { title: "NATURAL ABSTRACTIONS", paragraph: "Nature doesn't try to be beautiful..." },
-        { title: "SHADOW PLAY", paragraph: "Light creates shadow. Shadow defines light..." },
-        { title: "MINIMALIST FORMS", paragraph: "When we strip away the unnecessary..." },
-        { title: "MONOCHROME SERIES", paragraph: "Without color, we see differently..." },
-        { title: "TEXTURAL STUDIES", paragraph: "Touch with your eyes. Feel the rough and smooth..." },
-      ];
-
-      const updateContent = (idx) => {
-        contentTitleSpan.textContent = slideContent[idx].title;
-        contentParagraph.textContent = slideContent[idx].paragraph;
-      };
-
-      /* --- Slider/Grid 전환 --- */
-      const toggleView = (mode) => {
-        if (isAnimating || currentMode === mode) return;
-        isAnimating = true;
-        document.querySelector(".switch-button-current")?.classList.remove("switch-button-current");
-        document.querySelector(`.switch-button-${mode}`).classList.add("switch-button-current");
-        currentMode = mode;
-        (mode === "slider" ? showSliderView() : showGridView()).then(() => (isAnimating = false));
-      };
-
-      /* --- Slider 전환 --- */
-      const showSliderView = () =>
-        new Promise((resolve) => {
-          const activeItem = gridItems[activeIndex];
-          const rect = activeItem.getBoundingClientRect();
-          const url = imageUrls[activeIndex];
-
-          sliderImage.style.backgroundImage = url;
-          sliderImageBg.style.backgroundImage = url;
-          updateContent(activeIndex);
-
-          gsap.set(sliderImage, {
-            width: rect.width,
-            height: rect.height,
-            x: rect.left,
-            y: rect.top,
-            opacity: 1,
-            visibility: "visible",
-          });
-
-          const h = Flip.getState(sliderImage);
-          gsap.set(sliderImage, { height: "100vh", y: 0, width: rect.width, x: rect.left });
-          Flip.from(h, {
-            duration: TIMING.BASE,
-            ease: "mainEase",
-            onComplete: () => {
-              const w = Flip.getState(sliderImage);
-              gsap.set(sliderImage, { width: "100vw", x: 0 });
-              Flip.from(w, {
-                duration: TIMING.BASE,
-                ease: "mainEase",
-                onComplete: () => {
-                  gsap.to(grid, { opacity: 0, duration: TIMING.SHORTEST });
-                  gsap.to(content, { opacity: 1, duration: TIMING.SHORT });
-                  gsap.to(contentTitleSpan, { y: 0, duration: TIMING.BASE });
-                  gsap.to(contentParagraph, { opacity: 1, duration: TIMING.BASE });
-                  gsap.to(thumbnails, {
-                    opacity: 1,
-                    y: 0,
-                    duration: TIMING.SHORT,
-                    stagger: TIMING.STAGGER_TINY,
-                  });
-                  resolve();
-                },
-              });
-            },
-          });
-        });
-
-      const showGridView = () =>
-        new Promise((resolve) => {
-          const activeItem = gridItems[activeIndex];
-          const rect = activeItem.getBoundingClientRect();
-
-          gsap.to([contentParagraph], { opacity: 0, duration: TIMING.SHORT });
-          gsap.to(contentTitleSpan, { y: "100%", duration: TIMING.SHORT });
-          gsap.to(thumbnails, { opacity: 0, y: 20, duration: TIMING.SHORT });
-          gsap.to(grid, { opacity: 1, duration: TIMING.SHORTEST });
-
-          const w = Flip.getState(sliderImage);
-          gsap.set(sliderImage, { width: rect.width, x: rect.left, height: "100vh", y: 0 });
-          Flip.from(w, {
-            duration: TIMING.BASE,
-            ease: "mainEase",
-            onComplete: () => {
-              const h = Flip.getState(sliderImage);
-              gsap.set(sliderImage, { height: rect.height, y: rect.top });
-              Flip.from(h, {
-                duration: TIMING.BASE,
-                ease: "mainEase",
-                onComplete: () => {
-                  gsap.to(sliderImage, {
-                    opacity: 0,
-                    duration: TIMING.SHORTEST,
-                    onComplete: () => {
-                      sliderImage.style.visibility = "hidden";
-                      gsap.to(content, { opacity: 0, duration: TIMING.SHORT });
-                      resolve();
-                    },
-                  });
-                },
-              });
-            },
-          });
-        });
-    }
-  </script>
 </head>
-
 <body>
 <div class="wrap">
 <!-- ================================= HEADER (overlay glass) ============================== -->
+
+
 <header class="header" role="banner">
     <div class="top">
         <span class="top_text">머신 구매 시, 오리지널 커피 7캡슐로 구성된 웰컴 기프트 증정</span>
@@ -356,60 +163,132 @@
 
 
 
+
 <!-- ================================= CLUB (4 cards) ===================================== -->
+
+
 <section class="section-club" aria-labelledby="clubTitle">
+  <div class="club__container">
+    <div class="club__head">
+      <h2 id="clubTitle">Join the Nespresso Club!</h2>
+      <p class="sr-only">네스프레소 클럽 회원에게만 주어지는 특별한 혜택</p>
+    </div>
+  </div>
 
-    <div class="club__container">
-        <div class="club__head">
-            <h2 id="clubTitle">Join the Nespresso Club!</h2>
-            <p class="sr-only">멤버십 가입 혜택, 머신 가이드, 리사이클, 캡슐 구독 안내</p>
-        </div>
-    </div><!-- .container -->
+  <div class="club__grid">
+    <!-- card 1 -->
+    <article class="club-card glossy" style="--card-bg: url('../img/club-1.jpg')">
+      <!-- 효과 전용 레이어 -->
+      <div class="glossy__background" aria-hidden="true"></div>
+      <div class="glossy__card">
+        <div class="glossy__blur" aria-hidden="true"></div>
 
-    <div class="club__grid">
-        <!-- card 1 -->
-        <article class="club-card">
-        <div class="club-card__img"><img src="img/club-1.jpg" alt="바리스타 레시피"/></div>
-        <div class="club-card__body">
-        <span class="club-card__tag">바리스타 레시피</span>
-        <a class="club-card__cta" href="#">더보기 →</a>
+        <div class="glossy__info">
+          <span class="club-card__tag"><p>커피 머신이 처음인가요?<br>
+                        머신 가격의 최대 67%를 커피 할인으로 <br>
+                        페이백 받으세요. </p></span>
+          <a class="club-card__cta" href="#">더보기 →</a>
         </div>
-        </article>
 
-        <!-- card 2 -->
-        <article class="club-card">
-        <div class="club-card__img"><img src="img/club-2.jpg" alt="머신 가이드"/></div>
-        <div class="club-card__body">
-        <span class="club-card__tag">머신 가이드</span>
-        <a class="club-card__cta" href="#">자세히 →</a>
-        </div>
-        </article>
+        <div class="glossy__connections" aria-hidden="true">
+          <span class="glossy__connection">
+            <img src="img/Frame91.png" alt="연결 아이콘 1"/>
+          </span>
 
-        <!-- card 3 -->
-        <article class="club-card">
-        <div class="club-card__img"><img src="img/club-3.jpg" alt="캡슐 보관 팁"/></div>
-        <div class="club-card__body">
-        <span class="club-card__tag">캡슐 보관 팁</span>
-        <a class="club-card__cta" href="#">자세히 →</a>
         </div>
-        </article>
 
-        <!-- card 4 -->
-        <article class="club-card">
-        <div class="club-card__img"><img src="img/club-4.jpg" alt="리사이클"/></div>
-        <div class="club-card__body">
-        <span class="club-card__tag">리사이클</span>
-        <a class="club-card__cta" href="#">신청하기 →</a>
+        <!-- 하단 곡선 장식(선택) -->
+        <svg class="glossy__curve" viewBox="0 0 400 450" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0,360 C120,330 280,420 400,390 L400,450 L0,450 Z" fill="#fff" opacity="0.9"></path>
+        </svg>
+      </div>
+    </article>
+
+         <!-- card 2 -->
+    <article class="club-card glossy" style="--card-bg: url('../img/club-2.jpg')">
+      <div class="glossy__background"></div>
+      <div class="glossy__card">
+        <div class="glossy__blur"></div>
+        <div class="glossy__info">
+          <span class="club-card__tag">네스프레소 커피 머신, 바리스타 머신을  <br>
+                            정품등록 시 추가로 1년의 무상 보증 혜택을<br>
+                             받으실 수 있습니다.<br>
+                             *공식 판매처에서 구매한 제품에 한함</span>
+          <a class="club-card__cta" href="#">자세히 →</a>
         </div>
-        </article>
-</div>
+        <div class="glossy__connections">
+          <span class="glossy__connection">
+            <img src="img/Frame91.png" alt="연결 아이콘 1"/>
+          </span>
+        </div>
+        <svg class="glossy__curve" viewBox="0 0 400 450" preserveAspectRatio="none">
+          <path d="M0,360 C120,330 280,420 400,390 L400,450 L0,450 Z" fill="#fff" opacity="0.9"></path>
+        </svg>
+      </div>
+    </article>
+
+    <!-- card 3 -->
+    <article class="club-card glossy" style="--card-bg: url('../img/club-3.jpg')">
+      <div class="glossy__background"></div>
+      <div class="glossy__card">
+        <div class="glossy__blur"></div>
+        <div class="glossy__info">
+          <span class="club-card__tag">NESPRESSO SMILE 프로그램 가입하고 <br>
+                            ​포인트를 쌓아보세요!<br>
+                            미소 짓게 만드는 선물이 기다립니다</span>
+          <a class="club-card__cta" href="#">자세히 →</a>
+        </div>
+        <div class="glossy__connections">
+          <span class="glossy__connection">
+            <img src="img/Frame91.png" alt="연결 아이콘 1"/>
+          </span>
+        </div>
+        <svg class="glossy__curve" viewBox="0 0 400 450" preserveAspectRatio="none">
+          <path d="M0,360 C120,330 280,420 400,390 L400,450 L0,450 Z" fill="#fff" opacity="0.9"></path>
+        </svg>
+      </div>
+    </article>
+
+    <!-- card 4 -->
+    <article class="club-card glossy" style="--card-bg: url('../img/club-4.jpg')">
+      <div class="glossy__background"></div>
+      <div class="glossy__card">
+        <div class="glossy__blur"></div>
+        <div class="glossy__info">
+          <span class="club-card__tag">
+                            나만의 취향대로 커피를 구매하고 <br>
+                            추가 사은품도 받아보세요!<br>
+                            오리지널 커피 150 캡슐 또는<br>
+                            버츄오 커피 100 캡슐 이상 담으시면  <br>
+                            최대 41,000원 상당의 <br>
+                            웰컴 기프트를 드립니다<br>
+                            <br>
+                            *신규 고객 대상</span>
+          <a class="club-card__cta" href="#">신청하기 →</a>
+        </div>
+        <div class="glossy__connections">
+          <span class="glossy__connection">
+            <img src="img/Frame91.png" alt="연결 아이콘 1"/>
+          </span>
+        </div>
+        <svg class="glossy__curve" viewBox="0 0 400 450" preserveAspectRatio="none">
+          <path d="M0,360 C120,330 280,420 400,390 L400,450 L0,450 Z" fill="#fff" opacity="0.9"></path>
+        </svg>
+      </div>
+    </article>
+  </div>
 </section>
 
+
+
+
 <!-- =========================== ORIGINAL vs VERTUO (4 items) ============================= -->
+
+
 <section class="section-compare" aria-labelledby="compareTitle">
     <div class="compare__intro">
         <h3 id="compareTitle">Original or Vertuo?</h3>
-        <p class="sr-only">네스프레소의 두 가지 시스템 비교</p>
+        <p class="sr-only">나에게 맞는 네스프레소 머신을 찾아보세요</p>
     </div>
 
     <div class="compare__grid">
@@ -455,8 +334,10 @@
     </div><!-- .compare__grid -->
 </section>
 
+
 <!-- ================================= 3 STEPS ============================================ -->
-<section class="section-steps" aria-labelledby="stepsTitle">
+
+  <section class="section-steps" aria-labelledby="stepsTitle">
     <div class="step">
         <h3 id="stepsTitle" class="sr-only">3Steps</h3>
     <div class="steps__row">
@@ -487,7 +368,10 @@
 </div><!-- .steps -->
 </section>
 
+
 <!-- ============================== COLLAB PROMO (Blue Bottle) ============================ -->
+
+
 <section class="section-collab" aria-labelledby="collabTitle">
     <div class="collab">
         <div class="collab__inner">
@@ -518,10 +402,10 @@
             <i>♻</i>
             <span>머신 구매 시, 되돌려 쓸 수 있는 리사이클 백 제공 — 수거된 알루미늄은 다시 자원으로.</span>
             </div>
-    </div><!-- .collab -->
-    </div><!-- .collab__inner -->
-    </div><!-- .collab__outer -->
-</section>
+ </div><!-- .collab__inner --> 
+</div><!-- .collab --> ```</span>
+ </section>
+
 
 <!-- ================================= SUSTAINABILITY CUT ================================= -->
 <section class="section-sus">
@@ -544,23 +428,23 @@
     <div class="grid-container">
       <div class="grid" id="grid">
         <div class="grid-item" data-index="0">
-          <div class="grid-item-img" style="background-image:url(img/letter-1.png)"></div>
+          <div class="grid-item-img" style="background-image:url(../img/letter-1.png)"></div>
         </div>
         <div class="grid-item" data-index="1">
-          <div class="grid-item-img" style="background-image:url(img/letter-2.png)"></div>
+          <div class="grid-item-img" style="background-image:url(../img/letter-2.png)"></div>
         </div>
         <div class="grid-item" data-index="2">
           <!-- URL 오탈자 '.' 제거 -->
-          <div class="grid-item-img" style="background-image:url(img/letter-3.png)"></div>
+          <div class="grid-item-img" style="background-image:url(../img/letter-3.png)"></div>
         </div>
         <div class="grid-item" data-index="3">
-          <div class="grid-item-img" style="background-image:url(img/letter-1.png)"></div>
+          <div class="grid-item-img" style="background-image:url(../img/letter-1.png)"></div>
         </div>
         <div class="grid-item target" id="target-item" data-index="4">
-          <div class="grid-item-img" style="background-image:url(img/letter-1.png)"></div>
+          <div class="grid-item-img" style="background-image:url(../img/letter-1.png)"></div>
         </div>
         <div class="grid-item" data-index="5">
-          <div class="grid-item-img" style="background-image:url(img/letter-1.png)"></div>
+          <div class="grid-item-img" style="background-image:url(../img/letter-1.png)"></div>
         </div>
 
       </div>
@@ -638,7 +522,11 @@
     <span>대한민국</span>
     </div>
     </footer>
-    </div><!-- footer -->
+</div><!-- .wrap -->
 
+  <script defer src="js/hero.js"></script>
+  <script defer src="js/club.js"></script>
+  <script defer src="js/newsletter.js"></script>
+  <script defer src="js/index.js"></script>
 </body>
 </html>
