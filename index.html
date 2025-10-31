@@ -321,43 +321,55 @@
 
     <div class="compare__grid">
         <!-- Original machine feature -->
-        <article class="compare-card compare-card--tint">
+        <article class="compare-card compare-card--tint" data-area="tl">
         <div class="compare-card__media" aria-hidden="true"> 
           <video src="img/RTB_original_2.mp4" autoplay muted loop></video> 
         </div>
         <div class="compare-card__content">
-        <div class="compare-card__kicker">오리지널 라인</div>
-        <h4 class="compare-card__title">클래식한 에스프레소 경험</h4>
+        <div class="compare-card__kicker">Original</div>
+        <h4 class="compare-card__title">
+          잊지 못할 클래식 에스프레소 커피 경험의 시작 <br>
+          고압 추출로 완성한 클래식 에스프레소를 느낄 수 있는 오리지널 머신</h4>
         </div>
 
         </article>
 
-        <!-- Vertuo system feature -->
+        <!-- (2) TR: SWIPER IMAGE — Original Machines -->
         <article class="compare-card is-swiper" data-area="tr">
       <div class="compare-card__media">
         <div class="swiper compareSwiper" id="compare-swiper-tr">
           <div class="swiper-wrapper">
             <!-- slide 1 -->
-            <div class="swiper-slide" data-kicker="Vertuo 시스템" data-title="센트리퓨전™으로 더 풍성한 크레마">
-              <img src="img/machine_vertuo.jpg" alt="">
+            <div class="swiper-slide" data-kicker="픽시 C61 일렉트릭 레드" 
+            data-title="인더스트리얼 감성 속 섬세한 커피 경험">
+              <img src="img/original_pixie.jpg" alt="">
+              <div class="swiper-slide__info">
+                <div class="swiper-slide__kicker">픽시 C61 일렉트릭 레드</div>
+                <div class="swiper-slide__title">인더스트리얼 감성 속 섬세한 커피 경험</div>
+              </div>
             </div>
             <!-- slide 2 -->
-            <div class="swiper-slide" data-kicker="Vertuo 시스템" data-title="대용량 머그부터 에스프레소까지">
-              <img src="img/machine_vertuo.jpg" alt="">
+            <div class="swiper-slide" data-kicker="" data-title="">
+              <img src="img/original_citiz.jpg" alt="">
+              <div class="swiper-slide__info">
+                <div class="swiper-slide__kicker">픽시 C61 일렉트릭 레드</div>
+                <div class="swiper-slide__title">모던한 디자인 그리고 클래식한 커피 경험의 진정한 조화</div>
+              </div>
             </div>
             <!-- slide 3 -->
             <div class="swiper-slide" data-kicker="Vertuo 시스템" data-title="바코드로 레시피 자동 인식">
-              <img src="img/machine_vertuo.jpg" alt="">
+              <img src="img/original_citiz_platinum.jpg" alt="">
+              <div class="swiper-slide__info">
+                <div class="swiper-slide__kicker">시티즈 플래티넘 D 스테인리스 스틸</div>
+                <div class="swiper-slide__title">에스프레소부터 아메리카노까지, 다양한 스타일로 즐기는 커피</div>
+              </div>
             </div>
           </div>
           <div class="swiper-pagination"></div>
+           <div class="swiper-button-prev" role="button" aria-label="Previous slide"></div>
+  <div class="swiper-button-next" role="button" aria-label="Next slide"></div>
         </div>
       </div>
-      <div class="compare-card__content">
-        <div class="compare-card__kicker">Vertuo 시스템</div>
-        <h4 class="compare-card__title">센트리퓨전™으로 더 풍성한 크레마</h4>
-      </div>
-      <a href="#" class="compare-card__btn" aria-label="자세히">→</a>
     </article>
 
         <!-- (3) BL: SWIPER IMAGE — Original Accessories -->
@@ -365,24 +377,35 @@
       <div class="compare-card__media">
         <div class="swiper compareSwiper" id="compare-swiper-bl">
           <div class="swiper-wrapper">
-            <div class="swiper-slide" data-kicker="오리지널 액세서리" data-title="머그 & 글라스 컬렉션">
-              <img src="img/original_01.jpg" alt="">
+            <div class="swiper-slide">
+              <img src="img/ComparePage.jpg" alt="">
+              <div class="swiper-slide__info">
+                <div class="swiper-slide__kicker">버츄오 플러스 크롬</div>
+                <div class="swiper-slide__title">눈부신 존재감, 자동 오픈 헤드와 만나다</div>
+              </div>
             </div>
-            <div class="swiper-slide" data-kicker="오리지널 액세서리" data-title="홈카페 스타일링 팁">
-              <img src="img/original_02.jpg" alt="">
+            <div class="swiper-slide">
+              <img src="img/vertuo_lattissima.jpg" alt="">
+              <div class="swiper-slide__info">
+                <div class="swiper-slide__kicker">버츄오 라티시마</div>
+                <div class="swiper-slide__title">버츄오와 밀크 레시피의 스마트한 만남</div>
+              </div>
             </div>
-            <div class="swiper-slide" data-kicker="오리지널 액세서리" data-title="머신과의 완벽한 조화">
-              <img src="img/original_03.jpg" alt="">
-            </div>
-          </div>
+            <div class="swiper-slide">
+              <img src="img/vertuo_pop.jpg" alt="">
+              <div class="swiper-slide__info">
+                <div class="swiper-slide__kicker">버츄오 팝 망고 옐로우</div>
+                <div class="swiper-slide__title">
+                비비드한 컬러와 컴팩트한 사이즈로 공간을 POP하게</div>
+              </div><!-- swiper-slide__info -->
+            </div><!-- swiper-slide -->
+
+          </div><!-- swiper-wrapper -->
           <div class="swiper-pagination"></div>
-        </div>
-      </div>
-      <div class="compare-card__content">
-        <div class="compare-card__kicker">오리지널 액세서리</div>
-        <h4 class="compare-card__title">머그 & 글라스 컬렉션</h4>
-      </div>
-      <a href="#" class="compare-card__btn" aria-label="자세히">→</a>
+           <div class="swiper-button-prev" role="button" aria-label="Previous slide"></div>
+  <div class="swiper-button-next" role="button" aria-label="Next slide"></div>
+        </div><!-- compareSwiper -->
+      </div><!-- compare-card__media -->
     </article>
 
          <!-- (4) BR: VIDEO — Vertuo Colors -->
@@ -391,10 +414,11 @@
         <video src="img/RTB_vertuo_2.mp4" autoplay muted loop playsinline></video>
       </div>
       <div class="compare-card__content">
-        <div class="compare-card__kicker">Vertuo 머신</div>
-        <h4 class="compare-card__title">두 가지 컬러, 두 가지 무드</h4>
+        <div class="compare-card__kicker">Vertuo</div>
+        <h4 class="compare-card__title">
+          바코드 회전 추출로 완성되는
+        풍성한 크레마와 깊은 바디감을 선사하는 버츄오 머신</h4>
       </div>
-      <a href="#" class="compare-card__btn" aria-label="자세히">→</a>
     </article>
   </div>
 </section>
@@ -447,41 +471,52 @@
 
 <section class="section-collab" aria-labelledby="collabTitle">
   <div class="collab__inner">
-    <h3 id="collabTitle" class="sr-only">Nespresso × Blue Bottle</h3>
+    <div class="collab__title">
+    <img src="../img/nespresso-blue-bottle-logo.png" alt="">
+    <h3>Nespresso × Blue Bottle</h3>
+    <p>네스프레소와 블루보틀 커피의 두 번째 협업으로 탄생한 블루보틀 블렌드 No.2 <br>
+      호기심과 전문성을 바탕으로 완성한 개성 넘치는 한정 블렌드입니다</p>
+    </div>
 
     <!-- pill 1 -->
     <div class="pill" data-item="블루보틀 블렌드 No.2">
       <div class="pill__thumb">
-        <img src="img/blue-bottle-2_2x.jpg" alt="블루보틀 블렌드 No.2" />
+        <img src="img/blue-bottle-2_2x 1.png" alt="블루보틀 블렌드 No.2" />
       </div>
       <div class="pill__body">
         <div class="pill__title">블루보틀 블렌드 No.2</div>
-        <div class="pill__meta">루이보스의 은은함, 잘 익은 베리의 산뜻한 향미</div>
+        <div class="pill__meta">
+          잘 익은 베리류의 산뜻함, 비스킷의 고소함 <br>
+          은은한 아로마와 세련된 산미<br>
+          그리고 균형 잡힌 바디감이 어우러진 조화로운 한 잔</div>
       </div>
       <div class="pill__cta">
         <div class="pill__handle" aria-label="드래그하여 장바구니에 추가"></div>
-        <span class="pill__cta-text">드래그 →</span>
+        <span class="pill__cta-text"></span>
       </div>
     </div>
 
     <!-- pill 2 -->
     <div class="pill" data-item="블루보틀 에센셜 세트">
       <div class="pill__thumb">
-        <img src="img/250908-BB-AERO-SET-2000x2000.jpg" alt="블루보틀 에센셜 세트" />
+        <img src="img/250908-BB-AERO-SET.png" alt="블루보틀 에센셜 세트" />
       </div>
       <div class="pill__body">
         <div class="pill__title">블루보틀 에센셜 세트</div>
-        <div class="pill__meta">머신 + 글라스 + 시즌 한정 캡슐 구성</div>
+        <div class="pill__meta">
+          16% 할인 혜택과 함께 특별한 선물로 구성된 <br>
+          블루보틀의 미니멀한 매력이 돋보이는 선물포장으로 <br>
+          구성된 버츄오 전용 시즌한정세트</div>
       </div>
       <div class="pill__cta">
         <div class="pill__handle" aria-label="드래그하여 장바구니에 추가"></div>
-        <span class="pill__cta-text">드래그 →</span>
+        <span class="pill__cta-text"></span>
       </div>
     </div>
 
     <div class="sus__note">
-      <i>♻</i>
-      <span>머신 구매 시, 리사이클 백 제공 — 수거된 알루미늄은 다시 자원으로.</span>
+      <span>블루보틀블렌드 No.2 의 진하고 조화로운 더블 에스프레소를 <br>
+    따뜻한 우유와 함께 집에서도 손쉽게 라테 혹은 카푸치노로 즐겨보세요!</span>
     </div>
   </div>
 </section>
@@ -501,6 +536,45 @@
 </section>
 
 <!-- =============================== GRID / SLIDER =============================== -->
+<div class="main-content">
+  <h1>
+    | Moleskine Notebooks
+    small Hover on any notebook...
+
+  </h1>
+  <div class="moleskine-wrapper">
+    <div class="moleskine-notebook">
+      <div class="notebook-cover">
+        <div class="notebook-skin">MOLESKINE</div>
+      </div>
+      <div class="notebook-page"></div>
+      <h4>Plain</h4>
+    </div>
+  </div>
+  <div class="moleskine-notebook">
+    <div class="notebook-cover blue">
+      <div class="notebook-skin">MOLESKINE</div>
+    </div>
+    <div class="notebook-page ruled"></div>
+    <h4>Ruled</h4>
+  </div>
+  <div class="moleskine-wrapper">
+    <div class="moleskine-notebook">
+      <div class="notebook-cover yellow">
+        <div class="notebook-skin">MOLESKINE</div>
+      </div>
+      <div class="notebook-page squared"></div>
+      <h4>Squared</h4>
+    </div>
+  </div>
+  <div class="moleskine-wrapper">
+    <div class="moleskine-notebook">
+      <div class="notebook-cover green">
+        <div class="notebook-skin">MOLESKINE</div>
+      </div>
+      <div class="notebook-page dotted"></div>  
+      <h4>Dotted</h4>
+    </div>
 
 
 <!-- ================================= FOOTER ============================================= -->

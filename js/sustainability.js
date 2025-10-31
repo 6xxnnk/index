@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (currentX > 60) {
         pillCTA.classList.add("success");
         handle.style.transform = `translateX(70px)`;
-        handle.style.background = "#78d6a0";
+        handle.style.background = "#189cc4";
 
         // 장바구니 알림
         const addedMsg = document.createElement("div");
