@@ -178,6 +178,8 @@
   <div class="club__grid">
     <!-- card 1 -->
     <article class="club-card glossy" style="--card-bg: url('../img/club-1.jpg')">
+      <span class="club-card__ribbon">머신 최대 67% 페이백</span>
+
       <!-- 효과 전용 레이어 -->
       <div class="glossy__background" aria-hidden="true"></div>
       <div class="glossy__card">
@@ -206,13 +208,14 @@
 
          <!-- card 2 -->
     <article class="club-card glossy" style="--card-bg: url('../img/club-2.jpg')">
+      <span class="club-card__ribbon">기기 무상 보증 혜택</span>
+      
       <div class="glossy__background"></div>
       <div class="glossy__card">
         <div class="glossy__blur"></div>
         <div class="glossy__info">
-          <span class="club-card__tag">네스프레소 커피 머신, 바리스타 머신을  <br>
-                            정품등록 시 추가로 1년의 무상 보증 혜택을<br>
-                             받으실 수 있습니다.<br>
+          <span class="club-card__tag">네스프레소 커피머신을 정품등록 시 <br>
+                             추가로 1년의 무상 보증 혜택을 드립니다<br>
                              *공식 판매처에서 구매한 제품에 한함</span>
           <a class="club-card__cta" href="#">자세히 →</a>
         </div>
@@ -229,6 +232,7 @@
 
     <!-- card 3 -->
     <article class="club-card glossy" style="--card-bg: url('../img/club-3.jpg')">
+      <span class="club-card__ribbon">포인트 적립 혜택</span>
       <div class="glossy__background"></div>
       <div class="glossy__card">
         <div class="glossy__blur"></div>
@@ -251,19 +255,17 @@
 
     <!-- card 4 -->
     <article class="club-card glossy" style="--card-bg: url('../img/club-4.jpg')">
+      <span class="club-card__ribbon">웰컴 기프트​ 증정</span>
       <div class="glossy__background"></div>
       <div class="glossy__card">
         <div class="glossy__blur"></div>
         <div class="glossy__info">
           <span class="club-card__tag">
-                            나만의 취향대로 커피를 구매하고 <br>
-                            추가 사은품도 받아보세요!<br>
                             오리지널 커피 150 캡슐 또는<br>
-                            버츄오 커피 100 캡슐 이상 담으시면  <br>
-                            최대 41,000원 상당의 <br>
-                            웰컴 기프트를 드립니다<br>
+                            버츄오 커피 100 캡슐 이상 담으시면<br>
+                            최대 41,000원 상당의 웰컴 기프트를 드립니다 
                             <br>
-                            *신규 고객 대상</span>
+                            </span>
           <a class="club-card__cta" href="#">신청하기 →</a>
         </div>
         <div class="glossy__connections">
@@ -276,7 +278,33 @@
         </svg>
       </div>
     </article>
+  </div><!-- .grid-container -->
+
+  <div class="subscribe">
+
+    <div class="subscribe__inner">
+      <form id="newsletterForm" 
+      class="subscribe__form" 
+      aria-label="뉴스레터 구독 폼">
+
+        <input type="email" id="emailInput" class="subscribe__input" 
+        placeholder="최신 소식과 특별한 혜택을 가장 먼저 받아보세요!" required />
+        <button type="submit" class="subscribe__button">구독하기</button>
+      </form>
+
+      <div class="subscribe__note">
+        <div class="checkbox">
+          <input type="checkbox" id="agreeCheckbox" required />
+        
+        <a href="#">개인정보처리방침</a> 및 <a href="#">이용 약관</a>에 동의합니다.
+      </div>
+      </div>
+
+    </div>
   </div>
+
+
+
 </section>
 
 
@@ -422,63 +450,6 @@
 </section>
 
 <!-- =============================== GRID / SLIDER =============================== -->
-  <!-- Grid -->
-  <div class="container">
-
-    <div class="grid-container">
-      <div class="grid" id="grid">
-        <div class="grid-item" data-index="0">
-          <div class="grid-item-img" style="background-image:url(img/letter-1.png)"></div>
-        </div>
-        <div class="grid-item" data-index="1">
-          <div class="grid-item-img" style="background-image:url(img/letter-2.png)"></div>
-        </div>
-        <div class="grid-item" data-index="2">
-          <!-- URL 오탈자 '.' 제거 -->
-          <div class="grid-item-img" style="background-image:url(img/letter-3.png)"></div>
-        </div>
-        <div class="grid-item" data-index="3">
-          <div class="grid-item-img" style="background-image:url(img/letter-1.png)"></div>
-        </div>
-        <div class="grid-item target" id="target-item" data-index="4">
-          <div class="grid-item-img" style="background-image:url(img/letter-1.png)"></div>
-        </div>
-        <div class="grid-item" data-index="5">
-          <div class="grid-item-img" style="background-image:url(img/letter-1.png)"></div>
-        </div>
-
-      </div>
-    </div>
-
-  <!-- Slide layers -->
-  <div class="slider-image" id="slider-image"></div>
-  <div class="slider-image-bg" id="slider-image-bg"></div>
-  <div class="slider-image-next" id="slider-image-next"></div>
-  <div class="transition-overlay" id="transition-overlay"></div>
-
-  <!-- Content -->
-  <div class="content" id="content">
-    <h1 class="content-title"><span>MONOCHROME SERIES</span></h1>
-    <div class="content-paragraph" id="content-paragraph">
-      Without color, we see differently. Form and texture speak louder. The world simplified to light and dark reveals truths that color often conceals. In this space between extremes, we find clarity. The photograph becomes a mirror reflecting not just what we see, but how we see.
-    </div>
-  </div>
-
-  <!-- Thumbnails -->
-  <div class="thumbnails">
-    <div class="thumbnail" data-index="0"><div class="thumbnail-img" style="background-image:url(img/letter-1.png)"></div></div>
-    <div class="thumbnail" data-index="1"><div class="thumbnail-img" style="background-image:url(img/letter-1.png)"></div></div>
-    <div class="thumbnail" data-index="2"><div class="thumbnail-img" style="background-image:url(img/letter-1.png)"></div></div>
-    <div class="thumbnail" data-index="3"><div class="thumbnail-img" style="background-image:url(img/letter-1.png)"></div></div>
-    <div class="thumbnail active" data-index="4"><div class="thumbnail-img" style="background-image:url(img/letter-1.png)"></div></div>
-    <div class="thumbnail" data-index="5"><div class="thumbnail-img" style="background-image:url(img/letter-1.png)"></div></div>
-  </div>
-
-  <!-- Switch -->
-  <div class="switch" id="switch">
-    <button class="switch-button switch-button-grid switch-button-current"><span class="indicator-dot"></span>GRID</button>
-    <button class="switch-button switch-button-slider"><span class="indicator-dot"></span>SLIDER</button>
-  </div>
 
 
 <!-- ================================= FOOTER ============================================= -->
