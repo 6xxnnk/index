@@ -40,14 +40,11 @@ img {
     max-width: 100%;
     display: block;
     }
-.thumbnails,
-.slider-image,
-.slider-image-bg,
-.slider-image-next,
-.transition-overlay,
-.content {
-  pointer-events: none; /* 🔒 클릭·hover 차단 */
+
+.slider-image,.slider-image-bg,.slider-image-next,.transition-overlay,.content,/* <span style="color:red">.thumbnails</span> */{
+  z-index:90; position:fixed; top:0; left:0;
 }
+
 
 .pageSwiper { height: 100vh; }
 .pageSwiper .swiper-wrapper { height: 100%; }
@@ -67,7 +64,7 @@ img {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 50;
+    z-index: 50000;
     display: flex;
     flex-direction: column;
     }
@@ -301,7 +298,7 @@ img {
 
 .club__head {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 
 }
 
@@ -315,12 +312,13 @@ img {
   font-size: 1.1rem;
   color: #555;
 }
-.club__grid {
-    display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
-  padding: 48px 8%;
 
+.club__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 24px;
+  padding: 30px;
 }
 
 .club-card {
@@ -617,83 +615,269 @@ img {
 
 
 /* Coffee Letter */
-.container { 
-  position: relative; 
-  width: 100%; 
-  height: 100vh; 
+/* =====================
+   🟢 CONTAINER
+===================== */
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
   overflow: hidden;
 }
 
-    .grid-container { 
-      position: absolute; 
-      top: 0; left: 0; width: 100%; height:700px; overflow: hidden; 
-      padding: 0 40px;}
-    .grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr);
-      gap: 0; width: 100%; height: 100%; will-change: transform;
-    }
-    .grid-item { position: relative; overflow: hidden; }
-    .grid-item-img { width: 100%; height: 100%; background-size: cover; background-position: center; }
-    .grid-item.target { grid-column: 2; grid-row: 2; }
+/* =====================
+   🟢 GRID AREA
+===================== */
+.grid-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 700px;
+  overflow: hidden;
+  padding: 0 40px;
+}
 
-    .slider-image,.slider-image-bg,.slider-image-next,.transition-overlay,.content,.thumbnails{z-index:90;position:fixed;top:0;left:0}
-    
-    .slider-image { z-index: 80; opacity: 0; visibility: hidden; will-change: transform, opacity; }
-    .slider-image-bg { width:110%; height:110vh; z-index:85; opacity:0; visibility:hidden; will-change: transform; transform-origin:center; }
-    .slider-image-next { z-index: 90; opacity: 0; visibility: hidden; will-change: transform; transform-origin: center; }
-    .transition-overlay { background:#000; z-index:95; opacity:0; visibility:hidden; will-change: opacity; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
 
-    .content {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 100;
-      opacity: 0; padding: 10% 10%; display: flex; flex-direction: column; justify-content: flex-end;
-    }
-    .content-title { text-align:left; font-family:"PP Neue Montreal", sans-serif; font-size:5rem; color:#f0f0f0;
-      text-transform:uppercase; letter-spacing:-0.02em; margin-bottom:1.5rem; overflow:hidden; }
-    .content-title span { display:block; transform: translateY(100%); }
-    .content-paragraph {
-      text-align:left; 
-      font-size:1rem; 
-      color:#ffffff; 
-      max-width:600px;
-      line-height:1.3; margin-bottom:10%; opacity:0;
-    }
+.grid-item {
+  position: relative;
+  overflow: hidden;
+}
 
-    .thumbnails { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 200; }
-    .thumbnail { width:60px; height:40px; border-radius:4px; overflow:hidden; cursor:pointer; opacity:0; transform:translateY(20px); transition:border .3s ease; }
-    .thumbnail-img { width:100%; height:100%; background-size:cover; background-position:center; }
-    .thumbnail:hover { border:2px solid rgba(255,255,255,.7); }
-    .thumbnail.active { border:2px solid #fff; }
+.grid-item-img {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
 
-    .switch {
-    position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:1000;
-      opacity:0;visibility:hidden;pointer-events:none;transition:.25s;
-      display:flex;gap:10px;background:rgba(0,0,0,.4);padding:8px 22px;border-radius:20px;
+/* 중앙 기준 타깃 이미지 */
+.grid-item.target {
+  grid-column: 2;
+  grid-row: 2;
+}
 
-    }
+/* =====================
+   🟢 SLIDER LAYERS
+===================== */
 
+/* 현재 슬라이드 이미지 */
+.slider-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  z-index: 80;
+  opacity: 0;
+  visibility: hidden;
+  will-change: transform, opacity;
+}
 
-    .switch.is-visible {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-    }
+/* 배경 레이어 (부드러운 패럴럭스 효과) */
+.slider-image-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 110%;
+  height: 110vh;
+  background-size: cover;
+  background-position: center;
+  z-index: 85;
+  opacity: 0;
+  visibility: hidden;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
 
-    .switch-button {
-      background: none; border: none; color: #ffffff; cursor: pointer;
-      font-size: 14px; padding: 5px 10px; position: relative; 
-      transition: all .3s ease-in-out;
-    }
-    .switch-button-current { color: #f0f0f0; }
-    .indicator-dot {
-      position:absolute; width:5px; height:5px; background-color:#9dff00; border-radius:50%; opacity:0; transition:opacity .3s ease-in-out;
-      top:50%; transform:translateY(-50%);
-    }
-    .switch-button-grid .indicator-dot { left: -8px; }
-    .switch-button-slider .indicator-dot { right: -8px; }
-    .switch-button:hover .indicator-dot { opacity: 1; }
+/* 다음 슬라이드 이미지 */
+.slider-image-next {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  z-index: 90;
+  opacity: 0;
+  visibility: hidden;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
 
+/* 전환 오버레이 */
+.transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #000;
+  z-index: 95;
+  opacity: 0;
+  visibility: hidden;
+  will-change: opacity;
+}
 
+/* =====================
+   🟢 CONTENT
+===================== */
+.content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0;
+  padding: 10% 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
 
+.content-title {
+  text-align: left;
+  font-size: 5rem;
+  color: #e70000;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.content-title span {
+  display: block;
+  transform: translateY(100%);
+}
+
+.content-paragraph {
+  text-align: left;
+  font-size: 1rem;
+  color: #f0f0f0;
+  max-width: 600px;
+  line-height: 1.3;
+  margin-bottom: 10%;
+  opacity: 0;
+}
+
+/* =====================
+   🟢 THUMBNAILS (우하단)
+===================== */
+.thumbnails {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 200;
+  pointer-events: none; /* 전체에 클릭 막기 */
+}
+
+.thumbnail {
+  width: 60px;
+  height: 40px;
+  border-radius: 4px;
+  overflow: hidden;
+  pointer-events: auto; /* 개별 썸네일만 클릭 가능 */
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: border 0.3s ease;
+}
+
+.thumbnail-img {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.thumbnail:hover {
+  border: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+.thumbnail.active {
+  border: 2px solid #fff;
+}
+
+/* =====================
+   🟢 SWITCH BUTTONS
+===================== */
+.switch {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: 0.25s ease-in-out;
+  display: flex;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 8px 22px;
+  border-radius: 20px;
+}
+
+.switch.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.switch-button {
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: "TheGoodMonolith", monospace;
+  font-size: 14px;
+  padding: 5px 10px;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.switch-button-current {
+  color: #ffffff;
+}
+
+.indicator-dot {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: #9dff00;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.switch-button-grid .indicator-dot {
+  left: -8px;
+}
+
+.switch-button-slider .indicator-dot {
+  right: -8px;
+}
+
+.switch-button:hover .indicator-dot {
+  opacity: 1;
+}
     /* Footer */
 .footer {
   background: #f7f4ef;

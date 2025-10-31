@@ -428,23 +428,23 @@
     <div class="grid-container">
       <div class="grid" id="grid">
         <div class="grid-item" data-index="0">
-          <div class="grid-item-img" style="background-image:url(../img/letter-1.png)"></div>
+          <div class="grid-item-img" style="background-image:url(img/letter-1.png)"></div>
         </div>
         <div class="grid-item" data-index="1">
-          <div class="grid-item-img" style="background-image:url(../img/letter-2.png)"></div>
+          <div class="grid-item-img" style="background-image:url(img/letter-2.png)"></div>
         </div>
         <div class="grid-item" data-index="2">
           <!-- URL 오탈자 '.' 제거 -->
-          <div class="grid-item-img" style="background-image:url(../img/letter-3.png)"></div>
+          <div class="grid-item-img" style="background-image:url(img/letter-3.png)"></div>
         </div>
         <div class="grid-item" data-index="3">
-          <div class="grid-item-img" style="background-image:url(../img/letter-1.png)"></div>
+          <div class="grid-item-img" style="background-image:url(img/letter-1.png)"></div>
         </div>
         <div class="grid-item target" id="target-item" data-index="4">
-          <div class="grid-item-img" style="background-image:url(../img/letter-1.png)"></div>
+          <div class="grid-item-img" style="background-image:url(img/letter-1.png)"></div>
         </div>
         <div class="grid-item" data-index="5">
-          <div class="grid-item-img" style="background-image:url(../img/letter-1.png)"></div>
+          <div class="grid-item-img" style="background-image:url(img/letter-1.png)"></div>
         </div>
 
       </div>
@@ -466,12 +466,12 @@
 
   <!-- Thumbnails -->
   <div class="thumbnails">
-    <div class="thumbnail" data-index="0"><div class="thumbnail-img" style="background-image:url(https://cdn.cosmos.so/dfff1381-f09c-454b-b98d-8a79161c3d25?format=jpeg)"></div></div>
-    <div class="thumbnail" data-index="1"><div class="thumbnail-img" style="background-image:url(https://cdn.cosmos.so/c7af8b26-313a-40e4-9081-85f7fde00c22?format=jpeg)"></div></div>
-    <div class="thumbnail" data-index="2"><div class="thumbnail-img" style="background-image:url(https://cdn.cosmos.so/03a36d87-af8c-4cfe-bfed-7a3dd502404b?format=jpeg)"></div></div>
-    <div class="thumbnail" data-index="3"><div class="thumbnail-img" style="background-image:url(https://cdn.cosmos.so/bdb2a659-2838-4055-a82e-f145c3fd4467?format=jpeg)"></div></div>
-    <div class="thumbnail active" data-index="4"><div class="thumbnail-img" style="background-image:url(https://cdn.cosmos.so/fddfc757-d9c3-44f1-af6e-a607c3746738?format=jpeg)"></div></div>
-    <div class="thumbnail" data-index="5"><div class="thumbnail-img" style="background-image:url(https://cdn.cosmos.so/51a307de-a9ba-4c9e-ad24-beff1ce023d0?format=jpeg)"></div></div>
+    <div class="thumbnail" data-index="0"><div class="thumbnail-img" style="background-image:url(img/letter-1.png)"></div></div>
+    <div class="thumbnail" data-index="1"><div class="thumbnail-img" style="background-image:url(img/letter-1.png)"></div></div>
+    <div class="thumbnail" data-index="2"><div class="thumbnail-img" style="background-image:url(img/letter-1.png)"></div></div>
+    <div class="thumbnail" data-index="3"><div class="thumbnail-img" style="background-image:url(img/letter-1.png)"></div></div>
+    <div class="thumbnail active" data-index="4"><div class="thumbnail-img" style="background-image:url(img/letter-1.png)"></div></div>
+    <div class="thumbnail" data-index="5"><div class="thumbnail-img" style="background-image:url(img/letter-1.png)"></div></div>
   </div>
 
   <!-- Switch -->
@@ -527,6 +527,11 @@
   <script defer src="js/hero.js"></script>
   <script defer src="js/club.js"></script>
   <script defer src="js/newsletter.js"></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    if (window.initNewsletter) initNewsletter();
+  });
+  </script>
   <script defer src="js/index.js"></script>
 </body>
 </html>
