@@ -316,84 +316,129 @@
 <section class="section-compare" aria-labelledby="compareTitle">
     <div class="compare__intro">
         <h3 id="compareTitle">Original or Vertuo?</h3>
-        <p class="sr-only">나에게 맞는 네스프레소 머신을 찾아보세요</p>
+        <p class="sr-only">나에게 딱 맞는 네스프레소 머신을 찾아보세요</p>
     </div>
 
     <div class="compare__grid">
         <!-- Original machine feature -->
         <article class="compare-card compare-card--tint">
-        <div class="compare-card__media" aria-hidden="true"> <video src="img/RTB_original_2.mp4" autoplay muted loop></video> </div>
+        <div class="compare-card__media" aria-hidden="true"> 
+          <video src="img/RTB_original_2.mp4" autoplay muted loop></video> 
+        </div>
         <div class="compare-card__content">
         <div class="compare-card__kicker">오리지널 라인</div>
         <h4 class="compare-card__title">클래식한 에스프레소 경험</h4>
         </div>
-        <a href="#" class="compare-card__btn" aria-label="자세히">→</a>
+
         </article>
 
         <!-- Vertuo system feature -->
-        <article class="compare-card">
-        <div class="compare-card__media" aria-hidden="true"><video src="img/RTB_vertuo_2.mp4" autoplay muted loop></video></div>
-        <div class="compare-card__content">
+        <article class="compare-card is-swiper" data-area="tr">
+      <div class="compare-card__media">
+        <div class="swiper compareSwiper" id="compare-swiper-tr">
+          <div class="swiper-wrapper">
+            <!-- slide 1 -->
+            <div class="swiper-slide" data-kicker="Vertuo 시스템" data-title="센트리퓨전™으로 더 풍성한 크레마">
+              <img src="img/machine_vertuo.jpg" alt="">
+            </div>
+            <!-- slide 2 -->
+            <div class="swiper-slide" data-kicker="Vertuo 시스템" data-title="대용량 머그부터 에스프레소까지">
+              <img src="img/machine_vertuo.jpg" alt="">
+            </div>
+            <!-- slide 3 -->
+            <div class="swiper-slide" data-kicker="Vertuo 시스템" data-title="바코드로 레시피 자동 인식">
+              <img src="img/machine_vertuo.jpg" alt="">
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+      <div class="compare-card__content">
         <div class="compare-card__kicker">Vertuo 시스템</div>
         <h4 class="compare-card__title">센트리퓨전™으로 더 풍성한 크레마</h4>
-        </div>
-        <a href="#" class="compare-card__btn" aria-label="자세히">→</a>
-        </article>
+      </div>
+      <a href="#" class="compare-card__btn" aria-label="자세히">→</a>
+    </article>
 
-        <!-- Original accessory -->
-        <article class="compare-card">
-        <div class="compare-card__media" aria-hidden="true"><img src="img/original_pixie.jpg" alt=""/></div>
-        <div class="compare-card__content">
+        <!-- (3) BL: SWIPER IMAGE — Original Accessories -->
+    <article class="compare-card is-swiper" data-area="bl">
+      <div class="compare-card__media">
+        <div class="swiper compareSwiper" id="compare-swiper-bl">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" data-kicker="오리지널 액세서리" data-title="머그 & 글라스 컬렉션">
+              <img src="img/original_01.jpg" alt="">
+            </div>
+            <div class="swiper-slide" data-kicker="오리지널 액세서리" data-title="홈카페 스타일링 팁">
+              <img src="img/original_02.jpg" alt="">
+            </div>
+            <div class="swiper-slide" data-kicker="오리지널 액세서리" data-title="머신과의 완벽한 조화">
+              <img src="img/original_03.jpg" alt="">
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+      <div class="compare-card__content">
         <div class="compare-card__kicker">오리지널 액세서리</div>
         <h4 class="compare-card__title">머그 & 글라스 컬렉션</h4>
-        </div>
-        <a href="#" class="compare-card__btn" aria-label="자세히">→</a>
-        </article>
+      </div>
+      <a href="#" class="compare-card__btn" aria-label="자세히">→</a>
+    </article>
 
-        <!-- Vertuo machine colors -->
-        <article class="compare-card compare-card--tint">
-        <div class="compare-card__media" aria-hidden="true"><img src="img/vertuo_plus.jpg" alt=""/></div>
-        <div class="compare-card__content">
+         <!-- (4) BR: VIDEO — Vertuo Colors -->
+    <article class="compare-card compare-card--tint" data-area="br">
+      <div class="compare-card__media" aria-hidden="true">
+        <video src="img/RTB_vertuo_2.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="compare-card__content">
         <div class="compare-card__kicker">Vertuo 머신</div>
         <h4 class="compare-card__title">두 가지 컬러, 두 가지 무드</h4>
-        </div>
-        <a href="#" class="compare-card__btn" aria-label="자세히">→</a>
-        </article>
-    </div><!-- .compare__grid -->
+      </div>
+      <a href="#" class="compare-card__btn" aria-label="자세히">→</a>
+    </article>
+  </div>
 </section>
+
 
 
 <!-- ================================= 3 STEPS ============================================ -->
 
-  <section class="section-steps" aria-labelledby="stepsTitle">
-    <div class="step">
-        <h3 id="stepsTitle" class="sr-only">3Steps</h3>
-    <div class="steps__row">
-        <article class="step">
-            <div class="step__icon">1</div>
-            <div>
-            <div class="step__title">가까운 부티크 방문</div>
-            <p class="step__desc">머신 시연과 무료 시음을 통해 나에게 맞는 커피를 찾아보세요.</p>
-            </div><!-- .step__content -->
-        </article>
-        <article class="step">
-            <div class="step__icon">2</div>
-            <div>
-            <div class="step__title">온라인 주문 & 배송</div>
-            <p class="step__desc">주문 다음 날 빠르게 도착하는 편리한 배송 서비스.</p>
-            </div>
-        </article>
-        <article class="step">
-            <div class="step__icon">3</div>
-            <div>
-            <div class="step__title">리사이클 프로그램</div>
-            <p class="step__desc">알루미늄 캡슐은 100% 재활용됩니다. 지구를 위한 작은 실천.</p>
-            </div>
-        </article>
-    </div><!-- .steps__row -->
+<section class="section-steps" aria-labelledby="stepsTitle">
+  <div class="steps">
+    <!-- 헤드라인 -->
+    <h3 id="stepsTitle" class="steps__title">
+      3 Steps for Coffee
+      <span class="steps__subtitle">단 3가지 스텝만으로 네스프레소 커피를 시작해요</span>
+    </h3>
 
-<p class="steps__note">* 70여종 이상의 커피 라인업과 계절 한정 에디션을 부티크에서 만나보세요.</p>
-</div><!-- .steps -->
+    <!-- 리본 배지 -->
+    <div class="steps__ribbon" aria-hidden="true">Only 3 Steps</div>
+
+    <!-- 3 스텝 -->
+    <div class="steps__row">
+      <article class="step">
+        <div class="step__icon" aria-hidden="true">1</div>
+        <div class="step__title">가까운 부티크 방문</div>
+        <p class="step__desc">머신 시연과 무료 시음으로 내 취향을 찾기</p>
+      </article>
+
+      <article class="step">
+        <div class="step__icon" aria-hidden="true">2</div>
+        <div class="step__title">온라인 주문 & 빠른 배송</div>
+        <p class="step__desc">다음 날 도착하는 편리한 배송</p>
+      </article>
+
+      <article class="step">
+        <div class="step__icon" aria-hidden="true">3</div>
+        <div class="step__title">커피 머신 수령 </div>
+        <p class="step__desc">머신 최대 67% 페이백 할인 및 무료배송</p>
+      </article>
+    </div>
+
+    <!-- 보조 문구 + CTA -->
+    <p class="steps__note">70캡슐 이상 정기 주문으로 커피 할인 페이백 혜택을 놓치지 마세요</p>
+    <a href="#" class="steps__cta" role="button" aria-label="커피 정기배송 신청하기">커피 정기배송 신청하기</a>
+  </div>
 </section>
 
 
@@ -401,39 +446,45 @@
 
 
 <section class="section-collab" aria-labelledby="collabTitle">
-    <div class="collab">
-        <div class="collab__inner">
-            <h3 id="collabTitle" class="sr-only">Nespresso × Blue Bottle</h3>
+  <div class="collab__inner">
+    <h3 id="collabTitle" class="sr-only">Nespresso × Blue Bottle</h3>
 
+    <!-- pill 1 -->
+    <div class="pill" data-item="블루보틀 블렌드 No.2">
+      <div class="pill__thumb">
+        <img src="img/blue-bottle-2_2x.jpg" alt="블루보틀 블렌드 No.2" />
+      </div>
+      <div class="pill__body">
+        <div class="pill__title">블루보틀 블렌드 No.2</div>
+        <div class="pill__meta">루이보스의 은은함, 잘 익은 베리의 산뜻한 향미</div>
+      </div>
+      <div class="pill__cta">
+        <div class="pill__handle" aria-label="드래그하여 장바구니에 추가"></div>
+        <span class="pill__cta-text">드래그 →</span>
+      </div>
+    </div>
 
-            <a href="#" class="pill" aria-label="블루보틀 블렌드 No.2 자세히 보기">
-            <div class="pill__thumb"><img src="img/blue-bottle-2_2x.jpg" alt="블루보틀 블렌드 No.2"/></div>
-            <div class="pill__body">
-            <div class="pill__title">블루보틀 블렌드 No.2</div>
-            <div class="pill__meta">루이보스의 은은함, 잘 익은 베리의 산뜻한 향미</div>
-            </div>
-            <div class="pill__cta">바로가기 →</div>
-            </a>
+    <!-- pill 2 -->
+    <div class="pill" data-item="블루보틀 에센셜 세트">
+      <div class="pill__thumb">
+        <img src="img/250908-BB-AERO-SET-2000x2000.jpg" alt="블루보틀 에센셜 세트" />
+      </div>
+      <div class="pill__body">
+        <div class="pill__title">블루보틀 에센셜 세트</div>
+        <div class="pill__meta">머신 + 글라스 + 시즌 한정 캡슐 구성</div>
+      </div>
+      <div class="pill__cta">
+        <div class="pill__handle" aria-label="드래그하여 장바구니에 추가"></div>
+        <span class="pill__cta-text">드래그 →</span>
+      </div>
+    </div>
 
-
-            <a href="#" class="pill" aria-label="블루보틀 에센셜 세트 자세히 보기">
-            <div class="pill__thumb"><img src="img/250908-BB-AERO-SET-2000x2000.jpg" alt="블루보틀 에센셜 세트"/></div>
-            <div class="pill__body">
-            <div class="pill__title">블루보틀 에센셜 세트</div>
-            <div class="pill__meta">머신 + 글라스 + 시즌 한정 캡슐 구성</div>
-            </div>
-            <div class="pill__cta">구매하기 →</div>
-            </a>
-
-
-            <div class="sus__note" style="margin-top:18px">
-            <i>♻</i>
-            <span>머신 구매 시, 되돌려 쓸 수 있는 리사이클 백 제공 — 수거된 알루미늄은 다시 자원으로.</span>
-            </div>
- </div><!-- .collab__inner --> 
-</div><!-- .collab --> ```</span>
- </section>
-
+    <div class="sus__note">
+      <i>♻</i>
+      <span>머신 구매 시, 리사이클 백 제공 — 수거된 알루미늄은 다시 자원으로.</span>
+    </div>
+  </div>
+</section>
 
 <!-- ================================= SUSTAINABILITY CUT ================================= -->
 <section class="section-sus">
@@ -497,12 +548,10 @@
 
   <script defer src="js/hero.js"></script>
   <script defer src="js/club.js"></script>
+  <script defer src="js/compare.js"></script>
   <script defer src="js/newsletter.js"></script>
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    if (window.initNewsletter) initNewsletter();
-  });
-  </script>
+  <script defer src="js/sustainability.js"></script>
+
   <script defer src="js/index.js"></script>
 </body>
 </html>
