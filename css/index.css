@@ -698,25 +698,53 @@ img {
 
 }
 
+.compare-card.is-swiper .swiper-wrapper {
+  align-items: stretch;
+}
+.compare-card.is-swiper .swiper-slide {
+  /* 오버레이가 아니라 좌우 2컬럼 레이아웃 */
+  background: #ffffff; 
+  position: relative; 
+  display: flex;
+  align-items: center;                /* 카드 안 여백 */
+  box-sizing: border-box;
+}
+/* 이미지(왼쪽) */
+.compare-card.is-swiper .swiper-slide > img {             /* 왼쪽 폭(원하면 50~60% 사이로 조절) */
+  width: 40%;
+  height: 60%;                  /* 카드 높이 대비 이미지 높이 */
+  object-fit: contain;          /* 전체가 보이도록 */
+  filter: none;                 /* 흐림 방지 */
+  transform: translateZ(0);
+  padding: 0 0 ;   /* 이미지-텍스트 간격 */
+}
 
-.compare-card.is-swiper .swiper-slide__info{
-  position:absolute; left:16px; right:60px; bottom:16px; z-index:2;
-  padding:6px 30px;  
-  border-radius:999px;
+/* 텍스트(오른쪽) */
+.compare-card.is-swiper .swiper-slide__info {
+  position: static;             /* ⬅️ 오버레이 해제 → 일반 흐름 */
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 12px;
+  padding: 18px 50px 20px 0;
+}
 
-  
+
+
+.compare-card.is-swiper .swiper-slide__info .swiper-slide__kicker{
+  font-size: 1.8rem;
+  font-weight: 700;
+  display: inline-block;
+  color: #111;
+  width: fit-content;
 
 }
-.compare-card.is-swiper .swiper-slide__info .swiper-slide__kicker{
-  color:#111;
-  display:inline-block;
-  padding:5px 25px;
 
-  font-size:1.18rem; letter-spacing:.02em;
-
-
-
-
+.compare-card.is-swiper .swiper-slide__info .swiper-slide__title {
+  color: #000000;
+  font-size: 1.25rem;
+  line-height: 1.35;
 }
 
 .compare-card.is-swiper .swiper-pagination{
@@ -741,19 +769,17 @@ img {
   position: absolute;
   top: 50%; transform: translateY(-50%);
   width: 44px; height: 44px; border-radius: 50%;
-  background: rgba(0,0,0,.35);
-  color: #fff;
+  color: #4e4d4d;
   display: grid; place-items: center;
   z-index: 3;                           /* overlay/이미지 위 */
   cursor: pointer;
   transition: background .25s ease, transform .15s ease;
   /* Swiper 아이콘 크기 제어 */
   --swiper-navigation-size: 20px;
-  backdrop-filter: blur(3px);
 }
 .compare-card.is-swiper .swiper-button-prev:hover,
 .compare-card.is-swiper .swiper-button-next:hover {
-  background: rgba(0,0,0,.55);
+  background: hsla(72, 27%, 67%, 0.644);
   transform: translateY(-50%) scale(1.05);
 }
 .compare-card.is-swiper .swiper-button-prev { left: 10px; }
@@ -1103,408 +1129,118 @@ img {
   }
 }
 
-/* Coffee Letter */
-/* =====================
-   🟢 CONTAINER
-===================== */
-.container {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
-
-/* =====================
-   🟢 GRID AREA
-===================== */
-.grid-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 700px;
-  overflow: hidden;
-  padding: 0 40px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 0;
-  width: 100%;
-  height: 100%;
-  will-change: transform;
-}
-
-.grid-item {
-  position: relative;
-  overflow: hidden;
-}
-
-.grid-item-img {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-}
-
-/* 중앙 기준 타깃 이미지 */
-.grid-item.target {
-  grid-column: 2;
-  grid-row: 2;
-}
-
-/* =====================
-   🟢 SLIDER LAYERS
-===================== */
-
-/* 현재 슬라이드 이미지 */
-.slider-image {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
-  z-index: 80;
-  opacity: 0;
-  visibility: hidden;
-  will-change: transform, opacity;
-}
-
-/* 배경 레이어 (부드러운 패럴럭스 효과) */
-.slider-image-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 110%;
-  height: 110vh;
-  background-size: cover;
-  background-position: center;
-  z-index: 85;
-  opacity: 0;
-  visibility: hidden;
-  transform-origin: center;
-  will-change: transform, opacity;
-}
-
-/* 다음 슬라이드 이미지 */
-.slider-image-next {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
-  z-index: 90;
-  opacity: 0;
-  visibility: hidden;
-  transform-origin: center;
-  will-change: transform, opacity;
-}
-
-/* 전환 오버레이 */
-.transition-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: #000;
-  z-index: 95;
-  opacity: 0;
-  visibility: hidden;
-  will-change: opacity;
-}
-
-/* =====================
-   🟢 CONTENT
-===================== */
-.content {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 100;
-  opacity: 0;
-  padding: 10% 10%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-.content-title {
-  text-align: left;
-  font-size: 5rem;
-  color: #e70000;
-  letter-spacing: -0.02em;
-  margin-bottom: 1.5rem;
-  overflow: hidden;
-}
-
-.content-title span {
-  display: block;
-  transform: translateY(100%);
-}
-
-.content-paragraph {
-  text-align: left;
-  font-size: 1rem;
-  color: #f0f0f0;
-  max-width: 600px;
-  line-height: 1.3;
-  margin-bottom: 10%;
-  opacity: 0;
-}
-
-/* =====================
-   🟢 THUMBNAILS (우하단)
-===================== */
-.thumbnails {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  gap: 10px;
-  z-index: 200;
-  pointer-events: none; /* 전체에 클릭 막기 */
-}
-
-.thumbnail {
-  width: 60px;
-  height: 40px;
-  border-radius: 4px;
-  overflow: hidden;
-  pointer-events: auto; /* 개별 썸네일만 클릭 가능 */
-  cursor: pointer;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: border 0.3s ease;
-}
-
-.thumbnail-img {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-}
-
-.thumbnail:hover {
-  border: 2px solid rgba(255, 255, 255, 0.7);
-}
-
-.thumbnail.active {
-  border: 2px solid #fff;
-}
-
-/* =====================
-   🟢 SWITCH BUTTONS
-===================== */
-.switch {
-  position: fixed;
-  left: 50%;
-  bottom: 20px;
-  transform: translateX(-50%);
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: 0.25s ease-in-out;
-  display: flex;
-  gap: 10px;
-  background: rgba(0, 0, 0, 0.4);
-  padding: 8px 22px;
-  border-radius: 20px;
-}
-
-.switch.is-visible {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-.switch-button {
-  background: none;
-  border: none;
-  color: #ffffff;
-  cursor: pointer;
-  font-family: "TheGoodMonolith", monospace;
-  font-size: 14px;
-  padding: 5px 10px;
-  position: relative;
-  transition: all 0.3s ease-in-out;
-}
-
-.switch-button-current {
-  color: #ffffff;
-}
-
-.indicator-dot {
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  background-color: #9dff00;
-  border-radius: 50%;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.switch-button-grid .indicator-dot {
-  left: -8px;
-}
-
-.switch-button-slider .indicator-dot {
-  right: -8px;
-}
-
-.switch-button:hover .indicator-dot {
-  opacity: 1;
-}
-
-
-.main-content {
+/* ===== Coffee Letter: 레이아웃 ===== */
+.coffeeletter__content {
   margin: 5em auto;
   display: flex;
   flex-wrap: wrap;
+  max-width: 1400px;
   justify-content: center;
+  align-items: flex-start;
   text-align: center;
-  text-transform: uppercase;
+  gap: 40px; /* 노트 사이 간격 */
+
 }
 
-h1 {
+.coffeeletter__title {
+  width: 100%;
+  margin: 50px auto 1.5em;
+  color: #333;
+  text-align: center;
+  
+}
+.coffeeletter__title img {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;}
+
+
+.coffeeletter__title h1 {
   width: 100%;
   margin: 0 auto 1.5em;
   font-size: 30px;
-  small {
-    text-transform: none;
-    display: block;
-    margin: 20px 0;
-    font: 300 20px 'QuickSand', sans-serif;
-    color: #999;
-  }
+  font-weight: 700;
 }
 
+.coffeeletter__section p {
+  width: 100%;
+  margin: 0 auto;
+  font-size: 16px;
+  display: block;
+  text-align: center;
+  align-items: center;
+  color: #666;
+}
+
+/* ===== 노트 래퍼 ===== */
 .moleskine-wrapper {
-  max-width: calc(100% / 4);
-  min-width: 10em;
+  flex: 1 1 280px;     /* 최소 280px 기준으로 가로로 채움 */
+  max-width: 320px;    /* 너무 커지지 않게 상한 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+/* ===== 노트 본체 ===== */
 .moleskine-notebook {
-  height: 250px;
-  width: 175px;
   position: relative;
-  transition: .4s ease-in-out;
-  border-radius: 5px 15px 15px 5px;
-  transform-origin: left center 0px;
-  display: inline-block;
+  height: 340px;
+  width: 275px;
   margin: 30px;
-  perspective: 800px;
-  &:hover {
-    transform: rotateZ(-10deg);
-    .notebook-cover {
-    transform: rotateY(-50deg);
-    z-index: 999;
-    box-shadow: 20px 10px 50px rgba(0,0,0,0.2);
-  }
-  }
-  
+  perspective: 1000px;
+  transform-origin: left center 0;
+  transition: transform .4s ease-in-out;
 }
 
+.moleskine-notebook:hover {
+  transform: rotateZ(-8deg);
+}
+
+/* ===== 커버 ===== */
 .notebook-cover {
-  background: #cc4b48;
-  height: 250px;
-  width: 175px;
+  width: 275px;
+  height: 350px;
   position: absolute;
-  border-radius: 5px 15px 15px 5px;
+  inset: 0;
+  border-radius: 6px 14px 14px 6px;
   z-index: 10;
-  transition: .5s linear;
   transform-style: preserve-3d;
-  transform-origin: left center 0px;
-  &:before {
-    content: "";
-    position: absolute;
-    width: 10px;
-    height: calc(100% + 2px);
-    top: -1px;
-    z-index: 100;
-    border-radius: 2px;
-    right: 25px;
-    transition: 2s ease;
-    background: linear-gradient(
-      to right,
-      darken($color-orange, 15%) 0%,
-      $color-orange 12%,
-      darken($color-orange, 15%) 25%,
-      $color-orange 37%,
-      darken($color-orange, 15%) 50%,
-      $color-orange 62%,
-      darken($color-orange, 15%) 75%,
-      $color-orange 87%,
-      darken($color-orange, 15%) 100%
-    );
-  }
+  transform-origin: left center 0;
+  transition: transform .5s linear, box-shadow .5s linear;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.notebook-cover {
-  &.blue {
-    background: $color-blue;
-    &:before {
-      background: linear-gradient(
-      to right,
-      darken($color-blue, 15%) 0%,
-      $color-blue 12%,
-      darken($color-blue, 15%) 25%,
-      $color-blue 37%,
-      darken($color-blue, 15%) 50%,
-      $color-blue 62%,
-      darken($color-blue, 15%) 75%,
-      $color-blue 87%,
-      darken($color-blue, 15%) 100%);
-    }
-  }
-  &.green {
-    background: $color-green;
-    &:before {
-      background: linear-gradient(
-      to right,
-      darken($color-green, 15%) 0%,
-      $color-green 12%,
-      darken($color-green, 15%) 25%,
-      $color-green 37%,
-      darken($color-green, 15%) 50%,
-      $color-green 62%,
-      darken($color-green, 15%) 75%,
-      $color-green 87%,
-      darken($color-green, 15%) 100%);
-    }
-  }
-  &.yellow {
-    background: $color-yellow;
-    &:before {
-      background: linear-gradient(
-      to right,
-      darken($color-yellow, 20%) 0%,
-      $color-yellow 12%,
-      darken($color-yellow, 20%) 25%,
-      $color-yellow 37%,
-      darken($color-yellow, 20%) 50%,
-      $color-yellow 62%,
-      darken($color-yellow, 20%) 75%,
-      $color-yellow 87%,
-      darken($color-yellow, 20%) 100%);
-    }
-  }
+.moleskine-notebook:hover .notebook-cover {
+  transform: rotateY(-45deg);
+  box-shadow: 20px 10px 50px rgba(0,0,0,0.25);
 }
 
+/* spine(옆면) */
+.notebook-cover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 22px;
+  width: 10px;
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(to right, rgba(0,0,0,0.25), rgba(255,255,255,0.15));
+}
+
+/* ----- 커버 이미지 (경로만 맞춰 사용) ----- */
+.notebook-cover.black  { background-image: url("../img/letter-1.png"); }
+.notebook-cover.blue   { background-image: url("../img/letter-2.png"); }
+.notebook-cover.yellow { background-image: url("../img/letter-3.png"); }
+.notebook-cover.green  { background-image: url("../img/letter-4.png"); }
+.notebook-cover.pink   { background-image: url("../img/letter-5.png"); }
+
+/* ===== 커버 안 라벨(띠지) ===== */
 .notebook-skin {
   height: 50px;
-  background: #e8e8e0;
   margin-top: 80px;
   padding: 15px;
   font-size: 12px;
@@ -1512,68 +1248,135 @@ h1 {
   z-index: 10;
   color: #222;
   text-align: left;
+  text-transform: none; /* 본문은 소문자 허용 */
+  background: #e8e8e0; /* 기본값(커버 컬러 없을 때) */
   box-shadow: 0 1px 1px rgba(0,0,0,0.2);
-  &:before {
-     content: '';
-    position: absolute;
-    width: 100%;
-    height: 15px;
-    left: 0;
-    bottom: 0;
-    background: #cddc39;
-  }
+  border-radius: 4px;
 }
 
-.notebook-page {
-  height: 100%;
-  width: 175px;
+.notebook-skin::before {
+  content: '';
   position: absolute;
-  background-color: #fbfae8;
-  z-index: 0;
-  border-radius: 5px 16px 16px 5px;
-  overflow: hidden;
-  &.ruled {
-    background: linear-gradient(to bottom, #fbfae8 9px, #e4e4e4 1px);
-    background-size: 100% 10px;
-  }
-  &.squared {
-        background-image: linear-gradient(#e4e4e4 1px, transparent 1px), linear-gradient(90deg, #e4e4e4 1px, transparent 1px);
-    background-size: 10px 10px, 10px 10px, 2px 2px, 2px 2px;
-  }
-  &.dotted {
-        background: linear-gradient(90deg, #fbfae8 10px, transparent 1%) center, linear-gradient(#fbfae8 10px, transparent 1%) center, #999;
-    background-size: 11px 11px;
-  }
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 10px;
+  border-radius: 0 0 4px 4px;
+  background: #cddc39; /* 기본 하단 포인트 바 */
 }
 
-footer {
-  text-align: center;
-  margin: 8em auto;
-  width: 100%;
-  a {
-    text-decoration: none;
-    display: inline-block;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: transparent;
-		border: 1px dashed #fff;
-    color: #fff;
-    margin: 5px;
-    &:hover {
-      background: rgba(255,255,255,0.1);
-    }
-    .icons {
-      margin-top: 12px;
-      display: inline-block;
-      font-size: 20px;
-    }
-  }
+/* --- 커버별 라벨 색상 (자식 선택자! 중요) --- */
+.notebook-cover.black .notebook-skin {
+  background: #f0eae0;
+  color: #333;
 }
+.notebook-cover.black .notebook-skin::before {
+  background: #d2aa67; /* 골드 포인트 */
+}
+
+.notebook-cover.blue .notebook-skin {
+  background: #e7edf6;
+  color: #1b2e4a;
+}
+.notebook-cover.blue .notebook-skin::before {
+  background: #189cc4;
+}
+
+.notebook-cover.yellow .notebook-skin {
+  background: #fff8da;
+  color: #4d3a00;
+}
+.notebook-cover.yellow .notebook-skin::before {
+  background: #f5c842;
+}
+
+.notebook-cover.green .notebook-skin {
+  background: #e8f5e9;
+  color: #204d32;
+}
+.notebook-cover.green .notebook-skin::before {
+  background: #56b18c;
+}
+
+/* ===== 내부 페이지 ===== */
+.notebook-page {
+  position: absolute;
+  inset: 0;
+  width: 275px;
+  height: 350px;
+  background-color: #fbfae8;
+  border-radius: 5px 16px 16px 5px;
+  z-index: 0;
+  overflow: hidden;
+}
+
+
+.notebook-page.dotted {
+  background:
+    linear-gradient(90deg, #fbfae8 10px, transparent 1%) center,
+    linear-gradient(#fbfae8 10px, transparent 1%) center,
+    #999;
+  background-size: 11px 11px;
+}
+.notebook-tooltip {
+  position: absolute;
+  top: -55px;          /* 위로 살짝 띄움 */
+  right: -40px;        /* 오른쪽 대각선 방향으로 이동 */
+  background: rgba(255, 255, 255, 0.95);
+  color: #333;
+  font-size: 13px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  font-family: "Manrope", "Noto Sans KR", sans-serif;
+  white-space: nowrap;
+  transform: translate(10px, 10px); /* 초기엔 살짝 안 보이는 위치 */
+}
+
+/* hover 시 등장 */
+.moleskine-notebook:hover .notebook-tooltip {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* 말풍선 꼬리 추가 */
+.notebook-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 20px; /* 꼬리 위치 오른쪽으로 살짝 이동 */
+  transform: rotate(25deg);
+  border: 6px solid transparent;
+  border-top-color: rgba(255, 255, 255, 0.95);
+}
+
+
+@keyframes floatIn {
+  0% { opacity: 0; transform: translate(15px, 15px) scale(0.9); }
+  60% { opacity: 1; transform: translate(-2px, -2px) scale(1.05); }
+  100% { opacity: 1; transform: translate(0, 0) scale(1); }
+}
+
+.moleskine-notebook:hover .notebook-tooltip {
+  animation: floatIn 0.5s ease forwards;
+}
+
+
+
+
+
+
+
 
 
     /* Footer */
 .footer {
+  text-align: center;
+  margin: 8em auto;
+  width: 100%;
   background: #f7f4ef;
   border-top: 1px solid rgba(0,0,0,.08);
   padding: 40px 0 70px;
@@ -1583,7 +1386,6 @@ footer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
-  max-width: 1380px;
   margin: 0 auto;
 }
 
