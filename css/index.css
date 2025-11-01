@@ -31,15 +31,49 @@ html, body {
     background: #f6f4f0;
     color: var(--ink);
     line-height: 1.6;
-    overflow: auto;
+      overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
     scroll-behavior: smooth;
+    cursor:'url("../img/cursor-coffee.png") 8 8, default;'
 
 }
+a, button {
+  cursor: url("../img/cursor-coffee.png") 8 8, pointer;
+}
+
+input, textarea {
+  cursor: text;
+}
+
 
 img {
     max-width: 100%;
     display: block;
     }
+/* WebKit (Chrome/Edge/Safari) */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #1d1a16; /* 다크 브라운 */
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #d2aa67, #b9924f); /* 골드 */
+  border-radius: 999px;
+  border: 2px solid #1d1a16; /* 트랙과 간격감 */
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #e0b76f, #caa059);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #caa059 #1d1a16; /* thumb, track */
+}
+
 
 .slider-image,.slider-image-bg,.slider-image-next,.transition-overlay,.content,/* <span style="color:red">.thumbnails</span> */{
   z-index:90; position:fixed; top:0; left:0;
@@ -1128,249 +1162,293 @@ img {
     transform: translate(-50%, 10px);
   }
 }
-
-/* ===== Coffee Letter: 레이아웃 ===== */
-.coffeeletter__content {
-  margin: 5em auto;
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 1400px;
-  justify-content: center;
-  align-items: flex-start;
-  text-align: center;
-  gap: 40px; /* 노트 사이 간격 */
-
+:root{
+  --gold:#d2aa67;
+  --ink:#2b211a;
+  --paper:#fffdfa;
+  --shadow: 0 10px 30px rgba(0,0,0,.18);
 }
 
-.coffeeletter__title {
-  width: 100%;
-  margin: 50px auto 1.5em;
-  color: #333;
-  text-align: center;
+/* 가로 스크롤 방지 */
+html, body { overflow-x: hidden; }
+
+.coffeeletter{
+  position: relative;
+  margin: 6rem auto 4rem;
+  max-width: 1500px;           /* 중앙 정렬용 최대폭 */
+  padding: 60px 40px 80px;
+  overflow: visible;
+  z-index: 0; 
+}
+
+/* 따뜻한 우드 데스크 + 종이 레이어 */
+.coffeeletter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0; 
+  background-size: cover; 
+  background: linear-gradient(135deg, #6b4c38 0%, #4d3528 100%);
+  filter: brightness(0.95);
+}
+.coffeeletter::after {
+  content: "";
+  position: absolute;
+  inset: 30px;
+  z-index: 1;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #fbf9f3 0%, #f5efe7 100%);
+  box-shadow:
+    inset 0 2px 3px rgba(255,255,255,0.5),
+    0 10px 30px rgba(0,0,0,0.12);
+}
+
+/* 커피 얼룩 장식(있으면 경로 맞춰 사용) */
+.coffeeletter .coffee-ring{
+  position:absolute;
+  z-index: 2;            /* ← 종이 위, 콘텐츠 아래 */
+  bottom:40px; right:60px;
+  width:140px; height:140px;
+  background:url("../img/coffee-ring-brown.png") center/contain no-repeat;
+  opacity:.3;
+  transform: rotate(-12deg);
+  pointer-events:none;
+}
+/* 5) 내부 실제 콘텐츠는 가장 위로 */
+.coffeeletter > *{
+  position: relative;
+  z-index: 3;            /* ← 콘텐츠가 배경/종이/스탬프 위에 보이게 */
+}
+/* 타이틀 */
+.coffeeletter__title{ 
+  text-align:center; margin-bottom: 28px;
   
 }
-.coffeeletter__title img {
-  width: 80px;
-  height: auto;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto;}
+.coffeeletter__title img{ width:80px; height:auto; display:block; margin:0 auto 8px; }
+.coffeeletter__title h1{ font-size:30px; font-weight:800; color:#333; margin:0 0 6px; }
+.coffeeletter__desc{ font-size:16px; color:#666; text-align:center; }
 
-
-.coffeeletter__title h1 {
-  width: 100%;
-  margin: 0 auto 1.5em;
-  font-size: 30px;
-  font-weight: 700;
-}
-
-.coffeeletter__section p {
-  width: 100%;
+/* Swiper 중앙 정렬 + 간격 */
+.coffeeletter-swiper{
+  max-width: 1320px;           /* 중앙 컨테이너 폭 */
   margin: 0 auto;
-  font-size: 16px;
-  display: block;
-  text-align: center;
-  align-items: center;
-  color: #666;
+  padding: 20px 18px 48px;
 }
-
-/* ===== 노트 래퍼 ===== */
-.moleskine-wrapper {
-  flex: 1 1 280px;     /* 최소 280px 기준으로 가로로 채움 */
-  max-width: 320px;    /* 너무 커지지 않게 상한 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.coffeeletter-swiper .swiper-wrapper{ align-items: flex-start; }
+.coffeeletter-swiper .swiper-slide{
+  display:flex; justify-content:center; align-items:flex-start;
+  padding: 0 12px;            /* 카드 좌우 여백(간격 효과) */
+  position: relative; 
+  z-index: 0; 
+  isolation: isolate;
 }
+.coffeeletter-swiper .swiper-slide.raise { z-index: 9999; }
 
-/* ===== 노트 본체 ===== */
-.moleskine-notebook {
+/* Notebook */
+.moleskine-notebook{
   position: relative;
-  height: 340px;
-  width: 275px;
-  margin: 30px;
-  perspective: 1000px;
+  height: 360px; width: 280px;
+  margin: 10px 8px 24px;
+  perspective: 800px;
   transform-origin: left center 0;
   transition: transform .4s ease-in-out;
 }
+.moleskine-notebook:hover{ transform: rotateZ(-8deg); }
 
-.moleskine-notebook:hover {
-  transform: rotateZ(-8deg);
+/* cover + page 동일 사이즈 */
+.notebook-cover, .notebook-page{
+  position:absolute; inset:0;
+  width: 280px; height: 360px;
+  border-radius: 6px 16px 16px 6px;
 }
 
-/* ===== 커버 ===== */
-.notebook-cover {
-  width: 275px;
-  height: 350px;
-  position: absolute;
-  inset: 0;
-  border-radius: 6px 14px 14px 6px;
-  z-index: 10;
+/* Cover */
+.notebook-cover{
+  z-index:10;
   transform-style: preserve-3d;
   transform-origin: left center 0;
-  transition: transform .5s linear, box-shadow .5s linear;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  transition: transform .5s ease, box-shadow .5s ease;
+  background-size: cover; background-position:center; background-repeat:no-repeat;
+  box-shadow: var(--shadow);
 }
+.moleskine-notebook:hover .notebook-cover{ transform: rotateY(-46deg); }
 
-.moleskine-notebook:hover .notebook-cover {
-  transform: rotateY(-45deg);
-  box-shadow: 20px 10px 50px rgba(0,0,0,0.25);
-}
-
-/* spine(옆면) */
-.notebook-cover::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 22px;
-  width: 10px;
-  height: 100%;
+/* Spine */
+.notebook-cover::before{
+  content:"";
+  position:absolute; top:-1px; right:25px;
+  width:10px; height:calc(100% + 2px);
   border-radius: 2px;
-  background: linear-gradient(to right, rgba(0,0,0,0.25), rgba(255,255,255,0.15));
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.25) 0%,
+    rgba(0,0,0,0.15) 12%,
+    rgba(0,0,0,0.25) 25%,
+    rgba(0,0,0,0.15) 37%,
+    rgba(0,0,0,0.25) 50%,
+    rgba(0,0,0,0.15) 62%,
+    rgba(0,0,0,0.25) 75%,
+    rgba(0,0,0,0.15) 87%,
+    rgba(0,0,0,0.25) 100%
+  );
+  box-shadow: inset 2px 0 4px rgba(255,255,255,0.15);
 }
 
-/* ----- 커버 이미지 (경로만 맞춰 사용) ----- */
-.notebook-cover.black  { background-image: url("../img/letter-1.png"); }
-.notebook-cover.blue   { background-image: url("../img/letter-2.png"); }
-.notebook-cover.yellow { background-image: url("../img/letter-3.png"); }
-.notebook-cover.green  { background-image: url("../img/letter-4.png"); }
-.notebook-cover.pink   { background-image: url("../img/letter-5.png"); }
-
-/* ===== 커버 안 라벨(띠지) ===== */
-.notebook-skin {
-  height: 50px;
-  margin-top: 80px;
-  padding: 15px;
-  font-size: 12px;
-  position: relative;
-  z-index: 10;
-  color: #222;
-  text-align: left;
-  text-transform: none; /* 본문은 소문자 허용 */
-  background: #e8e8e0; /* 기본값(커버 컬러 없을 때) */
-  box-shadow: 0 1px 1px rgba(0,0,0,0.2);
-  border-radius: 4px;
-}
-
-.notebook-skin::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 10px;
-  border-radius: 0 0 4px 4px;
-  background: #cddc39; /* 기본 하단 포인트 바 */
-}
-
-/* --- 커버별 라벨 색상 (자식 선택자! 중요) --- */
-.notebook-cover.black .notebook-skin {
-  background: #f0eae0;
-  color: #333;
-}
-.notebook-cover.black .notebook-skin::before {
-  background: #d2aa67; /* 골드 포인트 */
-}
-
-.notebook-cover.blue .notebook-skin {
-  background: #e7edf6;
-  color: #1b2e4a;
-}
-.notebook-cover.blue .notebook-skin::before {
-  background: #189cc4;
-}
-
-.notebook-cover.yellow .notebook-skin {
-  background: #fff8da;
-  color: #4d3a00;
-}
-.notebook-cover.yellow .notebook-skin::before {
-  background: #f5c842;
-}
-
-.notebook-cover.green .notebook-skin {
-  background: #e8f5e9;
-  color: #204d32;
-}
-.notebook-cover.green .notebook-skin::before {
-  background: #56b18c;
-}
-
-/* ===== 내부 페이지 ===== */
-.notebook-page {
-  position: absolute;
-  inset: 0;
-  width: 275px;
-  height: 350px;
-  background-color: #fbfae8;
-  border-radius: 5px 16px 16px 5px;
-  z-index: 0;
-  overflow: hidden;
-}
-
-
-.notebook-page.dotted {
+/* Page */
+.notebook-page{ z-index:0; background: var(--paper); overflow:hidden; }
+.notebook-page.dotted{
   background:
-    linear-gradient(90deg, #fbfae8 10px, transparent 1%) center,
-    linear-gradient(#fbfae8 10px, transparent 1%) center,
+    linear-gradient(90deg, var(--paper) 10px, transparent 1%) center,
+    linear-gradient(var(--paper) 10px, transparent 1%) center,
     #999;
   background-size: 11px 11px;
 }
-.notebook-tooltip {
-  position: absolute;
-  top: -55px;          /* 위로 살짝 띄움 */
-  right: -40px;        /* 오른쪽 대각선 방향으로 이동 */
-  background: rgba(255, 255, 255, 0.95);
-  color: #333;
-  font-size: 13px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  font-family: "Manrope", "Noto Sans KR", sans-serif;
-  white-space: nowrap;
-  transform: translate(10px, 10px); /* 초기엔 살짝 안 보이는 위치 */
+
+/* Band(띠지) — 브라운 톤, 커버와 동일 폭 */
+.notebook-skin{
+  position:absolute;
+  top: 86px; left: 0; width: 100%;
+  min-height: 72px;
+  padding: 14px 60px 14px 16px;
+  color: #f5efe6;
+  background:
+    radial-gradient(900px 160px at 60% -130px, rgba(210,170,103,.18), transparent 70%),
+    linear-gradient(180deg, #5a4030 0%, #3b2a20 100%);
+  border: 1px solid rgba(210,170,103,.75);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 10px 22px rgba(0,0,0,.24);
+}
+.notebook-skin::after{
+  content:""; position:absolute; inset:0;
+  background-image:
+    linear-gradient(transparent 97%, rgba(0,0,0,.03) 100%),
+    repeating-linear-gradient(0deg, transparent 0 5px, rgba(0,0,0,.01) 6px 6.5px);
+  opacity: .15; pointer-events:none; border-radius: 10px;
 }
 
-/* hover 시 등장 */
-.moleskine-notebook:hover .notebook-tooltip {
-  opacity: 1;
-  transform: translate(0, 0);
+/* 타이포 (제목/부제) — 세리프 + 산세리프 조합 */
+.skin__headline{
+  font-family: 'Ubuntu';
+  font-size: 22px; font-weight: 700; letter-spacing: .02em;
+  color: #f5efe6; text-shadow: 0 1px 2px rgba(0,0,0,.3);
+}
+.skin__sub{
+  margin-top: 2px;
+  font-family: 'Ubuntu';
+  font-size: 14px; font-weight: 400; letter-spacing: .03em;
+  color: rgba(255,240,225,.85);
 }
 
-/* 말풍선 꼬리 추가 */
+/* 커버 이미지 경로 */
+.notebook-cover.black  { background-image:url("../img/letter-1.png"); }
+.notebook-cover.blue   { background-image:url("../img/letter-2.png"); }
+.notebook-cover.yellow { background-image:url("../img/letter-3.png"); }
+.notebook-cover.green  { background-image:url("../img/letter-4.png"); }
+.notebook-cover.pink   { background-image:url("../img/letter-5.png"); }
+
+/* Tooltip (오른쪽, 말풍선 꼬리 포함) */
+.notebook-tooltip{
+  position:absolute;
+  top: 60px; left: calc(100% + 24px);
+  z-index: 10000;
+  width: 300px; padding: 18px 20px;
+  background: linear-gradient(180deg, #fffdf9, #fff5e9);
+  border: 2px solid var(--gold);
+  border-radius: 16px;
+  color: #3a2c20;
+  font: 400 14px/1.7 "Manrope","Noto Sans KR",sans-serif;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.18), inset 0 1px 2px rgba(255,255,255,0.5);
+  opacity: 0; pointer-events: none;
+  transform: translateY(8px);
+  transition: all .35s ease;
+}
+.notebook-tooltip::before{
+  content:"";
+  position:absolute; left:-12px; top:30px;
+  border-width:10px; border-style:solid;
+  border-color: transparent #fffdf9 transparent transparent;
+  filter: drop-shadow(-1px 1px 0 var(--gold));
+}
+/* ===============================
+   ✦ Twinkle Effect (tooltip star)
+   =============================== */
+
+/* 별 아이콘 자체 */
 .notebook-tooltip::after {
-  content: "";
+  content: "✦";
   position: absolute;
-  bottom: -6px;
-  left: 20px; /* 꼬리 위치 오른쪽으로 살짝 이동 */
-  transform: rotate(25deg);
-  border: 6px solid transparent;
-  border-top-color: rgba(255, 255, 255, 0.95);
+  right: 14px;
+  top: -28px;
+  font-size: 32px;
+  color: var(--gold);
+  text-shadow:
+    0 0 6px rgba(210,170,103,0.6),
+    0 0 12px rgba(210,170,103,0.35);
+  animation: twinkle 2.4s ease-in-out infinite;
+  transform-origin: center;
+  opacity: 0.9;
+}
+
+/* 부드럽고 리듬감 있는 반짝임 */
+@keyframes twinkle {
+  0%   { transform: scale(1) rotate(0deg);   opacity: 0.9; filter: brightness(1); }
+  25%  { transform: scale(1.2) rotate(5deg); opacity: 1;   filter: brightness(1.3); }
+  50%  { transform: scale(0.9) rotate(-5deg); opacity: 0.75; filter: brightness(0.9); }
+  75%  { transform: scale(1.15) rotate(3deg); opacity: 1;   filter: brightness(1.2); }
+  100% { transform: scale(1) rotate(0deg);   opacity: 0.9; filter: brightness(1); }
 }
 
 
-@keyframes floatIn {
-  0% { opacity: 0; transform: translate(15px, 15px) scale(0.9); }
-  60% { opacity: 1; transform: translate(-2px, -2px) scale(1.05); }
-  100% { opacity: 1; transform: translate(0, 0) scale(1); }
+.notebook-tooltip a{
+  color: var(--ink); 
+  font-weight:300; 
+  text-decoration:underline;
+  font-size: 12px;
 }
 
-.moleskine-notebook:hover .notebook-tooltip {
-  animation: floatIn 0.5s ease forwards;
+.moleskine-notebook:hover .notebook-tooltip{ opacity:1; transform: translateY(0); }
+.moleskine-notebook:hover{ z-index:20; }
+
+/* Swiper theme */
+.coffeeletter-swiper .swiper-button-prev,
+.coffeeletter-swiper .swiper-button-next{
+  color: var(--gold);
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.25));
+}
+.coffeeletter-swiper .swiper-pagination-bullet{
+  background: rgba(0,0,0,.25); opacity: 1;
+}
+.coffeeletter-swiper .swiper-pagination-bullet-active{
+  background: var(--gold);
 }
 
+/* === Swiper overflow unclipping (Coffee Letter용) === */
+#coffeeletter-swiper,
+#coffeeletter-swiper.swiper,
+#coffeeletter-swiper .swiper,
+#coffeeletter-swiper .swiper-wrapper,
+#coffeeletter-swiper .swiper-slide {
+  overflow: visible !important;   /* 기본 hidden 제거 */
+}
 
+/* 슬라이드가 이웃 슬라이드를 덮을 수 있게 레이어 올림 */
+#coffeeletter-swiper .swiper-slide { 
+  position: relative; 
+  z-index: 1; 
+  isolation: isolate; 
+}
+#coffeeletter-swiper .swiper-slide.raise { 
+  z-index: 9999; 
+}
 
+/* 노트/툴팁이 컨테이너에 가려지지 않도록 섹션 쪽도 보장 */
+.coffeeletter { 
+  overflow: visible; 
+}
 
-
-
-
-
+/* 혹시 브라우저가 여전히 클리핑하면, 클립패스으로 강제 해제 */
+#coffeeletter-swiper.swiper {
+  clip-path: inset(-100vmax -100vmax -100vmax -100vmax);
+}
 
     /* Footer */
 .footer {
