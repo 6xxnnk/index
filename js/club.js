@@ -1,59 +1,44 @@
-window.initClub = function initClub(canAnimate) {
-  const cards = document.querySelectorAll(".club-card.glossy");
-  if (!cards.length) return;
+(function () {
+  // 전역에 노출
+  window.initClub = function initClub() {
+    console.log("✅ initClub() start");
 
-  cards.forEach((card) => {
-    const blurLayer = card.querySelector(".glossy__blur");
-    const bgLayer   = card.querySelector(".glossy__background");
-    const info      = card.querySelector(".glossy__info");
+    const section = document.querySelector(".section-club");
+    if (!section) throw new Error(".section-club not found");
 
-    // 안전 가드
-    if (!canAnimate || !blurLayer || !bgLayer) return;
+    const grid = section.querySelector(".club__grid");
+    if (!grid) throw new Error(".club__grid not found inside .section-club");
 
-    // 초기 스타일
-    gsap.set([card, blurLayer, info], { transformPerspective: 800 });
-    gsap.set(blurLayer, { opacity: 0 });
-    gsap.set(info, { y: 24, opacity: 0 });
+    const cards = grid.querySelectorAll(".club-card.glossy");
+    console.log(`ℹ️ glossy cards found: ${cards.length}`);
+    if (!cards.length) throw new Error("No .club-card.glossy cards in .club__grid");
 
-    // 마우스 무브로 틸트/패럴랙스
-    card.addEventListener("mousemove", (e) => {
-      const r = card.getBoundingClientRect();
-      const x = e.clientX - r.left;
-      const y = e.clientY - r.top;
-      const px = (x / r.width) - 0.5;  // -0.5 ~ 0.5
-      const py = (y / r.height) - 0.5;
+    // ✨ 인라인 스타일 주입 금지!
+    // hover 시 클래스만 토글 → 모든 위치/크기/트랜지션은 CSS가 담당
+    cards.forEach((card, i) => {
+      const info  = card.querySelector(".glossy__info");
+      const curve = card.querySelector(".glossy__curve");
+      if (!info || !curve) {
+        console.warn(`⚠️ card#${i} missing`, { hasInfo: !!info, hasCurve: !!curve });
+        return;
+      }
 
-      gsap.to(card, { 
-        rotateY: px * 8, 
-        rotateX: -py * 8, 
-        duration: 0.4, 
-        ease: "power2.out" 
-      });
+      // 마우스/터치 환경 공통: 클래스 토글
+      const onEnter = () => card.classList.add("is-hover");
+      const onLeave = () => card.classList.remove("is-hover");
 
-      // 배경 약간 따라오기
-      gsap.to(bgLayer, {
-        x: px * 12,
-        y: py * 12,
-        duration: 0.4,
-        ease: "power2.out",
-      });
+      card.addEventListener("mouseenter", onEnter);
+      card.addEventListener("mouseleave", onLeave);
+
+      // 터치 지원(탭 시 토글, 바깥 클릭 시 해제)
+      card.addEventListener("touchstart", (e) => {
+        card.classList.toggle("is-hover");
+      }, { passive: true });
+      document.addEventListener("touchstart", (e) => {
+        if (!card.contains(e.target)) card.classList.remove("is-hover");
+      }, { passive: true });
     });
 
-    // 진입/이탈 시 효과
-    card.addEventListener("mouseenter", () => {
-      gsap.to(blurLayer, { opacity: 0.55, duration: 0.35, ease: "power2.out" });
-      gsap.to(info, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" });
-      gsap.to(card, { scale: 1.02, duration: 0.35, ease: "power2.out" });
-    });
-
-    card.addEventListener("mouseleave", () => {
-      gsap.to([card, bgLayer], { 
-        rotateX: 0, rotateY: 0, x: 0, y: 0, scale: 1, 
-        duration: 0.5, ease: "power3.out" 
-      });
-      gsap.to(blurLayer, { opacity: 0, duration: 0.35, ease: "power2.out" });
-      gsap.to(info, { y: 24, opacity: 0, duration: 0.45, ease: "power2.out" });
-    });
-  });
-};
-window.initClub = initClub;
+    console.log("✅ initClub() done");
+  };
+})();
