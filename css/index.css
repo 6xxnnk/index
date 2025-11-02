@@ -288,7 +288,10 @@ img{ max-width:100%; display:block; }
 
 /* 연결 아이콘 */
 .club-card.glossy .glossy__connections{
-  position:absolute; left:2rem; bottom:9rem; display:flex; gap:1.8rem; z-index:2; margin:0;
+  position:absolute; 
+  left:2rem; bottom:9rem; display:flex; gap:1.8rem; z-index:2; 
+  margin:0;
+  list-style:none;
 }
 .club-card.glossy .glossy__connection{
   width:2.6rem; height:2.6rem; border-radius:50%;
