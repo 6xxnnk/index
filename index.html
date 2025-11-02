@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nespresso Project</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="css/index.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cantarell:wght@400;700&family=Crafty+Girls&family=Manrope:wght@200..800&display=swap"
+    rel="stylesheet"
+  />
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+
+
+
+</head>
+<body>
+<div class="wrap">
+<!-- ================================= HEADER (overlay glass) ============================== -->
+
+
+<header class="header" role="banner">
+    <div class="top">
+        <span class="top_text">머신 구매 시, 오리지널 커피 7캡슐로 구성된 웰컴 기프트 증정</span>
+    </div>
+    <div class="inner">
+        <nav class="nav nav--left" aria-label="Primary Left">
+        <ul>
+            <li><a href="#">coffee</a></li>
+            <li><a href="#">machine</a></li>
+            <li><a href="#">about</a></li>
+        </ul>
+        </nav>
+
+        <div class="logo" aria-label="Nespresso home">
+        <img src="img/Nespresso-Wordmark-2021-RGB-White.svg" alt="Nespresso" />
+        </div>
+
+        <nav class="nav nav--right" aria-label="Primary Right">
+        <ul>
+            <li><a href="#">login</a></li>
+            <li><a href="#">cart</a></li>
+            <li><a href="#">search</a></li>
+        </ul>
+</nav>
+    </div><!-- .inner -->
+</header>
+
+
+<!-- ================================= HERO =============================================== -->
+
+<!-- Swiper -->
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+
+    <!-- Slide 1 -->
+    <div class="swiper-slide">
+      <section class="section-hero" aria-label="Hero">
+        <div class="hero__media" aria-hidden="true">
+          <img src="img/hero_coffee_2x.jpg" alt="Nespresso Coffee"/>
+        </div>
+        <div class="hero__content">
+          <div class="hero__caption">
+            <div class="hero__en">Nothing Tastes Like Nespresso Coffee</div>
+          </div>
+          <div class="hero__btn">
+            <a href="#">
+              <li>
+                더 알아보기
+                <span></span><span></span><span></span><span></span>
+              </li>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="swiper-slide">
+      <section class="section-hero" aria-label="Hero">
+        <div class="hero__media" aria-hidden="true">
+          <img src="img/Frame.jpg" alt="Vertuo Plus Chrome Edition"/>
+        </div>
+        <div class="hero__content">
+          <div class="hero__caption">
+            <div class="hero__en">Vertuo Plus Chrome Edition</div>
+          </div>
+          <div class="hero__btn">
+            <a href="#">
+              <li>
+                더 알아보기
+                <span></span><span></span><span></span><span></span>
+              </li>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="swiper-slide">
+      <section class="section-hero" aria-label="Hero">
+        <div class="hero__media" aria-hidden="true">
+          <img src="img/jesper-brouwers-ioxmlrwJPBI-unsplash.jpg" alt="Coffee Moments"/>
+        </div>
+        <div class="hero__content">
+          <div class="hero__caption">
+            <div class="hero__en">Awaken Your Everyday Moments</div>
+          </div>
+          <div class="hero__btn">
+            <a href="#">
+              <li>
+                더 알아보기
+                <span></span><span></span><span></span><span></span>
+              </li>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="swiper-slide">
+      <section class="section-hero" aria-label="Hero">
+        <div class="hero__media" aria-hidden="true">
+          <img src="img/monody-le-OuxB9C_-Kw8-unsplash.jpg" alt="Starbucks by Nespresso"/>
+        </div>
+        <div class="hero__content">
+          <div class="hero__caption">
+            <div class="hero__en">Starbucks® by Nespresso</div>
+          </div>
+          <div class="hero__btn">
+            <a href="#">
+              <li>
+                더 알아보기
+                <span></span><span></span><span></span><span></span>
+              </li>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </div><!-- .swiper-wrapper -->
+
+  <!-- Pagination -->
+  <div class="swiper-pagination"></div>
+
+</div><!-- .swiper -->
+
+
+
+
+
+<!-- ================================= CLUB (4 cards) ===================================== -->
+
+
+<section class="section-club" aria-labelledby="clubTitle">
+  <div class="club__container">
+    <div class="club__head">
+      <h2 id="clubTitle">Join the Nespresso Club!</h2>
+      <p class="sr-only">네스프레소 클럽 회원에게만 주어지는 특별한 혜택</p>
+    </div>
+  </div>
+
+  <div class="club__grid">
+    <!-- card 1 -->
+    <article class="club-card glossy" style="--card-bg: url('../img/club-1.jpg')">
+      <span class="club-card__ribbon">머신 최대 67% 페이백</span>
+
+      <!-- 효과 전용 레이어 -->
+      <div class="glossy__background" aria-hidden="true"></div>
+      <div class="glossy__card">
+        <div class="glossy__blur" aria-hidden="true"></div>
+
+        <div class="glossy__info">
+          <span class="club-card__tag"><p>커피 머신이 처음인가요?<br>
+                        머신 가격의 최대 67%를 커피 할인으로 <br>
+                        페이백 받으세요. </p></span>
+          <a class="club-card__cta" href="#">더보기 →</a>
+        </div>
+
+        <div class="glossy__connections" aria-hidden="true">
+          <span class="glossy__connection">
+            <img src="img/Frame91.png" alt="연결 아이콘 1"/>
+          </span>
+
+        </div>
+
+        <!-- 하단 곡선 장식(선택) -->
+        <svg class="glossy__curve" viewBox="0 0 400 450" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0,360 C120,330 280,420 400,390 L400,450 L0,450 Z" fill="#fff" opacity="0.9"></path>
+        </svg>
+      </div>
+    </article>
+
+         <!-- card 2 -->
+    <article class="club-card glossy" style="--card-bg: url('../img/club-2.jpg')">
+      <span class="club-card__ribbon">기기 무상 보증 혜택</span>
+      
+      <div class="glossy__background"></div>
+      <div class="glossy__card">
+        <div class="glossy__blur"></div>
+        <div class="glossy__info">
+          <span class="club-card__tag">네스프레소 커피머신을 정품등록 시 <br>
+                             추가로 1년의 무상 보증 혜택을 드립니다<br>
+                             *공식 판매처에서 구매한 제품에 한함</span>
+          <a class="club-card__cta" href="#">자세히 →</a>
+        </div>
+        <div class="glossy__connections">
+          <span class="glossy__connection">
+            <img src="img/Frame91.png" alt="연결 아이콘 1"/>
+          </span>
+        </div>
+        <svg class="glossy__curve" viewBox="0 0 400 450" preserveAspectRatio="none">
+          <path d="M0,360 C120,330 280,420 400,390 L400,450 L0,450 Z" fill="#fff" opacity="0.9"></path>
+        </svg>
+      </div>
+    </article>
+
+    <!-- card 3 -->
+    <article class="club-card glossy" style="--card-bg: url('../img/club-3.jpg')">
+      <span class="club-card__ribbon">포인트 적립 혜택</span>
+      <div class="glossy__background"></div>
+      <div class="glossy__card">
+        <div class="glossy__blur"></div>
+        <div class="glossy__info">
+          <span class="club-card__tag">NESPRESSO SMILE 프로그램 가입하고 <br>
+                            ​포인트를 쌓아보세요!<br>
+                            미소 짓게 만드는 선물이 기다립니다</span>
+          <a class="club-card__cta" href="#">자세히 →</a>
+        </div>
+        <div class="glossy__connections">
+          <span class="glossy__connection">
+            <img src="img/Frame91.png" alt="연결 아이콘 1"/>
+          </span>
+        </div>
+        <svg class="glossy__curve" viewBox="0 0 400 450" preserveAspectRatio="none">
+          <path d="M0,360 C120,330 280,420 400,390 L400,450 L0,450 Z" fill="#fff" opacity="0.9"></path>
+        </svg>
+      </div>
+    </article>
+
+    <!-- card 4 -->
+    <article class="club-card glossy" style="--card-bg: url('../img/club-4.jpg')">
+      <span class="club-card__ribbon">웰컴 기프트​ 증정</span>
+      <div class="glossy__background"></div>
+      <div class="glossy__card">
+        <div class="glossy__blur"></div>
+        <div class="glossy__info">
+          <span class="club-card__tag">
+                            오리지널 커피 150 캡슐 또는<br>
+                            버츄오 커피 100 캡슐 이상 담으시면<br>
+                            최대 41,000원 상당의 웰컴 기프트를 드립니다 
+                            <br>
+                            </span>
+          <a class="club-card__cta" href="#">신청하기 →</a>
+        </div>
+        <div class="glossy__connections">
+          <span class="glossy__connection">
+            <img src="img/Frame91.png" alt="연결 아이콘 1"/>
+          </span>
+        </div>
+        <svg class="glossy__curve" viewBox="0 0 400 450" preserveAspectRatio="none">
+          <path d="M0,360 C120,330 280,420 400,390 L400,450 L0,450 Z" fill="#fff" opacity="0.9"></path>
+        </svg>
+      </div>
+    </article>
+  </div><!-- .grid-container -->
+
+  <div class="subscribe">
+
+    <div class="subscribe__inner">
+      <form id="newsletterForm" 
+      class="subscribe__form" 
+      aria-label="뉴스레터 구독 폼">
+
+        <input type="email" id="emailInput" class="subscribe__input" 
+        placeholder="최신 소식과 특별한 혜택을 가장 먼저 받아보세요!" required />
+        <button type="submit" class="subscribe__button">구독하기</button>
+      </form>
+
+      <div class="subscribe__note">
+        <div class="checkbox">
+          <input type="checkbox" id="agreeCheckbox" required />
+        
+        <a href="#">개인정보처리방침</a> 및 <a href="#">이용 약관</a>에 동의합니다.
+      </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+</section>
+
+
+
+
+<!-- =========================== ORIGINAL vs VERTUO (4 items) ============================= -->
+
+
+<section class="section-compare" aria-labelledby="compareTitle">
+    <div class="compare__intro">
+        <h3 id="compareTitle">Original or Vertuo?</h3>
+        <p class="sr-only">나에게 딱 맞는 네스프레소 머신을 찾아보세요</p>
+    </div>
+
+    <div class="compare__grid">
+        <!-- Original machine feature -->
+        <article class="compare-card compare-card--tint" data-area="tl">
+        <div class="compare-card__media" aria-hidden="true"> 
+          <video src="img/RTB_original_2.mp4" autoplay muted loop></video> 
+        </div>
+        <div class="compare-card__content">
+        <div class="compare-card__kicker">Original</div>
+        <h4 class="compare-card__title">
+          잊지 못할 클래식 에스프레소 커피 경험의 시작 <br>
+          고압 추출로 완성한 클래식 에스프레소를 느낄 수 있는 오리지널 머신</h4>
+        </div>
+
+        </article>
+
+        <!-- (2) TR: SWIPER IMAGE — Original Machines -->
+        <article class="compare-card is-swiper" data-area="tr">
+      <div class="compare-card__media">
+        <div class="swiper compareSwiper" id="compare-swiper-tr">
+          <div class="swiper-wrapper">
+            <!-- slide 1 -->
+            <div class="swiper-slide" data-kicker="픽시 C61 일렉트릭 레드" 
+            data-title="인더스트리얼 감성 속 섬세한 커피 경험">
+              <img src="img/original_pixie.jpg" alt="">
+              <div class="swiper-slide__info">
+                <div class="swiper-slide__kicker">오리지널 픽시 C61 일렉트릭 레드</div>
+                <div class="swiper-slide__title">인더스트리얼 감성 속 섬세한 커피 경험</div>
+                <div class="swiper-slide__cost">₩ 249,000</div>
+              </div>
+            </div>
+            <!-- slide 2 -->
+            <div class="swiper-slide" data-kicker="" data-title="">
+              <img src="img/original_citiz.jpg" alt="">
+              <div class="swiper-slide__info">
+                <div class="swiper-slide__kicker">오리지널 픽시 C61 일렉트릭 레드</div>
+                <div class="swiper-slide__title">모던한 디자인 그리고 클래식한 커피 경험의 진정한 조화</div>
+                <div class="swiper-slide__cost">₩ 249,000</div>
+              </div>
+            </div>
+            <!-- slide 3 -->
+            <div class="swiper-slide" data-kicker="Vertuo 시스템" data-title="바코드로 레시피 자동 인식">
+              <img src="img/original_citiz_platinum.jpg" alt="">
+              <div class="swiper-slide__info">
+                <div class="swiper-slide__kicker">오리지널 시티즈 플래티넘 D 스테인리스 스틸</div>
+                <div class="swiper-slide__title">에스프레소부터 아메리카노까지, 다양한 스타일로 즐기는 커피</div>
+              <div class="swiper-slide__cost">₩ 249,000</div>
+            </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+           <div class="swiper-button-prev" role="button" aria-label="Previous slide"></div>
+  <div class="swiper-button-next" role="button" aria-label="Next slide"></div>
+        </div>
+      </div>
+    </article>
+
+        <!-- (3) BL: SWIPER IMAGE — Original Accessories -->
+    <article class="compare-card is-swiper" data-area="bl">
+      <div class="compare-card__media">
+        <div class="swiper compareSwiper" id="compare-swiper-bl">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="img/ComparePage.jpg" alt="">
+              <div class="swiper-slide__info">
+                <div class="swiper-slide__kicker">버츄오 플러스 크롬</div>
+                <div class="swiper-slide__title">눈부신 존재감, 자동 오픈 헤드와 만나다</div>
+                <div class="swiper-slide__cost">₩ 249,000</div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <img src="img/vertuo_lattissima.jpg" alt="">
+              <div class="swiper-slide__info">
+                <div class="swiper-slide__kicker">버츄오 라티시마</div>
+                <div class="swiper-slide__title">버츄오와 밀크 레시피의 스마트한 만남</div>
+                <div class="swiper-slide__cost">₩ 249,000</div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <img src="img/vertuo_pop.jpg" alt="">
+              <div class="swiper-slide__info">
+                <div class="swiper-slide__kicker">버츄오 팝 망고 옐로우</div>
+                <div class="swiper-slide__title">
+                비비드한 컬러와 컴팩트한 사이즈로 공간을 POP하게</div>
+                <div class="swiper-slide__cost">₩ 249,000</div>
+              </div><!-- swiper-slide__info -->
+            </div><!-- swiper-slide -->
+
+          </div><!-- swiper-wrapper -->
+          <div class="swiper-pagination"></div>
+           <div class="swiper-button-prev" role="button" aria-label="Previous slide"></div>
+  <div class="swiper-button-next" role="button" aria-label="Next slide"></div>
+        </div><!-- compareSwiper -->
+      </div><!-- compare-card__media -->
+    </article>
+
+         <!-- (4) BR: VIDEO — Vertuo Colors -->
+    <article class="compare-card compare-card--tint" data-area="br">
+      <div class="compare-card__media" aria-hidden="true">
+        <video src="img/RTB_vertuo_2.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="compare-card__content">
+        <div class="compare-card__kicker">Vertuo</div>
+        <h4 class="compare-card__title">
+          바코드 회전 추출로 완성되는
+        풍성한 크레마와 깊은 바디감을 선사하는 버츄오 머신</h4>
+      </div>
+    </article>
+  </div>
+</section>
+
+
+
+<!-- ================================= 3 STEPS ============================================ -->
+
+<section class="section-steps" aria-labelledby="stepsTitle">
+  <div class="steps">
+    <!-- 헤드라인 -->
+    <div id="stepsTitle" class="steps__title">
+      <p>3 Steps for Coffee</p>
+      <h3>70캡슐 이상 정기 주문으로 커피 할인 페이백 혜택을 놓치지 마세요</h3>
+    </div>
+
+    <!-- 리본 배지 -->
+    <div class="steps__ribbon" aria-hidden="true">Only 3 Steps</div>
+
+    <!-- 3 스텝 -->
+    <div class="steps__row">
+      <article class="step">
+        <div class="step__icon" aria-hidden="true">1</div>
+        <div class="step__title">가까운 부티크 방문</div>
+        <p class="step__desc">머신 시연과 무료 시음으로 내 취향을 찾기</p>
+      </article>
+
+      <article class="step">
+        <div class="step__icon" aria-hidden="true">2</div>
+        <div class="step__title">온라인 주문 & 빠른 배송</div>
+        <p class="step__desc">다음 날 도착하는 편리한 배송</p>
+      </article>
+
+      <article class="step">
+        <div class="step__icon" aria-hidden="true">3</div>
+        <div class="step__title">커피 머신 수령 </div>
+        <p class="step__desc">머신 최대 67% 페이백 할인 및 무료배송</p>
+      </article>
+    </div>
+
+    <!-- 보조 문구 + CTA -->
+   <!--  <p class="steps__note">70캡슐 이상 정기 주문으로 커피 할인 페이백 혜택을 놓치지 마세요</p> -->
+    <a href="#" class="steps__cta" role="button" aria-label="커피 정기배송 신청하기">커피 정기배송 신청하기</a>
+  </div>
+</section>
+
+
+<!-- ============================== COLLAB PROMO (Blue Bottle) ============================ -->
+
+
+<section class="section-collab" aria-labelledby="collabTitle">
+  <div class="collab__inner">
+    <div class="collab__title">
+    <img src="../img/nespresso-blue-bottle-logo.png" alt="">
+    <h3>Nespresso × Blue Bottle</h3>
+    <p>네스프레소와 블루보틀 커피의 두 번째 협업으로 탄생한 블루보틀 블렌드 No.2 <br>
+      호기심과 전문성을 바탕으로 완성한 개성 넘치는 한정 블렌드입니다</p>
+    </div>
+
+    <!-- pill 1 -->
+    <div class="pill" data-item="블루보틀 블렌드 No.2">
+      <div class="pill__thumb">
+        <img src="img/blue-bottle-2_2x 1.png" alt="블루보틀 블렌드 No.2" />
+      </div>
+      <div class="pill__body">
+        <div class="pill__title">블루보틀 블렌드 No.2</div>
+        <div class="pill__meta">
+          잘 익은 베리류의 산뜻함, 비스킷의 고소함 <br>
+          은은한 아로마와 세련된 산미<br>
+          그리고 균형 잡힌 바디감이 어우러진 조화로운 한 잔</div>
+      </div>
+      <div class="pill__cta">
+        <div class="pill__handle" aria-label="드래그하여 장바구니에 추가"></div>
+        <span class="pill__cta-text"></span>
+      </div>
+    </div>
+
+    <!-- pill 2 -->
+    <div class="pill" data-item="블루보틀 에센셜 세트">
+      <div class="pill__thumb">
+        <img src="img/250908-BB-AERO-SET.png" alt="블루보틀 에센셜 세트" />
+      </div>
+      <div class="pill__body">
+        <div class="pill__title">블루보틀 에센셜 세트</div>
+        <div class="pill__meta">
+          16% 할인 혜택과 함께 특별한 선물로 구성된 <br>
+          블루보틀의 미니멀한 매력이 돋보이는 선물포장으로 <br>
+          구성된 버츄오 전용 시즌한정세트</div>
+      </div>
+      <div class="pill__cta">
+        <div class="pill__handle" aria-label="드래그하여 장바구니에 추가"></div>
+        <span class="pill__cta-text"></span>
+      </div>
+    </div>
+
+    <div class="sus__note">
+      <span>블루보틀블렌드 No.2 의 진하고 조화로운 더블 에스프레소를 <br>
+    따뜻한 우유와 함께 집에서도 손쉽게 라테 혹은 카푸치노로 즐겨보세요!</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================================= SUSTAINABILITY CUT ================================= -->
+
+
+<!-- =============================== COFFEE LETTER =============================== -->
+  <section class="coffeeletter">
+    <span class="coffee-ring" aria-hidden="true"></span>
+
+    <div class="coffeeletter__title">
+      <img class="coffeeleaf" src="img/humbleicons_coffee.png" alt="leaf">
+      
+      
+      <h1>Nespresso coffee letter</h1>
+      <p>네스프레소가 월별 테마에 맞게 엄선한 커피를 소개합니다.</p>
+    </div>
+
+    <!-- Swiper -->
+    <div class="coffeeletter-swiper swiper" id="coffeeletter-swiper">
+      <div class="swiper-wrapper">
+
+        <!-- 1 -->
+        <div class="swiper-slide">
+          <div class="moleskine-notebook">
+            <div class="notebook-cover black">
+              <div class="notebook-skin notebook-skin--wrap">
+                <div class="skin__headline">October 2025</div>
+                <div class="skin__sub">10월의 커피레터 - 낭만</div>
+              </div>
+            </div>
+            <div class="notebook-tooltip">
+              <strong>COFFEE TIP</strong>
+              <p>
+                익숙한 일상도 낭만이 되는 10월,<br>
+                스위트 바닐라향 디카페나토와 함께<br>
+                일상 속 낭만을 발견해보세요!
+              </p>
+              <a href="#">자세히 보기 > </a>
+
+            </div>
+            <div class="notebook-page dotted"></div>
+          </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="swiper-slide">
+          <div class="moleskine-notebook">
+            <div class="notebook-cover blue">
+              <div class="notebook-skin notebook-skin--wrap">
+                <div class="skin__headline">September 2025</div>
+                <div class="skin__sub">9월의 커피레터 - 가을 아침</div>
+              </div>
+            </div>
+            <div class="notebook-tooltip">
+              <strong>COFFEE TIP</strong>
+              <p>
+              유난히 더웠던 여름 탓인지   <br>
+              아침의선선한 공기가 고맙게 느껴지는 9월,<br>
+              오리지널 비엔나 룽고 디카페나토,<br>
+              버츄오 더블 에스프레소 돌체와 함께<br>
+              가을 아침을 여유롭게 시작해보세요!
+            </p>
+            <a href="#">자세히 보기 ></a>
+
+            </div>
+            <div class="notebook-page dotted"></div>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="swiper-slide">
+          <div class="moleskine-notebook">
+            <div class="notebook-cover yellow">
+              <div class="notebook-skin notebook-skin--wrap">
+                <div class="skin__headline">August 2025</div>
+                <div class="skin__sub">8월의 커피레터 - 폭염</div>
+              </div>
+            </div>
+            <div class="notebook-tooltip">
+              <strong>COFFEE TIP</strong>
+              <p>
+              집 밖으로 한 발짝만 나가도 <br>
+              땀이 송골송골 맺히는 8월,<br>
+              콜롬비아 커피와 함께 무더위를<br>
+              잠시 잊어 보세요!
+              </p>
+              <a href="#">자세히 보기 ></a>
+
+            </div>
+            <div class="notebook-page dotted"></div>
+          </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="swiper-slide">
+          <div class="moleskine-notebook">
+            <div class="notebook-cover green">
+              <div class="notebook-skin notebook-skin--wrap">
+                <div class="skin__headline">July 2025</div>
+                <div class="skin__sub">7월의 커피레터 - 여름 휴가</div>
+              </div>
+            </div>
+            <div class="notebook-tooltip">
+              <strong>COFFEE TIP</strong>
+              <p>
+              아이스 커피와 함께라면 어느 곳도 <br>
+              최고의 휴양지가 되는 7월,<br>
+              버츄오 아이스 레제로, 오리지널 프레도 <br>
+              인텐소로 시원한 휴가 분위기를 <br>
+              만끽해 보세요!
+            </p>
+            <a href="#">자세히 보기 ></a>
+
+            </div>
+            <div class="notebook-page dotted"></div>
+          </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="swiper-slide">
+          <div class="moleskine-notebook">
+            <div class="notebook-cover pink">
+              <div class="notebook-skin notebook-skin--wrap">
+                <div class="skin__headline">June 2025</div>
+                <div class="skin__sub">6월의 커피레터 - 활기</div>
+              </div>
+            </div>
+            <div class="notebook-tooltip">
+              <strong>COFFEE TIP</strong>
+              <p>
+              길어진 낮과 함께 힘차게 움직이게 되는 6월, <br>
+              버츄오 액티브, 오리지널 니카라과로 <br>
+              몸과 마음에 활기를 더해 보세요!<br>
+
+            </p>
+            <a href="#">자세히 보기 ></a>
+
+            </div>
+            <div class="notebook-page dotted"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Swiper UI -->
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev" aria-label="이전"></div>
+      <div class="swiper-button-next" aria-label="다음"></div>
+    </div>
+
+    <p class="coffeeletter__desc">
+이달의 커피를 더욱 맛있게 즐길 수 있는 추천 레시피와 이 커피가 특별한 사람들의 진솔한 커피 이야기, <br>
+최인아책방과 함께 하는 책과 커피의 페어링 모먼트도 만나보세요<br>
+
+Enjoy hand-picked coffees, recipes, and pairings in a cozy reading nook.</p>
+  </section>
+
+<!-- ================================= FOOTER ============================================= -->
+<footer class="site-footer" aria-labelledby="footerTitle">
+  <h2 id="footerTitle" class="sr-only">사이트 푸터</h2>
+
+  <!-- Top: 4-column link grid -->
+  <div class="footer__top container">
+    <section class="footer__col" aria-labelledby="ftProd">
+      <h3 id="ftProd" class="footer__title">제품</h3>
+      <ul class="footer__links">
+        <li><a href="#">버츄오 커피</a></li>
+        <li><a href="#">오리지널 커피</a></li>
+        <li><a href="#">버츄오 머신</a></li>
+        <li><a href="#">오리지널 머신</a></li>
+        <li><a href="#">액세서리</a></li>
+      </ul>
+    </section>
+
+    <section class="footer__col" aria-labelledby="ftAbout">
+      <h3 id="ftAbout" class="footer__title">네스프레소 소개</h3>
+      <ul class="footer__links">
+        <li><a href="#">네스프레소의 약속</a></li>
+        <li><a href="#">재활용</a></li>
+        <li><a href="#">매장 찾기</a></li>
+        <li><a href="#">채용</a></li>
+        <li><a href="#">네스프레소 프로페셔널</a></li>
+      </ul>
+    </section>
+
+    <section class="footer__col" aria-labelledby="ftService">
+      <h3 id="ftService" class="footer__title">고객서비스</h3>
+      <ul class="footer__links">
+        <li><a href="#">자주하는 질문(FAQ)</a></li>
+        <li><a href="#">네스프레소 서비스</a></li>
+        <li><a href="#">머신 사용 안내</a></li>
+        <li><a href="#">결제영수증 출력</a></li>
+        <li><a href="#">배송 조회</a></li>
+        <li><a href="#">주문 취소</a></li>
+      </ul>
+    </section>
+
+    <section class="footer__col" aria-labelledby="ftContact">
+      <h3 id="ftContact" class="footer__title">문의하기</h3>
+      <ul class="footer__contacts">
+        <li class="contact-item">
+          <span class="ic ic-kakao" aria-hidden="true"></span>
+          <div>
+            <strong>카카오톡 상담</strong>
+            <small>서비스 이용 및 상담을 원하시면 "카카오톡 상담"을 클릭해 주세요</small>
+          </div>
+        </li>
+        <li class="contact-item">
+          <span class="ic ic-phone" aria-hidden="true"></span>
+          <div>
+            <strong>국내 전화</strong>
+            <small>080-734-1111 · 매일, 9시~18시 / 수신자부담</small>
+          </div>
+        </li>
+        <li class="contact-item">
+          <span class="ic ic-globe" aria-hidden="true"></span>
+          <div>
+            <strong>국제 전화</strong>
+            <small>+82-2-3277-1398</small>
+          </div>
+        </li>
+        <li class="contact-item">
+          <span class="ic ic-mail" aria-hidden="true"></span>
+          <a href="#" class="mail-link">이메일 문의하기</a>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- Middle: social + jump -->
+  <div class="footer__middle">
+    <div class="container footer__middle-inner">
+      <div class="footer__follow">
+      </div>
+
+      <a href="#top" class="footer__jumpto" aria-label="페이지 상단으로 이동">
+  <span class="arrow">↑</span>
+  <span class="text">TOP</span>
+</a>
+    </div>
+  </div>
+
+  <!-- Legal nav -->
+  <nav class="footer__legal container" aria-label="법적 고지 및 사이트 링크">
+    <a href="#">판매이용약관</a>
+    <a href="#">개인정보 처리방침</a>
+    <a href="#">쿠키</a>
+    <a href="#">고객지원</a>
+    <a href="#">커피 레시피</a>
+    <a href="#">음영찾기</a>
+    <a href="#">회사소개</a>
+    <a href="#">사이트맵</a>
+    <a href="#">웹접근성</a>
+  </nav>
+
+  <!-- Brand bar -->
+  <div class="footer__brand container">
+    <div class="brand">
+      <span class="nespresso-logo" aria-hidden="true">NESPRESSO</span>
+      <span class="copy">Nestlé Nespresso S.A. 2025</span>
+    </div>
+  </div>
+
+  <!-- Bottom: company info -->
+  <div class="footer__bottom container">
+    <p>
+      상호 : 네슬레코리아 유한책임회사 &nbsp; 대표자 : 토마스제프리카소 &nbsp; 사업자등록번호 : 110-86-10100
+      &nbsp; 통신판매업신고 : 2014-서울서대문-0247
+    </p>
+    <p>
+      개인정보관리책임 &nbsp; 대표번호 : 080-734-1111 &nbsp; 이메일 : club.korea@nespresso.com
+    </p>
+    <p>
+      주소 : 서울시 서대문구 충정로70 웨스트게이트타워 10, 12, 16층
+    </p>
+  </div>
+</footer>
+
+
+  <script defer src="js/hero.js"></script>
+  <script defer src="js/club.js"></script>
+  <script defer src="js/compare.js"></script>
+  <script defer src="js/newsletter.js"></script>
+  <script defer src="js/sustainability.js"></script>
+
+  <script defer src="js/index.js"></script>
+</body>
+</html>
