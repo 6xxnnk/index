@@ -598,7 +598,7 @@ html,body{ overflow-x:hidden; }
     linear-gradient(180deg, rgba(255,255,255,.25) 0%, rgba(0,0,0,.03) 100%);
   opacity:.6; pointer-events:none; border-radius:.8rem;
 }
-.skin__headline{ font-family:'Ubuntu'; font-size:2.2rem; font-weight:700; letter-spacing:.02em; color:#f5efe6; text-shadow:0 .1rem .2rem rgba(0,0,0,.397); }
+.skin__headline{ font-family:'Ubuntu'; font-size:2.2rem; font-weight:400; letter-spacing:.02em; color:#f5efe6; text-shadow:0 .1rem .2rem rgba(0,0,0,.397); }
 .skin__sub{ margin-top:.2rem; font-family:'Ubuntu'; font-size:1.4rem; font-weight:400; letter-spacing:.03em; color:rgb(182,148,114); }
 
 .notebook-cover.black{  background-image:url("../img/letter-1.png"); }
