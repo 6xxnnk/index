@@ -710,150 +710,154 @@ img{ max-width:100%; display:block; }
 }
 
 /* Coffee Letter */
-:root{
-  --book-w: clamp(36rem, 70vw, 72rem);
-  --book-r: 14px;
-  --gap: 0rem;   /* ← 기존 0.5~1rem이던 값이면 0으로 */
-  --book-r: 14px;
-}
+    :root{
+      --book-w: clamp(30rem, 64vw, 60rem);   /* ↓ 전체 폭 축소 */
+      --book-r: 14px;
+      --gap: 0rem;
+    }
 
-.coffeeletter { max-width: 120rem; margin: 7rem auto; padding: 0 2rem; }
-.coffeeletter__title { 
-  display:flex; 
-  flex-direction: column;
-  align-items:center; gap:1rem; margin-bottom:1.2rem; }
-.coffeeletter__title h1 { font-weight: 800; font-size: 2.6rem; }
-.coffeeletter__title p, 
-.coffeeletter__desc { text-align:center; margin-top:1.6rem; color:#4a4031; 
-  font-weight:400; line-height:1.6;
-  font-size: 1.3rem; }
+    /* ========== Coffee Letter Section ========== */
+    .coffeeletter{ max-width: 120rem; margin: 7rem auto; padding: 0 2rem; }
+    .coffeeletter__title{
+      display:flex; flex-direction:column; align-items:center; gap:1rem; margin-bottom:1.2rem;
+    }
+    .coffeeletter__title h1{ font-weight:800; font-size:2.6rem; }
+    .coffeeletter__title p,
+    .coffeeletter__desc{
+      text-align:center; color:#4a4031; font-weight:400; line-height:1.6; font-size:1.3rem;
+    margin-bottom:4rem;
+    }
 
-/* Swiper sizing */
-.coffeeletter-swiper { overflow: visible; }
-.coffeeletter-swiper .swiper-slide { display:flex; justify-content:center; align-items:center; padding: 1rem 0; }
-.coffeeletter-swiper .swiper-button-prev,
-.coffeeletter-swiper .swiper-button-next { color:#3a2c20;
-   
-}
-.coffeeletter-swiper .swiper-pagination-bullet { 
-  background:#b7a889; opacity:.5;
-  width:0.5rem; height:1rem;
-}
-.coffeeletter-swiper .swiper-pagination-bullet-active { background:#7a6236; opacity:1; 
- width:0.5rem; height:1rem;}
+    /* Swiper sizing */
+    .coffeeletter-swiper{ overflow:visible; }
+    .coffeeletter-swiper .swiper-slide{
+      display:flex; justify-content:center; align-items:center; padding:1rem 0;
+    }
+    .coffeeletter-swiper .swiper-button-prev,
+    .coffeeletter-swiper .swiper-button-next{
+      color:#5c4b35; text-shadow:0 1px 0 #fff8;   /* 질감 위 가독성 */
+    }
+    .coffeeletter-swiper .swiper-pagination-bullet{
+      background:#b7a889; opacity:.5; width:.5rem; height:1rem;
+    }
+    .coffeeletter-swiper .swiper-pagination-bullet-active{
+      background:#7a6236; opacity:1; width:.5rem; height:1rem;
+    }
 
-/* Torn frame (filtered background only) */
-.book-frame{
-  position: relative;
-  width: var(--book-w);
-  aspect-ratio: 3/2;            /* 펼친 책 비율 */
-}
+    /* ========== Torn frame (filtered background only) ========== */
+    .book-frame{
+      position:relative; width:var(--book-w);
+      aspect-ratio: 21 / 9;                 /* 시네마틱: 세로 더 얕게 */
+    }
+    .book-border{
+      position:absolute; inset:0;
+      background:#fff;
+      border-radius:var(--book-r);
+      filter:url(#tear);                     /* 찢어진 종이 필터 */
+      box-shadow:0 .8rem 2.2rem rgba(0,0,0,.12);
+    }
 
-.book-border{
-  position:absolute; inset:0;
-   background: #fff;             /* 책 배경과 동일 */
-  border-radius: var(--book-r);
-  filter: url(#tear);           /* <- 찢어진 종이 느낌 */
-  /* 그림자 약간 */
-  box-shadow: 0 .8rem 2.2rem rgba(0,0,0,.12);
-}
+    /* 실제 책 컨텐츠 */
+    .book{
+      position:absolute; inset:var(--gap);
+      display:grid; grid-template-columns:1fr 1fr; gap:0;
+      background:#fff; border-radius:calc(var(--book-r) - 4px);
+      overflow:hidden; box-shadow:0 .6rem 2rem rgba(0,0,0,.08);
+    }
+    .book::after{
+      content:""; position:absolute; inset:0; pointer-events:none;
+      box-shadow: inset 0 0 2rem rgba(0,0,0,.06);
+    }
 
-/* 실제 책 컨텐츠는 왜곡 없이 위에 얹음 */
-.book{
-  position:absolute; inset: var(--gap);
-  display:grid; grid-template-columns: 1fr 1fr; gap:0;
-  background:#fff;
-  border-radius: calc(var(--book-r) - 4px);
-  overflow:hidden;
-  box-shadow: 0 .6rem 2rem rgba(0,0,0,.08);
-}
-.book::after{
-  content:"";
-  position:absolute; inset:0;
-  pointer-events:none;
-  box-shadow: inset 0 0 2rem rgba(0,0,0,.06);  /* 아주 약한 내측 음영 */
-}
-
-/* 좌: 이미지 / 우: 텍스트 */
-.book__left{
+    /* 좌: 이미지 */
+    .book__left{
+  position:relative;
   background-image: var(--img);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 100%;
-    overflow: hidden;
+  background-size:cover; background-position:center; background-repeat:no-repeat;
+  min-height:100%; overflow:hidden;
 
-  /* 왼쪽 이미지가 찢긴 가장자리 느낌으로 자연스럽게 녹아들게 */
+  /* 오른쪽만 샤프하게 유지 (기존) */
   -webkit-mask-image: radial-gradient(ellipse at right, transparent 0%, black 60%);
-  mask-image: radial-gradient(ellipse at right, transparent 0%, black 60%);
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
+          mask-image: radial-gradient(ellipse at right, transparent 0%, black 60%);
 
-  /* 배경과의 경계 부드럽게 */
+  /* 위·아래·왼쪽 가장자리만 부드럽게 페더링 */
+  /* (흰 배경과 자연스러운 블렌딩) */
+  box-shadow:
+    inset 28px 0 28px -18px #fff,   /* ← left feather */
+    inset 0 26px 26px -18px #fff,   /* ↑ top feather */
+    inset 0 -26px 26px -18px #fff;  /* ↓ bottom feather */
+
   filter: brightness(0.98) contrast(1.03);
+    }
+    /* 테두리 tear와 연결감 오버레이 */
+.book__left::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  /* 오른쪽은 제외하고, 위/아래/왼쪽만 살짝 밝게 덮어 경계 완화 */
+  background:
+    linear-gradient(to right, rgba(255,255,255,.85), transparent 14%), /* left */
+    linear-gradient(to bottom, rgba(255,255,255,.85), transparent 16%),/* top */
+    linear-gradient(to top, rgba(255,255,255,.85), transparent 16%);  /* bottom */
+  mix-blend-mode: screen;
+  opacity:.9;
 }
-/* 2️⃣ 찢김 필터와 자연스러운 연결감 주는 오버레이 */
-.book__left::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  /* 테두리의 tear 필터와 같은 느낌 주기 */
-  background: rgba(255,255,255,0.9);
-  filter: url(#tear);
-  mix-blend-mode: overlay;
-  opacity: 0.25; /* 너무 강하면 0.15~0.3 사이로 조절 */
+    /* 오른쪽 가장자리 하이라이트 + 섬유결 */
+.book__left::before{
+  content:""; position:absolute; top:0; right:0; bottom:0; width:4%;
+  background:
+    linear-gradient(to left, rgba(255,255,255,.9), rgba(255,255,255,0)),
+    repeating-linear-gradient(0deg, rgba(203,191,157,.08) 0 2px, transparent 2px 6px);
+  mix-blend-mode: screen; opacity:.75; z-index:2;
 }
+    /* 우: 텍스트(편지지 질감) */
+    .book__right{
+      position:relative;
+      padding: clamp(1.2rem, 2.2vw, 2rem) clamp(1.4rem, 2.4vw, 2.2rem);
+      display:flex; flex-direction:column; justify-content:center; gap:.8rem;
+      background:
+        radial-gradient(120% 100% at 10% 0%, rgba(255,255,255,.95), rgba(247,243,234,.9)),
+        repeating-linear-gradient( 0deg, rgba(203,191,157,.06) 0 2px, transparent 2px 6px),
+        repeating-linear-gradient( 90deg, rgba(203,191,157,.05) 0 3px, transparent 3px 9px);
+      backdrop-filter: blur(.1px);
+    }
+    .book__right::after{ /* 미세 노이즈 */
+      content:""; position:absolute; inset:0; pointer-events:none; border-radius:inherit;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity:.65; mix-blend-mode:multiply;
+    }
 
-/* 4️⃣ 이미지 쪽 테두리 연결감: 오른쪽 부분만 덜 찢기도록 약간 완화 */
-.book__left::before {
-  content: "";
-  position: absolute;
-  top: 0; right: 0; bottom: 0; width: 3%;
-  background: linear-gradient(to left, rgba(255,255,255,0.8), transparent);
-  z-index: 2;
-}
+    /* 타이포(손글씨 포인트) */
+    .book__right .kicker{ color:#7a6a54; font-size:1.8rem;
+     }
+    .book__right h3{ margin:0; color:#3a2c20; line-height:1.2;
+        font-family:"The Girl Next Door"; font-size:1.6rem; font-weight:800; letter-spacing:.02em; text-transform: uppercase; }
+    .book__right p{ color:#4a4031; line-height:1.7; font-size:1.2rem; }
 
-/* 3️⃣ 책 전체는 찢김 테두리와 동일한 배경 컬러 (#fff) */
-.book-border {
-  background: #fff;
-  filter: url(#tear);
-  border-radius: var(--book-r);
-  box-shadow: 0 .8rem 2.2rem rgba(0,0,0,.12);}
+    /* CTA: 우표(Stamp) 스타일 */
+    .book__right .cta{
+      align-self:flex-start; position:relative; display:inline-block;
+      margin-top:.6rem; padding:.7rem 1.2rem; border-radius:10px;
+      text-decoration:none; color:#3a2c20;
+      background:linear-gradient(180deg,#fff,#f7f3ea);
+      border:1px solid #cbbf9d; box-shadow:0 6px 16px rgba(0,0,0,.06);
+      clip-path: polygon(6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px),
+                         calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px), 0 6px);
+      font: 600 1rem/1 "Manrope","Noto Sans KR",sans-serif;
+      transition: transform .12s ease, box-shadow .2s ease, background .25s ease;
+    }
+    .book__right .cta::before{
+      content:""; position:absolute; inset:3px; border:1px dashed rgba(203,191,157,.7); border-radius:8px; pointer-events:none;
+    }
+    .book__right .cta::after{
+      content:""; position:absolute; right:-10px; top:-10px; width:18px; height:18px; border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, #c49a5a, #a77d3e 70%); box-shadow:0 2px 6px rgba(0,0,0,.18);
+      transform: rotate(-8deg);
+    }
+    .book__right .cta:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(0,0,0,.12);
+      background:linear-gradient(180deg,#fff,#f3ecde); }
 
-
-
-.book__right{
-  padding: clamp(1.2rem, 2.2vw, 2rem) clamp(1.4rem, 2.4vw, 2.2rem);
-  display:flex; flex-direction:column; justify-content:center; gap:.6rem;
-}
-.book__right h3{ margin:0; font-weight:700; font-size:1.3rem; 
-  color:#3a2c20; line-height:1.2;}
-.book__right .kicker{ color:#7a6a54; font-size:1.6rem; font-weight:400; 
- }
-.book__right p{ color:#4a4031; line-height:1.7; font-size:1.4rem;   }
-.book__right .cta{
-  align-self:flex-start;
-  display:inline-block; margin-top:.4rem; padding:.5rem 1rem; border-radius:999rem;
-  border:1px solid #cbbf9d; color:#3a2c20; text-decoration:none; background:#fff;
-  transition: background .2s, transform .1s;
-}
-.book__right .cta:hover{ background:#f7f3ea; transform: translateY(-1px); }
-
-.coffeeletter__end{
-  padding: 2rem 0;
-  text-align: center;
-  margin-top: 1.6rem;
-  color: #4a4031;
-  font-size: 1.3rem;
-  
-}
-.coffeeletter__end h5 {
-  font-style: italic;
-  font-weight: 500;
-  margin-top: 2rem;
-
-}
+    /* End copy */
+    .coffeeletter__end{ padding:2rem 0; text-align:center; margin-top:1.6rem; color:#4a4031; font-size:1.3rem; }
+    .coffeeletter__end h5{ font-style:italic; font-weight:500; margin-top:2rem; }
 
 
 /* Dock Navigation Bar */
