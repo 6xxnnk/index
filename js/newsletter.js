@@ -27,17 +27,17 @@
       }
     });
 
-    // 툴팁이 이웃 카드에 가리지 않도록: 호버 시 현재 슬라이드만 z-index 상승
-    el.querySelectorAll('.moleskine-notebook').forEach((nb) => {
-      const slide = nb.closest('.swiper-slide');
-      if (!slide) return;
-      const up   = () => slide.classList.add('raise');
-      const down = () => slide.classList.remove('raise');
-      nb.addEventListener('mouseenter', up);
-      nb.addEventListener('mouseleave', down);
-      nb.addEventListener('focusin',   up);
-      nb.addEventListener('focusout',  down);
-    });
+    // raise 효과: 대상 요소를 .paper로 변경
+  el.querySelectorAll('.paper').forEach((card)=>{
+    const slide = card.closest('.swiper-slide');
+    if (!slide) return;
+    const up   = () => slide.classList.add('raise');
+    const down = () => slide.classList.remove('raise');
+    card.addEventListener('mouseenter', up);
+    card.addEventListener('mouseleave', down);
+    card.addEventListener('focusin',   up);
+    card.addEventListener('focusout',  down);
+  });
   }
 
   if (document.readyState === 'loading') {
