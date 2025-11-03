@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // 장바구니 알림
         const addedMsg = document.createElement("div");
         addedMsg.className = "cart-toast";
-        addedMsg.textContent = `${itemName} 장바구니에 추가됨 🛒`;
+        addedMsg.textContent = `${itemName} 를 장바구니에 담았어요`;
         document.body.appendChild(addedMsg);
         setTimeout(() => addedMsg.remove(), 2200);
       } else {

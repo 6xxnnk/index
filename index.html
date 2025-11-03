@@ -144,7 +144,7 @@
         <div class="hero__content">
           <div class="hero__caption">
             <div class="hero__en">Starbucks® by Nespresso</div>
-            <div class="hero__ko">스타벅스®와 함께하는 네스프레소</div>
+            <div class="hero__ko">스타벅스®와 네스프레소의 만남</div>
           </div>
           <div class="hero__btn">
             <a href="#">
@@ -336,184 +336,206 @@
 
 
 
-
-<!-- =========================== ORIGINAL vs VERTUO (4 items) ============================= -->
-
-
-<section class="section-compare" aria-labelledby="compareTitle">
+  <!-- ============== Compare Section Markup ============== -->
+  <section class="section-compare" aria-labelledby="compareTitle">
     <div class="compare__intro">
-        <h3 id="compareTitle">Original or Vertuo?</h3>
-        <p>나에게 딱 맞는 네스프레소 머신을 찾아보세요</p>
+      <h3 id="compareTitle">Original or Vertuo?</h3>
+      <p>나에게 딱 맞는 네스프레소 머신을 찾아보세요</p>
     </div>
 
     <div class="compare__grid">
-        <!-- Original machine feature -->
-        <article class="compare-card compare-card--tint" data-area="tl">
-        <div class="compare-card__media" aria-hidden="true"> 
-          <video src="img/RTB_original_2.mp4" autoplay muted loop></video> 
+      <!-- (1) TL: VIDEO — Original -->
+      <article class="compare-card compare-card--tint" data-area="tl">
+        <div class="compare-card__media" aria-hidden="true">
+          <video src="img/RTB_original_2.mp4" autoplay muted loop playsinline></video>
         </div>
         <div class="compare-card__content">
-        <div class="compare-card__kicker">Original</div>
-        <h4 class="compare-card__title">
-          잊지 못할 클래식 에스프레소 커피 경험의 시작 <br>
-          고압 추출로 완성한 클래식 에스프레소를 느낄 수 있는 오리지널 머신</h4>
+          <div class="compare-card__kicker">Original</div>
+          <h4 class="compare-card__title">
+            잊지 못할 클래식 에스프레소 커피 경험의 시작<br>
+            고압 추출로 완성한 클래식 에스프레소를 느낄 수 있는 오리지널 머신
+          </h4>
         </div>
+      </article>
 
-        </article>
+      <!-- (2) TR: SWIPER IMAGE — Original Machines -->
+      <article class="compare-card is-swiper" data-area="tr">
+        <div class="compare-card__media">
+          <div class="swiper compareSwiper" id="compare-swiper-tr">
+            <div class="swiper-wrapper">
+              <!-- slide 1 -->
+              <div class="swiper-slide">
+                <img src="img/original_pixie.jpg" alt="오리지널 픽시 C61 일렉트릭 레드 제품 이미지">
+                <div class="swiper-slide__info">
+                  <div class="swiper-slide__kicker">오리지널 픽시 C61 일렉트릭 레드</div>
+                  <div class="swiper-slide__title">인더스트리얼 감성 속 섬세한 커피 경험</div>
 
-        <!-- (2) TR: SWIPER IMAGE — Original Machines -->
-        <article class="compare-card is-swiper" data-area="tr">
-      <div class="compare-card__media">
-        <div class="swiper compareSwiper" id="compare-swiper-tr">
-          <div class="swiper-wrapper">
-            <!-- slide 1 -->
-            <div class="swiper-slide" data-kicker="픽시 C61 일렉트릭 레드" 
-            data-title="인더스트리얼 감성 속 섬세한 커피 경험">
-              <img src="img/original_pixie.jpg" alt="">
-              <div class="swiper-slide__info">
-                <div class="swiper-slide__kicker">오리지널 픽시 C61 일렉트릭 레드</div>
-                <div class="swiper-slide__title">인더스트리얼 감성 속 섬세한 커피 경험</div>
-                <div class="price-cta" data-product-id="pixie-c61">
-                  <button class="price-cta__handle" type="button" aria-label="밀어서 장바구니 담기">
-                    <span class="price-cta__price">
-                    <span class="sr-only">가격:</span>
-                    <span class="price-cta__num">₩ 249,000</span>
-                    </span>
-                    <span class="price-cta__ghost">장바구니에 담기</span>
+                  <!-- 가격 -->
+                  <div class="price-row" aria-live="polite">
+                    <span class="sr-only"></span>
+                    <strong class="price-row__value" data-price="249000">₩ 249,000</strong>
+                  </div>
+
+                  <!-- 장바구니 버튼 -->
+                  <button class="addbag-btn" type="button"
+                          data-product-id="pixie-c61"
+                          data-product-name="오리지널 픽시 C61 일렉트릭 레드"
+                          aria-label="장바구니에 담기">
+                    <span class="addbag-btn__shine" aria-hidden="true"></span>
+                    <span class="addbag-btn__text">장바구니 담기</span>
+                    <span class="addbag-btn__icon" aria-hidden="true">＋</span>
                   </button>
-                  <output class="price-cta__done" role="status" aria-live="polite">담겼어요!</output>
+                </div>
+              </div>
+
+              <!-- slide 2 -->
+              <div class="swiper-slide">
+                <img src="img/original_citiz.jpg" alt="오리지널 시티즈 제품 이미지">
+                <div class="swiper-slide__info">
+                  <div class="swiper-slide__kicker">오리지널 시티즈</div>
+                  <div class="swiper-slide__title">모던한 디자인, 클래식한 커피 경험의 조화</div>
+
+                  <div class="price-row" aria-live="polite">
+                    <span class="sr-only"></span>
+                    <strong class="price-row__value" data-price="349000">₩ 349,000</strong>
+                  </div>
+
+                  <button class="addbag-btn" type="button"
+                          data-product-id="original-citiz"
+                          data-product-name="오리지널 시티즈"
+                          aria-label="장바구니에 담기">
+                    <span class="addbag-btn__shine" aria-hidden="true"></span>
+                    <span class="addbag-btn__text">장바구니 담기</span>
+                    <span class="addbag-btn__icon" aria-hidden="true">＋</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- slide 3 -->
+              <div class="swiper-slide">
+                <img src="img/original_citiz_platinum.jpg" alt="오리지널 시티즈 플래티넘 D 스테인리스 스틸 제품 이미지">
+                <div class="swiper-slide__info">
+                  <div class="swiper-slide__kicker">오리지널 시티즈 플래티넘 D 스테인리스 스틸</div>
+                  <div class="swiper-slide__title">에스프레소부터 아메리카노까지, 다양한 스타일로 즐기는 커피</div>
+
+                  <div class="price-row" aria-live="polite">
+                    <span class="sr-only"></span>
+                    <strong class="price-row__value" data-price="399000">₩ 399,000</strong>
+                  </div>
+
+                  <button class="addbag-btn" type="button"
+                          data-product-id="citiz-platinum-d"
+                          data-product-name="오리지널 시티즈 플래티넘 D 스테인리스 스틸"
+                          aria-label="장바구니에 담기">
+                    <span class="addbag-btn__shine" aria-hidden="true"></span>
+                    <span class="addbag-btn__text">장바구니 담기</span>
+                    <span class="addbag-btn__icon" aria-hidden="true">＋</span>
+                  </button>
                 </div>
               </div>
             </div>
-            <!-- slide 2 -->
-            <div class="swiper-slide" data-kicker="" data-title="">
-              <img src="img/original_citiz.jpg" alt="">
-              <div class="swiper-slide__info">
-                <div class="swiper-slide__kicker">오리지널 픽시 C61 일렉트릭 레드</div>
-                <div class="swiper-slide__title">모던한 디자인 그리고 클래식한 커피 경험의 진정한 조화</div>
-                <div class="price-cta" data-product-id="pixie-c61">
-                  <button class="price-cta__handle" type="button" aria-label="밀어서 장바구니 담기">
-                    <span class="price-cta__price">
-                    <span class="sr-only">가격:</span>
-                    <span class="price-cta__num">₩ 249,000</span>
-                    </span>
-                    <span class="price-cta__ghost">장바구니에 담기</span>
-                  </button>
-                  <output class="price-cta__done" role="status" aria-live="polite">담겼어요!</output>
-                </div>
-              </div>
-            </div>
-            <!-- slide 3 -->
-            <div class="swiper-slide" data-kicker="Vertuo 시스템" data-title="바코드로 레시피 자동 인식">
-              <img src="img/original_citiz_platinum.jpg" alt="">
-              <div class="swiper-slide__info">
-                <div class="swiper-slide__kicker">오리지널 시티즈 플래티넘 D 스테인리스 스틸</div>
-                <div class="swiper-slide__title">에스프레소부터 아메리카노까지, 다양한 스타일로 즐기는 커피</div>
-              
-              
-                <div class="price-cta" data-product-id="pixie-c61">
-                  <button class="price-cta__handle" type="button" aria-label="밀어서 장바구니 담기">
-                    <span class="price-cta__price">
-                    <span class="sr-only">가격:</span>
-                    <span class="price-cta__num">₩ 249,000</span>
-                    </span>
-                    <span class="price-cta__ghost">장바구니에 담기</span>
-                  </button>
-                  <output class="price-cta__done" role="status" aria-live="polite">담겼어요!</output>
-                </div>
 
-
-            </div>
-            </div>
+            <div class="swiper-pagination" aria-label="제품 슬라이드 페이지네이션"></div>
+            <div class="swiper-button-prev" role="button" aria-label="이전 슬라이드"></div>
+            <div class="swiper-button-next" role="button" aria-label="다음 슬라이드"></div>
           </div>
-          <div class="swiper-pagination"></div>
-           <div class="swiper-button-prev" role="button" aria-label="Previous slide"></div>
-  <div class="swiper-button-next" role="button" aria-label="Next slide"></div>
         </div>
-      </div>
-    </article>
+      </article>
 
-        <!-- (3) BL: SWIPER IMAGE — Original Accessories -->
-    <article class="compare-card is-swiper" data-area="bl">
-      <div class="compare-card__media">
-        <div class="swiper compareSwiper" id="compare-swiper-bl">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img src="img/ComparePage.jpg" alt="">
-              <div class="swiper-slide__info">
-                <div class="swiper-slide__kicker">버츄오 플러스 크롬</div>
-                <div class="swiper-slide__title">눈부신 존재감, 자동 오픈 헤드와 만나다</div>
-                <div class="price-cta" data-product-id="pixie-c61">
-                  <button class="price-cta__handle" type="button" aria-label="밀어서 장바구니 담기">
-                    <span class="price-cta__price">
-                    <span class="sr-only">가격:</span>
-                    <span class="price-cta__num">₩ 249,000</span>
-                    </span>
-                    <span class="price-cta__ghost"></span>
+      <!-- (3) BL: SWIPER IMAGE — Vertuo Machines -->
+      <article class="compare-card is-swiper" data-area="bl">
+        <div class="compare-card__media">
+          <div class="swiper compareSwiper" id="compare-swiper-bl">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="img/ComparePage.jpg" alt="버츄오 플러스 크롬 제품 이미지">
+                <div class="swiper-slide__info">
+                  <div class="swiper-slide__kicker">버츄오 플러스 크롬</div>
+                  <div class="swiper-slide__title">눈부신 존재감, 자동 오픈 헤드와 만나다</div>
+
+                  <div class="price-row" aria-live="polite">
+                    <span class="sr-only"></span>
+                    <strong class="price-row__value" data-price="299000">₩ 299,000</strong>
+                  </div>
+
+                  <button class="addbag-btn" type="button"
+                          data-product-id="vertuo-plus-chrome"
+                          data-product-name="버츄오 플러스 크롬"
+                          aria-label="장바구니에 담기">
+                    <span class="addbag-btn__shine" aria-hidden="true"></span>
+                    <span class="addbag-btn__text">장바구니 담기</span>
+                    <span class="addbag-btn__icon" aria-hidden="true">＋</span>
                   </button>
-                  <output class="price-cta__done" role="status" aria-live="polite">장바구니에 추가됨!</output>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <img src="img/vertuo_lattissima.jpg" alt="버츄오 라티시마 제품 이미지">
+                <div class="swiper-slide__info">
+                  <div class="swiper-slide__kicker">버츄오 라티시마</div>
+                  <div class="swiper-slide__title">버츄오와 밀크 레시피의 스마트한 만남</div>
+
+                  <div class="price-row" aria-live="polite">
+                    <span class="sr-only"></span>
+                    <strong class="price-row__value" data-price="499000">₩ 499,000</strong>
+                  </div>
+
+                  <button class="addbag-btn" type="button"
+                          data-product-id="vertuo-lattissima"
+                          data-product-name="버츄오 라티시마"
+                          aria-label="장바구니에 담기">
+                    <span class="addbag-btn__shine" aria-hidden="true"></span>
+                    <span class="addbag-btn__text">장바구니 담기</span>
+                    <span class="addbag-btn__icon" aria-hidden="true">＋</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <img src="img/vertuo_pop.jpg" alt="버츄오 팝 망고 옐로우 제품 이미지">
+                <div class="swiper-slide__info">
+                  <div class="swiper-slide__kicker">버츄오 팝 망고 옐로우</div>
+                  <div class="swiper-slide__title">비비드한 컬러와 컴팩트한 사이즈로 공간을 POP하게</div>
+
+                  <div class="price-row" aria-live="polite">
+                    <span class="sr-only"></span>
+                    <strong class="price-row__value" data-price="259000">₩ 259,000</strong>
+                  </div>
+
+                  <button class="addbag-btn" type="button"
+                          data-product-id="vertuo-pop-mango"
+                          data-product-name="버츄오 팝 망고 옐로우"
+                          aria-label="장바구니에 담기">
+                    <span class="addbag-btn__shine" aria-hidden="true"></span>
+                    <span class="addbag-btn__text">장바구니 담기</span>
+                    <span class="addbag-btn__icon" aria-hidden="true">＋</span>
+                  </button>
                 </div>
               </div>
             </div>
-            <div class="swiper-slide">
-              <img src="img/vertuo_lattissima.jpg" alt="">
-              <div class="swiper-slide__info">
-                <div class="swiper-slide__kicker">버츄오 라티시마</div>
-                <div class="swiper-slide__title">버츄오와 밀크 레시피의 스마트한 만남</div>
-                <div class="price-cta" data-product-id="pixie-c61">
-                  <button class="price-cta__handle" type="button" aria-label="밀어서 장바구니 담기">
-                    <span class="price-cta__price">
-                    <span class="sr-only">가격:</span>
-                    <span class="price-cta__num">₩ 249,000</span>
-                    </span>
-                    <span class="price-cta__ghost">장바구니에 담기</span>
-                  </button>
-                  <output class="price-cta__done" role="status" aria-live="polite">담겼어요!</output>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <img src="img/vertuo_pop.jpg" alt="">
-              <div class="swiper-slide__info">
-                <div class="swiper-slide__kicker">버츄오 팝 망고 옐로우</div>
-                <div class="swiper-slide__title">
-                비비드한 컬러와 컴팩트한 사이즈로 공간을 POP하게</div>
-                
-                <div class="price-cta" data-product-id="pixie-c61">
-                  <button class="price-cta__handle" type="button" aria-label="밀어서 장바구니 담기">
-                    <span class="price-cta__price">
-                    <span class="sr-only">가격:</span>
-                    <span class="price-cta__num">₩ 249,000</span>
-                    </span>
-                    <span class="price-cta__ghost">장바구니에 담기</span>
-                  </button>
-                  <output class="price-cta__done" role="status" aria-live="polite">담겼어요!</output>
-                </div>
-              </div><!-- swiper-slide__info -->
-            </div><!-- swiper-slide -->
 
-          </div><!-- swiper-wrapper -->
-          <div class="swiper-pagination"></div>
-           <div class="swiper-button-prev" role="button" aria-label="Previous slide"></div>
-  <div class="swiper-button-next" role="button" aria-label="Next slide"></div>
-        </div><!-- compareSwiper -->
-      </div><!-- compare-card__media -->
-    </article>
+            <div class="swiper-pagination" aria-label="제품 슬라이드 페이지네이션"></div>
+            <div class="swiper-button-prev" role="button" aria-label="이전 슬라이드"></div>
+            <div class="swiper-button-next" role="button" aria-label="다음 슬라이드"></div>
+          </div>
+        </div>
+      </article>
 
-         <!-- (4) BR: VIDEO — Vertuo Colors -->
-    <article class="compare-card compare-card--tint" data-area="br">
-      <div class="compare-card__media" aria-hidden="true">
-        <video src="img/RTB_vertuo_2.mp4" autoplay muted loop playsinline></video>
-      </div>
-      <div class="compare-card__content">
-        <div class="compare-card__kicker">Vertuo</div>
-        <h4 class="compare-card__title">
-          바코드 회전 추출로 완성되는
-        풍성한 크레마와 깊은 바디감을 선사하는 버츄오 머신</h4>
-      </div>
-    </article>
-  </div>
-</section>
+      <!-- (4) BR: VIDEO — Vertuo -->
+      <article class="compare-card compare-card--tint" data-area="br">
+        <div class="compare-card__media" aria-hidden="true">
+          <video src="img/RTB_vertuo_2.mp4" autoplay muted loop playsinline></video>
+        </div>
+        <div class="compare-card__content">
+          <div class="compare-card__kicker">Vertuo</div>
+          <h4 class="compare-card__title">
+            바코드 회전 추출로 완성되는<br>
+            풍성한 크레마와 깊은 바디감을 선사하는 버츄오 머신
+          </h4>
+        </div>
+      </article>
+    </div>
+  </section>
 
 
 
@@ -746,7 +768,7 @@
 
     </div>
 
-    <div class="swiper-pagination"></div>
+
     <div class="swiper-button-prev" aria-label="이전"></div>
     <div class="swiper-button-next" aria-label="다음"></div>
   </div>
@@ -755,45 +777,58 @@
   <p>
     이달의 커피를 더욱 맛있게 즐길 수 있는 추천 레시피와 이 커피가 특별한 사람들의 진솔한 커피 이야기, <br>
     최인아책방과 함께 하는 책과 커피의 페어링 모먼트도 만나보세요</p>
-
-    <h5>Enjoy hand-picked coffees, recipes, and pairings in a cozy reading nook.</h5>
   </div>
 </section>
 
 
-  
-<!-- ================================= DOCK MENU ============================================ -->
-<nav class="dock dock--icons" aria-label="하단 고정 메뉴">
-  <button class="dock__item is-active" data-tab="home" aria-label="Home">
+  <!-- ✅ Dock (compact / 4 items, English labels, cute rounded) -->
+<nav class="dock dock--icons dock--mini" aria-label="Bottom navigation">
+  <!-- ALL -->
+  <button class="dock__item is-active" data-tab="all" aria-label="All">
     <svg class="ic" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="3" y="3"  width="7" height="7"  rx="2" fill="none" stroke-width="1.8"/>
+      <rect x="14" y="3" width="7" height="7"  rx="2" fill="none" stroke-width="1.8"/>
+      <rect x="3" y="14" width="7" height="7" rx="2" fill="none" stroke-width="1.8"/>
+      <rect x="14" y="14" width="7" height="7" rx="2" fill="none" stroke-width="1.8"/>
     </svg>
-    <span class="sr-only">Home</span>
+    <span class="sr-only">All</span>
   </button>
 
-  <button class="dock__item" data-tab="search" aria-label="Search">
+  <!-- CAPSULES -->
+  <button class="dock__item" data-tab="capsules" aria-label="Capsules">
     <svg class="ic" viewBox="0 0 24 24" aria-hidden="true">
-      <circle cx="11" cy="11" r="6.5" fill="none" stroke-width="1.8"/>
-      <path d="M20 20l-3.6-3.6" fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <!-- capsule outline -->
+      <rect x="4" y="7" width="16" height="10" rx="5" fill="none" stroke-width="1.8"/>
+      <!-- capsule seam -->
+      <path d="M12 7v10" fill="none" stroke-width="1.8" stroke-linecap="round"/>
     </svg>
-    <span class="sr-only">Search</span>
+    <span class="sr-only">Capsules</span>
   </button>
 
-  <button class="dock__item" data-tab="likes" aria-label="Likes">
+  <!-- MACHINES -->
+  <button class="dock__item" data-tab="machines" aria-label="Machines">
     <svg class="ic" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12.1 20s-7.1-4.2-9-7.6C1.7 9.6 3.1 7 6 7c1.9 0 3 1.2 3.6 2.2.6-1 1.7-2.2 3.6-2.2 2.9 0 4.3 2.6 2.9 5.4-1.9 3.4-9 7.6-9 7.6z" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- machine body -->
+      <rect x="3.5" y="5" width="17" height="10" rx="2" fill="none" stroke-width="1.8"/>
+      <!-- spout -->
+      <path d="M16 9h-4" fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <!-- cup -->
+      <path d="M9 15h6v3H9z" fill="none" stroke-width="1.8" />
+      <path d="M15 16h2a2 2 0 0 0 0-4" fill="none" stroke-width="1.8" stroke-linecap="round"/>
     </svg>
-    <span class="sr-only">Likes</span>
+    <span class="sr-only">Machines</span>
   </button>
 
-  <button class="dock__item" data-tab="notify" aria-label="Notifications">
+  <!-- MY PAGE -->
+  <button class="dock__item" data-tab="mypage" aria-label="My Page">
     <svg class="ic" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M6 9a6 6 0 1 1 12 0c0 5 2 6 2 6H4s2-1 2-6" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M10 19a2 2 0 0 0 4 0" fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="12" cy="8" r="3.2" fill="none" stroke-width="1.8"/>
+      <path d="M4.5 19.5a7.5 7.5 0 0 1 15 0" fill="none" stroke-width="1.8" stroke-linecap="round"/>
     </svg>
-    <span class="sr-only">Notifications</span>
+    <span class="sr-only">My Page</span>
   </button>
 </nav>
+
 <!-- ================================= FOOTER ============================================= -->
 <footer class="site-footer" aria-labelledby="footerTitle">
 
@@ -840,7 +875,7 @@
           <span class="ic ic-kakao" aria-hidden="true"></span>
           <div>
             <strong>카카오톡 상담</strong>
-            <small>서비스 이용 및 상담을 원하시면 "카카오톡 상담"을 클릭해 주세요</small>
+            <small>서비스 이용 및 상담</small>
           </div>
         </li>
         <li class="contact-item">
@@ -857,10 +892,7 @@
             <small>+82-2-3277-1398</small>
           </div>
         </li>
-        <li class="contact-item">
-          <span class="ic ic-mail" aria-hidden="true"></span>
-          <a href="#" class="mail-link">이메일 문의하기</a>
-        </li>
+       
       </ul>
     </section>
   </div>
@@ -871,9 +903,11 @@
       <div class="footer__follow">
       </div>
 
-      <a href="#top" class="footer__jumpto" aria-label="페이지 상단으로 이동">
-  <span class="arrow">↑</span>
+<!-- before: .text + .arrow -->
+<button class="footer__jumpto" aria-label="Back to top">
   <span class="text">TOP</span>
+  <span class="icon" aria-hidden="true">☕</span>
+</button>
 </a>
     </div>
   </div>
@@ -927,6 +961,7 @@
   <script defer src="js/compare.js"></script>
   <script defer src="js/newsletter.js"></script>
   <script defer src="js/sustainability.js"></script>
+  <script defer src="js/dock.js"></script>
 
   <script defer src="js/index.js"></script>
 </body>
