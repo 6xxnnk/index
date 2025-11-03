@@ -122,6 +122,12 @@
       wrap.dataset.bound = '1';
     });
   }
+  document.querySelectorAll('.dock__item').forEach(it=>{
+  it.addEventListener('click', ()=>{
+    document.querySelectorAll('.dock__item').forEach(i=>i.classList.remove('is-active'));
+    it.classList.add('is-active');
+  });
+});
 
   // 실제 장바구니 API 연동 지점 (필요 시 교체)
   function addToCart(productId) {
@@ -140,3 +146,4 @@
     initCompare();
   }
 })();
+

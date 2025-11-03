@@ -1,48 +1,23 @@
-(function () {
-  function initCoffeeLetterSwiper() {
-    const el = document.getElementById('coffeeletter-swiper');
-    if (!el) return;
+ (function(){
+    const el = document.querySelector('#coffeeletter-swiper');
+    if(!el) return;
 
-    const swiper = new Swiper(el, {
-      slidesPerView: 3,          // 기본값
-      spaceBetween: 36,          // 슬라이드 간 간격
-      centeredSlides: false,
-      loop: false,
+    new Swiper(el, {
       speed: 600,
+      loop: false,
       grabCursor: true,
+      slidesPerView: 1,
+      spaceBetween: 24,
+      centeredSlides: true,
       keyboard: { enabled: true },
+      pagination: { el: '.coffeeletter-swiper .swiper-pagination', clickable: true },
       navigation: {
-        nextEl: el.querySelector('.swiper-button-next'),
-        prevEl: el.querySelector('.swiper-button-prev')
-      },
-      pagination: {
-        el: el.querySelector('.swiper-pagination'),
-        clickable: true
+        nextEl: '.coffeeletter-swiper .swiper-button-next',
+        prevEl: '.coffeeletter-swiper .swiper-button-prev'
       },
       breakpoints: {
-        0:    { slidesPerView: 1.2, spaceBetween: 20 },
-        640:  { slidesPerView: 2.0, spaceBetween: 24 },
-        960:  { slidesPerView: 3.0, spaceBetween: 32 },
-        1280: { slidesPerView: 4.0, spaceBetween: 36 } /* 넓은 화면에서 더 많이 */
+        900:  { slidesPerView: 1.05, spaceBetween: 28 },
+        1280: { slidesPerView: 1.12, spaceBetween: 32 }
       }
     });
-
-    // raise 효과: 대상 요소를 .paper로 변경
-  el.querySelectorAll('.paper').forEach((card)=>{
-    const slide = card.closest('.swiper-slide');
-    if (!slide) return;
-    const up   = () => slide.classList.add('raise');
-    const down = () => slide.classList.remove('raise');
-    card.addEventListener('mouseenter', up);
-    card.addEventListener('mouseleave', down);
-    card.addEventListener('focusin',   up);
-    card.addEventListener('focusout',  down);
-  });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCoffeeLetterSwiper);
-  } else {
-    initCoffeeLetterSwiper();
-  }
-})();
+  })();

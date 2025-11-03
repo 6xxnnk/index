@@ -1,0 +1,148 @@
+/* =========================
+   Coffee Letter – 3-fold Paper (SCSS)
+   요구사항: 
+   1) 배경 3등분 / 2) pageNumber 비표시 / 3) SCSS 사용 & 적용법 별도 / 
+   4) 모서리 곡선 금지 / 5) 적당히 크게 / 6) 이음새 공백 제거 / 7) 부드러운 접힘
+   ========================= */
+
+/* 크기 변수: (너무 작지 않게) */
+$paper-w: 30rem;  /* 가로 */
+$paper-h: 42rem;  /* 세로 (12 + 18 + 12 = 42) */
+$p1-h: 12rem;
+$p2-h: 18rem;
+$p3-h: 12rem;
+
+$pad-x: 2rem;
+$pad-y: 1.2rem;
+
+/* 공통 이징/시간 */
+$ease-fold: cubic-bezier(.22,.61,.36,1);
+$dur-fold: .65s;
+
+/* Swiper 사용 시 카드가 다른 슬라이드에 가리지 않게 */
+#coffeeletter-swiper,
+#coffeeletter-swiper.swiper,
+#coffeeletter-swiper .swiper,
+#coffeeletter-swiper .swiper-wrapper,
+#coffeeletter-swiper .swiper-slide {
+  overflow: visible !important;
+}
+#coffeeletter-swiper .swiper-slide {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+#coffeeletter-swiper .swiper-slide.raise { z-index: 9999; }
+#coffeeletter-swiper.swiper { clip-path: inset(-100vmax -100vmax -100vmax -100vmax); }
+
+/* =========================
+   Paper 컨테이너
+   ========================= */
+.paper {
+  position: relative;
+  width: $paper-w;
+  height: $paper-h;
+  margin: 1rem .8rem 2.4rem;
+  perspective: 800px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  isolation: isolate;
+
+  /* 통배경은 사용하지 않음(색 오버레이 금지). 
+     배경 이미지는 각 파트의 ::before에서 1장 이미지를 절단해 표시. */
+}
+
+/* 공통 파트 */
+.paper .part1,
+.paper .part2,
+.paper .part3 {
+  position: relative;
+  z-index: 1;
+  padding: $pad-y $pad-x;
+  background: transparent;          /* 배경색/오버레이 금지 */
+  box-shadow: none;                 /* 깔끔한 뒷면 유지 */
+  border-radius: 0;                 /* 모서리 곡선 금지 */
+  transition: transform $dur-fold $ease-fold;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* 높이 배분 */
+.paper .part1 { height: $p1-h; }
+.paper .part2 { height: $p2-h; }
+.paper .part3 { height: $p3-h; }
+
+/* =========
+   이미지 3등분: 하나의 이미지(var(--paper-bg))를 
+   각 파트의 ::before에 1/3씩 정확히 노출
+   ========= */
+.paper .part1::before,
+.paper .part2::before,
+.paper .part3::before {
+  content: "";
+  position: absolute;
+  /* 이음새 공백 제거: 위아래 -0.5px 겹침 */
+  inset: -0.5px 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background-image: var(--paper-bg);   /* <div class="paper" style="--paper-bg:url('...')"> */
+  background-repeat: no-repeat;
+  background-size: 100% $paper-h;      /* 전체 높이에 맞춤 */
+  transform: translateZ(0.01px);       /* 안티앨리어싱 보정 */
+}
+
+/* 정확한 세로 오프셋 */
+.paper .part1::before {
+  background-position: center 0;               /* 상단 */
+}
+.paper .part2::before {
+  background-position: center (-$p1-h);        /* -1/3 */
+}
+.paper .part3::before {
+  background-position: center (-(#{$p1-h + $p2-h})); /* -2/3 */
+}
+
+/* =========
+   부드러운 접힘 애니메이션 (색/블러 없이 이미지 그대로)
+   ========= */
+.paper:hover .part1 {
+  transform: rotateX(-20deg) translateY(0.55em) scale(0.992);
+  transform-origin: 50% 100%;
+}
+.paper:hover .part2 {
+  transform: rotateX(20deg) scale(1.008);
+  transform-origin: 50% 50%;
+}
+.paper:hover .part3 {
+  transform: rotateX(-20deg) translateY(-0.4em) scale(1.012);
+  transform-origin: 50% 0%;
+}
+
+/* =========
+   타이포 (텍스트 내용은 수정하지 않음)
+   ========= */
+.paper .part1 h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin: 0 0 .4rem;
+  letter-spacing: .02em;
+  color: #3a2c20;
+}
+.paper .part1 p { font-size: 1.3rem; color: #6a5845; margin: 0; }
+.paper .part2 p,
+.paper .part3 p { font-size: 1.25rem; line-height: 1.7; color: #433a2f; margin: 0; }
+
+/* pageNumber 제거 */
+.pageNumber { display: none !important; }
+
+/* 줄 길이 제한(옵션) */
+.paper .part1 p,
+.paper .part2 p,
+.paper .part3 p {
+  margin: 0 auto;
+  max-width: calc(#{$paper-w} - (#{$pad-x} * 2));
+}
