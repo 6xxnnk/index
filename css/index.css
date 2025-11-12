@@ -1064,6 +1064,12 @@ img{ max-width:100%; display:block; }
     justify-content: center;
     align-items: center;
     width: 100%;
+    padding: 0 1.2rem;
+    margin-top: .6rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    
   }
   .logo img{
     width: 11rem;       /* 필요하면 10~12rem 사이로 조정 */
