@@ -13,7 +13,7 @@
 
 /* ---- Fluid base (1920px: 1rem ≈ 10px) ---- */
 html{
-  font-size: clamp(12px, 0.520833vw, 16px);
+  font-size: 62.5%; /* = 10px 기준 rem 계산 (1rem = 10px) */
   -webkit-text-size-adjust: 100%;
 }
 :root{
@@ -984,11 +984,13 @@ img{ max-width:100%; display:block; }
   opacity:0; transition:opacity .4s ease;
 }
 .footer__jumpto:hover::after{ opacity:1; animation: shimmerRotate 1.5s linear; }
+
 @keyframes shimmerRotate{ 0%{ transform:rotate(0deg); } 100%{ transform:rotate(360deg); } }
 
 
 .footer__legal{
-  display:flex; justify-content:center; gap:2.4rem; padding:1.6rem 0; font-size:1.3rem; color:var(--muted);
+  display:flex; justify-content:center; 
+  gap:2.4rem; padding:1.6rem 0; font-size:1.3rem;
   width:100%; text-align:center; align-items:center;
 }
 .footer__legal a{ color:inherit; }
@@ -999,338 +1001,99 @@ img{ max-width:100%; display:block; }
 .copy{ font-size:1.3rem; }
 .footer__bottom{ padding:1rem 0 4rem; color:#888; font-size:1rem; line-height:1.6; max-width:80rem; margin:0 auto; text-align:center; }
 
+
 /* =========================
-   Responsive add-on (append)
-   1920 / 834 / 375
+   Tablet (376–834px): 2열
 ========================= */
+@media (min-width: 376px) and (max-width: 834px){
 
-/* 1) ≥1920px — 데스크톱 대형 레이아웃 보정 */
-@media (min-width: 1920px){
-  html{ font-size: 10px; } /* 1rem ≈ 10px 고정감 */
-  .wrap{ padding: 0 3rem; }
-
-  .section-hero .hero__media img{
-    height: 80rem; /* 상단 히어로 시네마 느낌 유지 */
+  /* Club grid → 2 columns */
+  .club__grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.6rem;
+    padding: 2rem 1.6rem;
+    max-width: 68rem;
+    margin: 0 auto;
+    justify-content: center;
   }
-  .hero__content{ bottom: 12vw; left: 10vw; }
-  .swiper-pagination{ bottom: 8.333vw; }
+  .club-card.glossy{
+    width: 100%;
+    height: 28rem;          /* 필요하면 auto 로 바꿔도 OK */
+  }
+  .glossy__info span{ font-size: 1.1rem; }
 
+  /* Subscribe: 한 줄 정렬(입력 넓게, 버튼 고정폭) */
+  .subscribe{ padding: 0 1.6rem; margin-top: 3rem; }
+  .subscribe .subscribe__form{
+    display:flex; gap:1.2rem; align-items:center; justify-content:center;
+    width:100%;
+  }
+  .subscribe .subscribe__input{
+    flex:1 1 auto; min-width: 280px; max-width: 560px;
+    height:3.6rem; font-size:1.1rem; border-radius:1.4rem; padding:0 1.4rem;
+  }
+  .subscribe .subscribe__button{
+    flex:0 0 10rem; height:3.6rem; font-size:1.1rem; border-radius:1.4rem;
+  }
+  .subscribe__note{ font-size:1.05rem; }
+}
+
+/* =========================
+   Smartphone (≤375px): 1열
+========================= */
+@media (max-width: 375px){
+
+  /* Club grid → 1 column */
+  .club__grid{
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    padding: 0 1.2rem;
+    max-width: 100%;
+  }
+  .club-card.glossy{
+    width: 100%;
+    height: 24rem;
+  }
+  .glossy__info span{ font-size: 1rem; }
+  .club-card.glossy .club-card__ribbon{
+    font-size: .95rem; padding: .5rem 3.2rem;
+  }
+
+  /* Subscribe: 세로 스택 */
+  .subscribe{ padding: 0 1.2rem; margin-top: 2.4rem; }
+  .subscribe .subscribe__form{
+    display:flex; flex-direction:column; gap:.8rem; align-items:stretch;
+    width:100%;
+  }
+  .subscribe .subscribe__input,
+  .subscribe .subscribe__button{
+    width:100%; height:3.4rem; font-size:1rem; border-radius:1.2rem;
+  }
+  .subscribe__note{ font-size: .95rem; }
+}
+
+/* =========================
+   Desktop only (≥1025px)
+   (기존 값 유지 + 안전: 데스크탑 전용으로 감싸기)
+========================= */
+@media (min-width: 1025px){
   .club__grid{
     grid-template-columns: repeat(4, 30rem);
     gap: 1.6rem;
     padding: 3rem 5rem;
     max-width: calc(30rem*4 + 1.6rem*3 + 5rem*2);
+    margin: 0 auto;
   }
   .club-card.glossy{ height: 32rem; width: 30rem; }
 
-  .compare-card{ height: 50rem; }
-
-  .steps__row{ max-width: 110rem; }
+  /* 데스크탑 전용 subscribe 큰 패딩 */
+  .subscribe{ padding: 1rem 35rem; }
+  .subscribe .subscribe__input{ width:50rem; height:4rem; }
+  .subscribe .subscribe__button{ width:10rem; height:4rem; }
 }
-
-/* 2) ≤834px — 태블릿 레이아웃 */
-@media (max-width: 834px){
-
-  /* 타이포 스케일 다운(디자인 유지, 비율만 축소) */
-  .hero__en{ font-size: 2rem; }
-  .hero__ko{ font-size: 1.2rem; }
-  .hero__btn a,
-  .hero__btn li{ font-size: 1.1rem; }
-
-  /* 헤더: 로고/내비 정렬 */
-  .header .inner{
-    position: static;
-    height: 5.2rem;
-    grid-template-columns: 1fr auto 1fr;
-    padding: 0 1.6rem;
-    margin-top: 1rem;
-  }
-  .logo img{ width: 14rem; }
-  .nav ul{ gap: 2rem; font-size: 1.2rem; }
-
-  /* 히어로 */
-  .section-hero .hero__media img{
-    height: clamp(34rem, 52vw, 50rem);
-    border-radius: 1.6rem;
-  }
-  .hero__content{ bottom: 18vw; left: 6vw; }
-  .hero__caption{ bottom: 14vw; margin-left: 2.8vw; }
-  .swiper-pagination{ bottom: 12vw; }
-
-  .hero__btn{
-    bottom: 6vw; left: 2.8vw;
-  }
-  .hero__btn li{
-    height: 3rem; line-height: 3rem; width: 18em;
-    border-radius: 1.6rem;
-  }
-
-  /* Club: 4→2열 */
-  .club__grid{
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.4rem;
-    padding: 2rem 2rem;
-    max-width: 100%;
-  }
-  .club-card.glossy{
-    width: 100%; height: 28rem;
-  }
-  .glossy__info span{ font-size: 1.1rem; }
-
-  /* Compare: 2×2 → 1열 스택 (높이 자동) */
-  .compare__grid{
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    grid-template-areas:
-      "tl"
-      "tr"
-      "bl"
-      "br";
-    gap: 1.6rem;
-  }
-  .compare-card{
-    height: auto; min-height: 36rem;
-  }
-  .compare-card__content{
-    left: 1.2rem; right: 1.2rem; bottom: 1.2rem; padding: .6rem 1.2rem;
-  }
-  .compare-card__kicker{ font-size: 2.4rem; }
-  .compare-card__title{ font-size: 1.3rem; }
-
-  /* Compare 내 스와이퍼: 좌우 버튼 터치 간격 확보 */
-  .compare-card.is-swiper .swiper-button-prev,
-  .compare-card.is-swiper .swiper-button-next{
-    width: 4rem; height: 4rem;
-  }
-  .compare-card.is-swiper .swiper-slide{
-    gap: 1.6rem; padding: 1.6rem;
-  }
-  .compare-card.is-swiper .swiper-slide > img{
-    width: 44%; height: auto;
-  }
-
-  /* Steps: 3→2열 */
-  .steps__row{
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.8rem;
-  }
-  .step__icon{ width:5.2rem; height:5.2rem; font-size:2.4rem; }
-  .step__title{ font-size:1.6rem; }
-  .step__desc{ font-size:1.2rem; }
-  .steps__cta{ width: 18rem; }
-
-  /* Blue Bottle pill: 폭/정렬 */
-  .pill{
-    width: auto; margin: 0 1.6rem 2rem; height: 18rem;
-  }
-  .pill__thumb img{ width: 18rem; }
-  .pill__body{ padding: 0 1.2rem; }
-  .pill__title{ font-size: 1.6rem; }
-  .pill__meta{ font-size: 1.2rem; }
-  .pill__cta{ width: 11rem; height: 4.4rem; }
-
-  /* Coffee Letter: 프레임 폭 축소 */
-  :root{
-    --book-w: clamp(28rem, 80vw, 48rem);
-  }
-  .book-frame{ aspect-ratio: 16 / 9; }
-  .book__right{ padding: 1.6rem 1.6rem; }
-  .book__right h3{ font-size: 1.4rem; }
-  .book__right p{ font-size: 1.1rem; }
-  .coffeeletter-swiper .swiper-button-prev{ left: .4rem; right:auto; }
-  .coffeeletter-swiper .swiper-button-next{ right: .4rem; left:auto; }
-  /* compare 내부 스와이퍼 키커 폰트 축소 */
-  .swiper-slide__kicker{ font-size: 1.55rem; }
-
-  /* Dock: 더 컴팩트 */
-  .dock.dock--mini{
-    width: min(86vw, 460px);
-    gap: .5rem; padding: .6rem .7rem;
-  }
-  .dock__item{ height: 44px; border-radius: 14px; }
-  .dock__item .ic{ width: 22px; height: 22px; }
-  :root{ --dock-h: 58px; } /* cart-toast 위치 기준 */
-
-  /* Footer: 4→2열 */
-  .footer__top{
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2.4rem 2rem;
-    padding: 3.2rem 1.6rem 2.4rem;
-  }
-  .footer__jumpto{
-    right: 2rem; bottom: 6rem; width: 6.4rem; height: 5.6rem;
-  }
+@media (max-width: 834px) {
+  html { font-size: 56.25%; }  /* 9px 기준 */
 }
-
-/* ====== Mobile (≤ 375px) — 요청사항 반영 버전 ====== */
-@media (max-width: 375px){
-
-  /* (2)(8) 전체 텍스트 중앙 정렬 & 가독성 우선 배치 */
-  body, .wrap { text-align: center; }
-  h1, h2, h3, h4, h5, h6, p, small, .kicker { text-align: center; }
-  .coffeeletter .book__right { align-items: center; }
-  .book__right .cta { align-self: center; }
-
-  /* (6) 상단 안내문: 좌우 여백, 다줄 허용 */
-  .header .top{
-    margin: 2rem 0;
-    height: auto;                  /* 고정 높이 제거 */
-    padding: .8rem 1rem;           /* 좌우 여백 */
-    border-radius: 1rem;
-  }
-  .header .top_text{
-    padding: 0 1.2rem;             /* 좌우 여백 */
-    white-space: normal;           /* 줄바꿈 허용 */
-    line-height: 1.5;
-    font-size: 1.15rem;
-    word-break: keep-all;          /* 한국어 가독성 */
-  }
-
-  /* (5) 히어로 캡션과 하단 버튼 간격 넓히기 */
-  .hero__en{ font-size:1.7rem; }
-  .hero__ko{ font-size:1.05rem; }
-
-  .hero__caption{ bottom: 26vw; }  /* ↑ 캡션 더 위로 */
-  .hero__btn{ bottom: 6vw; }       /* ↓ 버튼 더 아래로 */
-  .hero__btn li{ width: 100%; max-width: 22rem; }
-
-  /* (4)(7)(8) 글로시 카드/아티클: 한 줄에 1개씩 세로 정렬 */
-  .club__grid{
-    display: grid;
-    grid-template-columns: 1fr;   /* 한 줄에 하나 */
-    gap: 1.6rem;
-    justify-content: center;
-    align-items: stretch;
-    padding: 1.6rem;
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .club-card.glossy{
-    width: 100%;                 /* 카드 전체 폭 채우기 */
-    height: auto;                /* 비율 유지 */
-  }
-
-  .club-card.glossy img,
-  .club-card.glossy .glossy__background{
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
-
-  .club-card.glossy .glossy__info{
-    transform: none;             /* 정보글 자연스럽게 아래 배치 */
-    position: relative;
-    padding: 1.2rem;
-  }
-
-  .club-card.glossy .club-card__ribbon{
-    font-size: 1.1rem;
-    padding: .6rem 3rem;
-  }
+@media (max-width: 375px) {
+  html { font-size: 50%; }     /* 8px 기준 */
 }
-
-  /* 오버레이 블러 클래스 오타 대비(.glossy__blur는 레이아웃 영향 X) */
-  .glossy_blur, .glossy__blur { display: block; } /* 안전용 */
-
-  /* (1) Pill 카드: 본문 세로 정렬 + 폰트 축소, 전체 중앙정렬 */
-  .pill{
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    width: auto;
-    height: auto;
-    gap: 1rem;
-    padding: 1.2rem;
-    border-radius: 2rem;
-  }
-  .pill__thumb img{
-    width: 100%;
-    max-width: 28rem;
-    margin: 0 auto;
-    height: auto;
-    object-fit: contain;
-  }
-  .pill__body{
-    display: flex;                 /* 세로 정렬 */
-    flex-direction: column;
-    align-items: center;
-    gap: .6rem;
-    width: 100%;
-    padding: 0;
-    text-align: center;            /* 중앙 정렬 */
-  }
-  .pill__title{ font-size: 1.28rem; }  /* 폰트 크기 ↓ */
-  .pill__meta{  font-size: 1.02rem; line-height: 1.55; }
-  .pill__cta{
-    width: 100%; height: 4.2rem; justify-content: center;
-  }
-
-  /* (8) Steps도 1열 */
-  .steps__row{ grid-template-columns: 1fr; gap: 1rem; }
-  .step{ padding: 1.6rem 1.2rem; }
-  .step__title{ font-size: 1.5rem; }
-  .step__desc{ font-size: 1.05rem; }
-
-  /* (8) Compare도 1열 + 타이포 조정(가독성) */
-  .compare__grid{
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "tl"
-      "tr"
-      "bl"
-      "br";
-    gap: 1rem;
-  }
-  .compare-card{ height: auto; min-height: 36rem; }
-  .compare-card__kicker{ font-size: 2.2rem; }
-  .compare-card__title{ font-size: 1.12rem; }
-
-  /* (2) Coffee Letter — 더 작은 타이포 */
-  .coffeeletter .coffeeletter__title h1{ font-size: 1.8rem; }
-  .coffeeletter .coffeeletter__title p{ font-size: 1.02rem; }
-  .coffeeletter .book__right h3{ font-size: 1.12rem; }
-  .coffeeletter .book__right p{ font-size: .96rem; line-height: 1.65; }
-  .coffeeletter .book__right .cta{ font-size: .88rem; padding: .48rem .88rem; }
-
-  /* (3)(8) Footer: 법적 문구도 세로 정렬 + 한 줄 1개 컨텐츠 */
-  .footer__top{ grid-template-columns: 1fr; gap: 1.2rem; padding: 2.4rem 1.2rem; }
-  .footer__middle-inner{ flex-direction: column; gap: 1rem; }
-  .footer__legal{
-    display: flex;
-    flex-direction: column;        /* 세로 정렬 */
-    align-items: center;
-    gap: .6rem;
-    padding: 1.2rem 1rem;
-    font-size: 1rem;
-  }
-  .footer__brand, .footer__bottom{ padding-left: 1rem; padding-right: 1rem; }
-
-  /* (8) Sus 섹션: 중앙정렬 보강 */
-  .sus__content{ padding: 0 1.6rem; }
-  .sus__content strong{
-    font-size: 2.2rem;
-    padding-inline: .6rem;
-  }
-  .sus__content button{ font-size: 1.2rem; padding: .6rem 1.4rem; }
-
-  /* (8) 블루보틀 섹션: 타이포 다운 + 1열 시인성 */
-  .section-collab{ padding: 2rem 1.2rem; }
-  .section-collab h3{ font-size: 2rem; }
-  .section-collab p{  font-size: 1rem; }
-
-  /* (8) Subscribe: 1열 중앙정렬 유지 */
-  .subscribe{ padding: 1rem 0; }
-  .subscribe .subscribe__form{
-    grid-template-columns: 1fr;
-    gap: .8rem;
-  }
-  .subscribe .subscribe__input{ height: 3.6rem; }
-  .subscribe .subscribe__button{ width: 100%; height: 3.6rem; }
-  .subscribe .subscribe__note{ font-size: 1rem; text-align: center; }
-  .subscribe .checkbox{ justify-content: center; }
-
-  /* (8) Dock: 화면폭 맞춤 */
-  .dock.dock--icons.dock--mini{ width: calc(100vw - 2rem); }
-
-
