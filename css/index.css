@@ -1042,7 +1042,57 @@ img{ max-width:100%; display:block; }
    Smartphone (≤375px): 1열
 ========================= */
 @media (max-width: 375px){
+  .nav--left,
+  .nav--right {
+    display: none !important;
+  }
 
+  /* header 전체 패딩 줄이고 중앙 배치 */
+  .header .inner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4.6rem;
+    padding: 0 1.2rem;
+    margin-top: .6rem;
+    position: relative;
+  }
+
+  /* 로고 중앙 정렬 및 크기 축소 */
+  .logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .logo img{
+    width: 11rem;       /* 필요하면 10~12rem 사이로 조정 */
+    height: auto;
+  }
+
+  /* 상단 안내문 여백 최소화 */
+  .header .top{
+    margin: .8rem 0;
+    height: auto;
+    border-radius: 1.6rem;
+  }
+  .top_text{
+    font-size: .95rem;
+    text-align: center;
+    padding: .4rem 1rem;
+    display: block;
+  }
+  .section-hero .hero__caption {
+    margin-bottom: 2.4rem;   /* 기본 여백 (텍스트 아래쪽) */
+  }
+  .section-hero .hero__btn {
+    margin-top: 1.2rem;      /* 버튼 위쪽 추가 여백 */
+  }
+
+  /* 필요 시 텍스트 줄간격도 살짝 여유 있게 */
+  .hero__en{ line-height: 1.35; }
+  .hero__ko{ margin-top: .4rem; line-height: 1.45; }
+}
   /* Club grid → 1 column */
   .club__grid{
     grid-template-columns: 1fr;
