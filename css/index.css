@@ -2625,29 +2625,7 @@ img{ max-width:100%; display:block; }
 }
 .sns:hover{ border-color:var(--gold); color:var(--gold); }
 
-/* Jump to top button */
-.footer__jumpto{
-  position:absolute; bottom:6rem; right:8rem; width:7.4rem; height:6.4rem; border-radius:50%;
-  display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
-  background:linear-gradient(145deg,#f7f2e7,#f3e7ce); border:0.1rem solid rgba(210,170,103,.75);
-  color:#3a2c20; font-size:1.3rem; font-weight:800; letter-spacing:.05em;
-  box-shadow:0 .4rem 1rem rgba(0,0,0,.1); transition:all .35s ease; overflow:hidden; z-index:50;
-}
 
-.footer__jumpto .text{ display:block; font-size:1.3rem; 
-  font-weight:700; letter-spacing:.05em; color:#5c4b35; 
-  margin-top:.4rem; }
-  
-  .footer__jumpto .icon{ font-size:2.4rem; }
-.footer__jumpto .arrow{ display:block; font-size:1.8rem; color:#d2aa67; transform:translateY(0); transition:transform .35s ease; }
-.footer__jumpto:hover{ transform:translateY(-.4rem); box-shadow:0 .6rem 1.8rem rgba(210,170,103,.3); background:linear-gradient(145deg,#fff9ef,#f6ebd6); }
-.footer__jumpto:hover .arrow{ transform:translateY(-.4rem); }
-.footer__jumpto::after{
-  content:""; position:absolute; inset:0; border-radius:50%;
-  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.4) 50%, transparent 100%);
-  opacity:0; transition:opacity .4s ease;
-}
-.footer__jumpto:hover::after{ opacity:1; animation: shimmerRotate 1.5s linear; }
 @keyframes shimmerRotate{ 0%{ transform:rotate(0deg); } 100%{ transform:rotate(360deg); } }
 
 
@@ -2676,12 +2654,7 @@ img{ max-width:100%; display:block; }
 
   .footer__middle-inner{
     padding-inline: 2rem;
-  }
 
-  .footer__jumpto{
-    right: 3rem;
-    bottom: 5rem;
-  }
 
   .footer__legal{
     flex-wrap: wrap;
@@ -2767,10 +2740,7 @@ img{ max-width:100%; display:block; }
     justify-content: center;
   }
 
-  .footer__jumpto{
-    margin: 0 auto;          /* 가운데로 */
-  }
-
+ 
   .footer__legal{
     flex-wrap: wrap;
     justify-content: center;
@@ -2806,15 +2776,7 @@ img{ max-width:100%; display:block; }
     font-size: 1rem;
   }
 
-  .footer__jumpto{
-    width: 5.2rem;
-    height: 5.2rem;
-    font-size: 1.1rem;
-  }
 
-  .footer__jumpto .icon{
-    font-size: 2rem;
-  }
 
   .footer__legal{
     font-size: 0.9rem;
@@ -2822,5 +2784,61 @@ img{ max-width:100%; display:block; }
 
   .footer__bottom{
     font-size: 0.85rem;
+  }
+}
+/* CoffeeLetter 전용 TOP 버튼 */
+.coffeeletter-top{
+  position: absolute;
+  bottom: -3rem;         /* CoffeeLetter 끝부분 살짝 아래 */
+  right: 2rem;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  background:linear-gradient(145deg,#f7f2e7,#f3e7ce);
+  border:0.1rem solid rgba(210,170,103,.75);
+  color:#3a2c20;
+  font-size:1.2rem;
+  font-weight:800;
+  letter-spacing:.05em;
+  box-shadow:0 .4rem 1rem rgba(0,0,0,.1);
+  transition:all .35s ease;
+  z-index:30;
+}
+
+.coffeeletter-top .text{
+  font-size:1.2rem;
+  font-weight:700;
+  color:#5c4b35;
+  margin-top:.2rem;
+}
+
+.coffeeletter-top .icon{
+  font-size:2rem;
+}
+
+.coffeeletter-top:hover{
+  transform:translateY(-.3rem);
+  box-shadow:0 .6rem 1.2rem rgba(210,170,103,.3);
+  background:linear-gradient(145deg,#fff9ef,#f6ebd6);
+}
+
+/* 작은 화면 대응 */
+@media (max-width: 600px){
+  .coffeeletter-top{
+    width:5rem;
+    height:5rem;
+    right: 1rem;
+    bottom:-2rem;
+  }
+  .coffeeletter-top .icon{
+    font-size:1.8rem;
+  }
+  .coffeeletter-top .text{
+    font-size:1rem;
   }
 }
