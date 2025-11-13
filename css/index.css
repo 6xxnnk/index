@@ -1094,7 +1094,8 @@ img{ max-width:100%; display:block; }
 
 
 
-/* Compare Section */
+/********************* Compare Section */
+
 .section-compare{ margin:6rem 0; padding:2.8rem 1.8rem .8rem; border-radius:2.8rem; }
     .section-compare .compare__intro{ text-align:center; margin:.6rem 0 1.8rem; }
     .section-compare h3{ font-size:2.6rem; font-weight:700; margin-bottom:.5rem;  }
@@ -1250,7 +1251,283 @@ img{ max-width:100%; display:block; }
   backdrop-filter: blur(4px);
   animation: toastFade 2.2s ease forwards;
 }
-/* Steps */
+
+
+/* =========================
+   반응형 – 1200px 이하 (넓은 태블릿 / 작은 데스크탑)
+========================= */
+@media (max-width: 1200px){
+
+  .section-compare{
+    margin:5rem 0;
+    padding:2.4rem 1.4rem 1rem;
+  }
+
+  .section-compare h3{
+    font-size:2.3rem;
+  }
+  .section-compare p{
+    font-size:1.2rem;
+    margin-bottom:4rem;
+  }
+
+  .compare__grid{
+    grid-template-rows:minmax(24rem, 1fr) minmax(24rem, 1fr);
+    gap:1.4rem;
+  }
+
+  .compare-card{
+    height:42rem;
+  }
+
+  .compare-card__content{
+    left:1.4rem;
+    right:3.6rem;
+    bottom:1.4rem;
+    padding:.4rem 2.2rem;
+  }
+  .compare-card__kicker{
+    font-size:2.6rem;
+  }
+  .compare-card__title{
+    font-size:1.35rem;
+  }
+
+  .compare-card.is-swiper .swiper-slide{
+    gap:1.6rem;
+    padding:1.8rem 2rem;
+  }
+  .compare-card.is-swiper .swiper-slide > img{
+    width:42%;
+    height:60%;
+  }
+  .compare-card.is-swiper .swiper-slide__info .swiper-slide__kicker{
+    font-size:1.6rem;
+  }
+  .compare-card.is-swiper .swiper-slide__info .swiper-slide__title{
+    font-size:1.15rem;
+  }
+}
+
+/* =========================
+   반응형 – 태블릿 (≤ 834px)
+========================= */
+@media (max-width: 834px){
+
+  .section-compare{
+    margin:4rem 0;
+    padding:2rem 1.2rem .8rem;
+    border-radius:2rem;
+  }
+
+  .section-compare h3{
+    font-size:2.1rem;
+  }
+  .section-compare p{
+    font-size:1.1rem;
+    margin-bottom:3.2rem;
+  }
+
+  .compare__grid{
+    grid-template-columns:1fr;
+    grid-template-rows:auto;
+    gap:1.4rem;
+    /* 순서 : 오리지널 영상 → 오리지널 제품 → 버츄오 영상 → 버츄오 제품 */
+    grid-template-areas:
+      "tl"
+      "tr"
+      "br"
+      "bl";
+  }
+
+  .compare-card{
+    height:38rem;
+  }
+
+  .compare-card__content{
+    left:1.6rem;
+    right:2.6rem;
+    bottom:1.4rem;
+    padding:.4rem 1.8rem;
+  }
+  .compare-card__kicker{
+    font-size:2.4rem;
+  }
+  .compare-card__title{
+    font-size:1.25rem;
+  }
+
+  /* 스와이퍼 카드 – 이미지 조금 키우고, 텍스트 폭 줄이기 */
+  .compare-card.is-swiper .swiper-slide{
+    padding:1.6rem 1.8rem;
+    gap:1.4rem;
+  }
+  .compare-card.is-swiper .swiper-slide > img{
+    width:45%;
+    height:auto;
+  }
+  .compare-card.is-swiper .swiper-slide__info{
+    padding:1.4rem 0 1.8rem;
+  }
+  .compare-card.is-swiper .swiper-slide__info .swiper-slide__kicker{
+    font-size:1.5rem;
+  }
+  .compare-card.is-swiper .swiper-slide__info .swiper-slide__title{
+    font-size:1.1rem;
+  }
+
+  .price-row__value{
+    font-size:1.2rem;
+    padding:.35rem 1.2rem;
+  }
+  .addbag-btn{
+    font-size:1.1rem;
+    padding:.8rem 1.3rem;
+  }
+  .addbag-btn__icon{
+    width:1.6rem;
+    height:1.6rem;
+  }
+
+  .compare-card.is-swiper .swiper-button-prev,
+  .compare-card.is-swiper .swiper-button-next{
+    width:3.6rem;
+    height:3.6rem;
+  }
+}
+
+/* =========================
+   반응형 – 모바일 (≤ 480px)
+========================= */
+@media (max-width: 480px){
+
+  .section-compare{
+    margin:3rem 0;
+    padding:1.8rem 1rem .4rem;
+    border-radius:1.6rem;
+  }
+
+  .section-compare h3{
+    font-size:1.9rem;
+  }
+  .section-compare p{
+    font-size:1rem;
+    margin-bottom:2.4rem;
+  }
+
+  .compare-card{
+    height:auto;                 /* 콘텐츠에 맞게 자연스럽게 */
+    min-height:28rem;
+  }
+
+  /* 비디오 카드 – 16:9 비율 유지 */
+  .compare-card__media{
+    position:relative;
+    inset:auto;
+    width:100%;
+    padding-top:56.25%;          /* 16:9 */
+    overflow:hidden;
+  }
+  .compare-card__media video{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+
+  .compare-card--tint::after{
+    background:linear-gradient(to top, rgba(0,0,0,.45), rgba(0,0,0,.05));
+  }
+
+  .compare-card__content{
+    position:absolute;
+    left:1.4rem;
+    right:1.4rem;
+    bottom:1.2rem;
+    padding:.4rem 1.2rem;
+  }
+  .compare-card__kicker{
+    font-size:2rem;
+  }
+  .compare-card__title{
+    font-size:1.05rem;
+    line-height:1.35;
+  }
+
+  /* 스와이퍼 카드 – 이미지 위 / 텍스트 아래 세로 스택 */
+  .compare-card.is-swiper .swiper{
+    position:relative;
+  }
+
+  .compare-card.is-swiper .swiper-slide{
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    padding:1.6rem 1.4rem 3.4rem;
+    gap:1rem;
+  }
+
+  .compare-card.is-swiper .swiper-slide > img{
+    width:80%;
+    max-width:260px;
+    height:auto;
+  }
+
+  .compare-card.is-swiper .swiper-slide__info{
+    padding:1.2rem 0 0;
+    align-items:flex-start;
+  }
+  .compare-card.is-swiper .swiper-slide__kicker{
+    font-size:1.3rem;
+  }
+  .compare-card.is-swiper .swiper-slide__title{
+    font-size:1rem;
+  }
+    .compare-card.is-swiper .compare-card__media{
+    position:relative;
+    inset:auto;
+    padding-top:0;
+    height:auto;
+    overflow:visible;
+  }
+  .price-row{
+    margin-top:.1rem;
+    margin-bottom:.8rem;
+  }
+  .price-row__value{
+    font-size:1.05rem;
+    padding:.3rem 1.1rem;
+  }
+
+  .addbag-btn{
+    width:100%;
+    justify-content:center;
+    font-size:1rem;
+    padding:.75rem 1.1rem;
+  }
+
+  .compare-card.is-swiper .swiper-pagination{
+    bottom:.8rem;
+  }
+  .compare-card.is-swiper .swiper-button-prev,
+  .compare-card.is-swiper .swiper-button-next{
+    width:2.8rem;
+    height:2.8rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+/******************************************************************** Steps */
 .section-steps{
   margin:7.2rem 0; padding:4.8rem 2.4rem; border-radius:2.4rem;
   background: radial-gradient(120rem 40rem at 50% -20rem, rgba(255,255,255,.35), rgba(0,0,0,0)),

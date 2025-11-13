@@ -82,7 +82,7 @@
         const productName = btn.dataset.productName || '상품';
 
         addToCart(productId);
-        showCartToast(`${productName}을(를) 장바구니에 담았어요`);
+        showCartToast(`장바구니에 추가 !`);
       });
       btn.dataset.bound = '1';
     });
