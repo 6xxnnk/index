@@ -2208,24 +2208,7 @@ img{ max-width:100%; display:block; }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Coffee Letter */
+/* ********************Coffee Letter */
     :root{
       --book-w: clamp(30rem, 64vw, 60rem);   /* ↓ 전체 폭 축소 */
       --book-r: 14px;
@@ -2375,6 +2358,171 @@ img{ max-width:100%; display:block; }
     .coffeeletter__end{ padding:2rem 0; text-align:center; margin-top:1.6rem; color:#4a4031; font-size:1.3rem; }
     .coffeeletter__end h5{ font-style:italic; font-weight:500; margin-top:2rem; }
 
+/* ========== Coffee Letter – 태블릿 (≤ 1024px) ========== */
+@media (max-width: 1024px){
+
+  .coffeeletter{
+    max-width: 100%;
+    margin: 5.6rem auto;
+    padding: 0 1.8rem;
+  }
+
+  .coffeeletter__title h1{
+    font-size: 2.3rem;
+  }
+  .coffeeletter__title p{
+    font-size: 1.15rem;
+    margin-bottom: 3rem;
+  }
+
+  /* 책 폭 조금 줄이기 + 비율 살짝 높게 */
+  :root{
+    --book-w: clamp(28rem, 80vw, 52rem);
+  }
+  .book-frame{
+    aspect-ratio: 18 / 9;
+  }
+
+  .book__right h3{
+    font-size: 1.4rem;
+  }
+  .book__right p{
+    font-size: 1.05rem;
+  }
+
+  /* 네비 화살표 조금 작게 */
+  .coffeeletter-swiper .swiper-button-prev,
+  .coffeeletter-swiper .swiper-button-next{
+    --swiper-navigation-size: 24px;
+  }
+}
+
+/* ========== Coffee Letter – 모바일 (≤ 768px) ========== */
+@media (max-width: 768px){
+
+  .coffeeletter{
+    margin: 4.2rem auto;
+    padding: 0 1.4rem;
+  }
+
+  .coffeeletter__title h1{
+    font-size: 2rem;
+  }
+  .coffeeletter__title p{
+    font-size: 1.05rem;
+    margin-bottom: 2.4rem;
+  }
+
+  :root{
+    --book-w: min(100%, 34rem);
+  }
+
+  .coffeeletter-swiper .swiper-slide{
+    padding: 0.6rem 0;
+  }
+
+  /* 책을 '위 이미지 / 아래 텍스트' 한 컬럼 카드로 변경 */
+  .book-frame{
+    width: 100%;
+    aspect-ratio: 3 / 4;
+  }
+
+  .book{
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .book__left{
+    min-height: 14rem;
+    /* 모바일에서는 마스크/페더링을 조금 완화해서 이미지 잘리기 방지 */
+    -webkit-mask-image: none;
+            mask-image: none;
+    box-shadow: none;
+  }
+  .book__left::before,
+  .book__left::after{
+    display: none;
+  }
+
+  .book__right{
+    padding: 1.4rem 1.3rem 1.6rem;
+  }
+  .book__right h3{
+    font-size: 1.3rem;
+  }
+  .book__right p{
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .book__right .cta{
+    margin-top: 0.4rem;
+    font-size: 0.95rem;
+  }
+
+  /* 네비는 작게, 슬라이드에 겹치지 않게 */
+  .coffeeletter-swiper .swiper-button-prev,
+  .coffeeletter-swiper .swiper-button-next{
+    --swiper-navigation-size: 20px;
+    color:#5c4b35;
+  }
+
+  .coffeeletter__end{
+    font-size: 1.05rem;
+    padding: 1.6rem 0 0;
+  }
+}
+
+/* ========== Coffee Letter – 아주 작은 모바일 (≤ 480px) ========== */
+@media (max-width: 480px){
+
+  .coffeeletter{
+    margin: 3.6rem auto;
+    padding: 0 1.1rem;
+  }
+
+  .coffeeletter__title h1{
+    font-size: 1.8rem;
+  }
+  .coffeeletter__title p{
+    font-size: 0.98rem;
+    margin-bottom: 2rem;
+  }
+
+  :root{
+    --book-w: min(100%, 30rem);
+  }
+
+  .book-frame{
+    aspect-ratio: 4 / 5;
+  }
+
+  .book__right{
+    padding: 1.2rem 1.1rem 1.5rem;
+  }
+  .book__right h3{
+    font-size: 1.2rem;
+  }
+  .book__right p{
+    font-size: 0.95rem;
+  }
+
+  .book__right .cta{
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .coffeeletter__end{
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* 아주 작은 화면에서는 화살표 숨기고 스와이프만 사용 */
+  .coffeeletter-swiper .swiper-button-prev,
+  .coffeeletter-swiper .swiper-button-next{
+    display: none;
+  }
+}
 
 /* Dock Navigation Bar */
 /* ✅ Compact, cute rounded dock overrides */
@@ -2514,3 +2662,165 @@ img{ max-width:100%; display:block; }
 .nespresso-logo{ font-weight:900; letter-spacing:.02em; }
 .copy{ font-size:1.3rem; }
 .footer__bottom{ padding:1rem 0 4rem; color:#888; font-size:1rem; line-height:1.6; max-width:80rem; margin:0 auto; text-align:center; }
+
+/* =========================
+   FOOTER – 1200px 이하 (3열)
+========================= */
+@media (max-width: 1200px){
+
+  .footer__top{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 3rem 2rem;
+    padding: 4rem 2rem 2.6rem;
+  }
+
+  .footer__middle-inner{
+    padding-inline: 2rem;
+  }
+
+  .footer__jumpto{
+    right: 3rem;
+    bottom: 5rem;
+  }
+
+  .footer__legal{
+    flex-wrap: wrap;
+    row-gap: 0.8rem;
+    padding-inline: 2rem;
+  }
+}
+
+/* =========================
+   FOOTER – 834px 이하 (2열)
+========================= */
+@media (max-width: 834px){
+
+  .site-footer{
+    font-size: 0.95rem;
+  }
+
+  .footer__top{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3rem 1.8rem;
+    padding: 3.6rem 1.8rem 2.4rem;
+  }
+
+  .footer__title{
+    font-size: 1.1rem;
+  }
+
+  .contact-item{
+    grid-template-columns: 2.4rem 1fr;
+    gap: 0.8rem;
+  }
+
+  .footer__middle-inner{
+    padding-block: 1.4rem;
+    padding-inline: 1.8rem;
+  }
+
+  /* 팔로우 섹션 비어 있으니 태블릿 이하는 숨김 처리 */
+  .footer__follow{
+    display: none;
+  }
+
+  /* TOP 버튼은 가운데 정렬되는 고정 크기 버튼으로 */
+  .footer__jumpto{
+    position: static;
+    width: 5.6rem;
+    height: 5.6rem;
+    margin-left: auto;
+  }
+
+  .footer__legal{
+    flex-wrap: wrap;
+    row-gap: 0.6rem;
+    font-size: 1.1rem;
+    padding: 1.4rem 1.6rem;
+  }
+
+  .footer__bottom{
+    padding-inline: 1.6rem;
+  }
+}
+
+/* =========================
+   FOOTER – 600px 이하 (1열, 모바일)
+========================= */
+@media (max-width: 600px){
+
+  .footer__top{
+    grid-template-columns: minmax(0, 1fr);   /* 1열 */
+    gap: 2.4rem;
+    padding: 3.2rem 1.6rem 2.2rem;
+  }
+
+  .footer__col{
+    text-align: left;
+  }
+
+  .footer__links li + li{
+    margin-top: 0.7rem;
+  }
+
+  .footer__middle-inner{
+    justify-content: center;
+  }
+
+  .footer__jumpto{
+    margin: 0 auto;          /* 가운데로 */
+  }
+
+  .footer__legal{
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.95rem;
+    padding: 1.2rem 1.2rem 1.6rem;
+  }
+
+  .footer__brand{
+    padding-inline: 1.2rem;
+  }
+
+  .copy{
+    font-size: 1.1rem;
+  }
+
+  .footer__bottom{
+    padding: 0.8rem 1.4rem 3.2rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* =========================
+   FOOTER – 400px 이하 (아주 작은 모바일)
+========================= */
+@media (max-width: 400px){
+
+  .footer__top{
+    padding-inline: 1.2rem;
+  }
+
+  .footer__title{
+    font-size: 1rem;
+  }
+
+  .footer__jumpto{
+    width: 5.2rem;
+    height: 5.2rem;
+    font-size: 1.1rem;
+  }
+
+  .footer__jumpto .icon{
+    font-size: 2rem;
+  }
+
+  .footer__legal{
+    font-size: 0.9rem;
+  }
+
+  .footer__bottom{
+    font-size: 0.85rem;
+  }
+}
