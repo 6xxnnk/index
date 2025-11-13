@@ -34,30 +34,49 @@
 
 
 <header class="header" role="banner">
-    <div class="top">
-        <span class="top_text">머신 구매 시, 오리지널 커피 7캡슐로 구성된 웰컴 기프트 증정</span>
-    </div>
-    <div class="inner">
-        <nav class="nav nav--left" aria-label="Primary Left">
-        <ul>
-            <li><a href="#">coffee</a></li>
-            <li><a href="#">machine</a></li>
-            <li><a href="#">about</a></li>
-        </ul>
-        </nav>
 
-        <div class="logo" aria-label="Nespresso home">
+  <!-- 안내문 -->
+  <div class="header__notice">
+    <p>머신 구매 시, 오리지널 커피 7캡슐로 구성된 웰컴 기프트 증정</p>
+  </div>
+
+  <!-- 히어로 위 오버레이 헤더 -->
+  <div class="header__overlay">
+
+   
+
+    <!-- 왼쪽 네비 (데스크탑용) -->
+    <nav class="nav nav--left" aria-label="Primary Left">
+      <ul>
+        <li><a href="#">coffee</a></li>
+        <li><a href="#">machine</a></li>
+        <li><a href="#">about</a></li>
+      </ul>
+    </nav>
+ <!-- 로고 (왼쪽) -->
+    <h1 class="header__logo">
+      <a href="#">
         <img src="img/Nespresso-Wordmark-2021-RGB-White.svg" alt="Nespresso" />
-        </div>
+      </a>
+    </h1>
+    <!-- 오른쪽 네비 (데스크탑용) -->
+    <nav class="nav nav--right" aria-label="Primary Right">
+      <ul>
+        <li><a href="#">login</a></li>
+        <li><a href="#">cart</a></li>
+        <li><a href="#">search</a></li>
+      </ul>
+    </nav>
 
-        <nav class="nav nav--right" aria-label="Primary Right">
-        <ul>
-            <li><a href="#">login</a></li>
-            <li><a href="#">cart</a></li>
-            <li><a href="#">search</a></li>
-        </ul>
-</nav>
-    </div><!-- .inner -->
+    <!-- 모바일용 메뉴 아이콘 (스마트폰에서만 보임) -->
+    <button class="header__menu-toggle" type="button" aria-label="메뉴 열기">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div><!-- /.header__overlay -->
+
 </header>
 
 

@@ -83,122 +83,307 @@ img{ max-width:100%; display:block; }
   border-radius:var(--radius);
 }
 
-/* Header */
-.header{
-  position:relative;
-  top:0; left:0; width:100%;
-  z-index:50000;
-  display:flex; flex-direction:column;
-  color:#fff;
+/* =========================================
+    HEADER 기본
+========================================= */
+.header {
+  position: relative;
+  width: 100%;
+  z-index: 100;
 }
-.header .top{
-  width:100%;
-  height:4rem;
-  background: radial-gradient(120rem 40rem at 50% -20rem, rgba(255,255,255,.35), rgba(0,0,0,0)),
-             color-mix(in oklab,#EDE8DF 80%,#C7D1C1 20%);
-  display:flex; align-items:center; justify-content:center;
-  border-radius:5rem;
-  overflow:hidden;
-  margin:3rem 0;
+
+/* 상단 안내문 */
+.header__notice {
+  width: 100%;
+  background: #EDEDE7;
+  color: #4a4a4a;
+  padding: .8rem 0;
+  text-align: center;
+  font-size: 1.2rem;
+  letter-spacing: .02em;
+  pointer-events: none;      /* 클릭 무시 */
+  border-radius: 10rem;
+  margin-bottom: 1rem;
 }
-.header .top_text{
-  font-size:1.4rem; font-weight:400; color:#555; letter-spacing:.04em;
+
+/* =========================================
+    DESKTOP HEADER – Hero 위 오버레이 구조
+========================================= */
+.header__overlay {
+  position: absolute;
+  top: 5rem;                 /* 안내문 아래로 배치 */
+  left: 0;
+  width: 100%;
+  padding: 0 3rem;
+
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;  /* Left Nav – Logo – Right Nav */
+  align-items: center;
+  color: #fff;
+  pointer-events: auto;
+  margin-top: 1rem;
 }
-.header .inner{
+
+/* 로고(정중앙) */
+.header__logo {
+  justify-self: center;
+}
+.header__logo img,
+.logo img {                  /* .logo 써도 동작하도록 같이 잡아줌 */
+  display: block;
+  width: 18rem;
+  height: auto;
+}
+
+/* 네비게이션 */
+.nav ul {
+  display: flex;
+  gap: 3rem;
+  font-size: 1.4rem;
+  letter-spacing: .05em;
+}
+
+.nav--left {
+  justify-self: flex-start;
+}
+.nav--right {
+  justify-self: flex-end;
+}
+
+.nav--left ul {
+  justify-content: flex-start;
+}
+.nav--right ul {
+  justify-content: flex-end;
+}
+
+/* 링크 hover 효과 */
+.nav ul li a {
+  position: relative;
+  padding-bottom: .15rem;
+}
+.nav ul li a::after{
+  content:"";
   position:absolute;
-  top:11rem; left:3rem; right:3rem;
-  height:6rem;
-  display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
-  color:#fff; z-index:200;
-  padding:0 3rem;
+  left:0;
+  bottom:0;
+  width:0;
+  height:1px;
+  background:#fff;
+  transition:width .25s ease;
 }
-.nav ul{
-  display:flex; gap:4rem;
-  font-weight:500; font-size:1.4rem; letter-spacing:.05em;
+.nav ul li a:hover{
+  cursor:pointer;
 }
-.nav--left ul{ justify-content:flex-start; }
-.nav--right ul{ justify-content:flex-end; }
-.nav ul li a:hover{ text-decoration:underline;; cursor:pointer; }
-.logo img{ width:20rem; height:auto; }
+.nav ul li a:hover::after{
+  width:100%;
+}
+
+/* =========================================
+    MOBILE (스마트폰)
+========================================= */
+
+/* 메뉴 버튼 – 기본은 숨김 (데스크탑) */
+.header__menu-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* 햄버거 아이콘 라인 */
+.header__menu-toggle span {
+  display: block;
+  width: 2.2rem;
+  height: 2px;
+  background: #fff;
+  border-radius: 999px;
+}
+.header__menu-toggle span + span {
+  margin-top: .5rem;
+}
+
+/* -------------------------
+   태블릿 살짝 조정 (옵션)
+-------------------------- */
+@media (max-width: 1024px){
+  .header__overlay{
+    padding: 0 2rem;
+  }
+  .nav ul{
+    gap: 2.2rem;
+    font-size: 1.2rem;
+  }
+  .header__logo img,
+  .logo img{
+    width: 16rem;
+  }
+}
+
+/* -------------------------
+   스마트폰 레이아웃 (핵심)
+-------------------------- */
+@media (max-width: 768px){
+
+  /* 오버레이: 로고 왼쪽, 메뉴아이콘 오른쪽 */
+  .header__overlay {
+    top: 4.5rem;
+    padding: 0 1.6rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* 로고 왼쪽 정렬 + 크기 축소 */
+  .header__logo {
+    justify-self: flex-start;
+  }
+  .header__logo img,
+  .logo img{
+    width: 14rem;
+  }
+
+  /* 텍스트 네비는 모바일에서 숨김 */
+  .nav {
+    display: none;
+  }
+
+  /* 메뉴 toggle 버튼 표시(오른쪽 끝) */
+  .header__menu-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* 안내문도 살짝 컴팩트하게 */
+  .header__notice {
+    font-size: 1rem;
+    padding: .6rem 0;
+  }
+}
+
+/* -------------------------
+   데스크탑/큰 화면에서 보정
+-------------------------- */
+@media (min-width: 769px){
+  .header__menu-toggle { display:none; }
+  .nav { display:block; }
+}
+
+
+
+
+
+
 
 /* Hero / Swiper */
-.mySwiper{ position:relative; overflow:visible; }
-.section-hero{ position:relative; margin-top:0; overflow:visible; }
-.section-hero .hero__media{ position:relative; z-index:0; }
+/* =========================
+   HERO 기본 레이아웃
+========================= */
+
+.mySwiper{
+  position: relative;
+  overflow: visible;
+}
+
+.section-hero{
+  position: relative;
+  margin-top: 0;
+  overflow: hidden;
+}
+
+/* 배경 이미지 */
+.section-hero .hero__media{
+  position: relative;
+  z-index: 0;
+}
 .section-hero .hero__media img{
-  width:100%;
-  height: clamp(42rem, 44vw, 80rem);   /* 1920px 기준 422~800px */
-  border-radius:2rem;
-  object-fit:cover;
+  width: 100%;
+  height: clamp(40rem, 50vw, 80rem);   /* 1920 기준 400~800px */
+  border-radius: 2rem;
+  object-fit: cover;
 }
 
+/* 텍스트+버튼 컨테이너 */
 .hero__content{
-  position:absolute;
-  bottom: 12vw;             /* vw로 비율 고정 */
-  left:   10vw;
-  color:#fff; z-index:5;
+  position: absolute;
+  inset: 0;                         /* 상·하·좌·우 0 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;          /* 수직 가운데 */
+  align-items: flex-start;          /* 기본은 왼쪽 정렬 */
+  padding: 0 10vw;                  /* 좌우 여백 */
+  color: #fff;
+  z-index: 5;
 }
+
+/* 타이틀 묶음 */
 .hero__caption{
-  position:absolute;
-  bottom: 9.375vw;          /* 180px → 9.375vw */
-  margin-left: 3.125vw;     /* 60px → 3.125vw */
-  color:#fff; z-index:5;
+  max-width: 34rem;
 }
+
+/* 영문 타이틀 */
 .hero__en{
-  font-size:2.5rem; letter-spacing:.1em; font-weight:700; width:max-content;
+  font-size: 2.5rem;
+  letter-spacing: .1em;
+  font-weight: 700;
+  line-height: 1.3;
 }
 
+/* 한글 타이틀 */
 .hero__ko{
-  font-size:1.5rem; letter-spacing:.05em; font-weight:400; width:max-content;
-  margin-top:0.5rem;
-}
-.swiper-slide{ position:relative; z-index:2; }
-
-.swiper-pagination{
-  position:absolute;
-  left:0; right:0; bottom: 8.333vw;  /* 160px → 8.333vw */
-  z-index:20; display:flex; justify-content:center; align-items:center; gap:1rem;
-  pointer-events:auto;
-}
-.swiper-pagination-bullet{
-  width:1rem; height:1rem;
-  background-position:center; background-repeat:no-repeat; background-size:contain;
-  border:none; opacity:.5; transition:opacity .3s ease, transform .3s ease;
-  background-color:whitesmoke;  cursor: pointer;                             /* ← 클릭 가능 표시 및 포커스 */
-  pointer-events: auto;                        /* ← 개별 불릿도 클릭 허용 */
-}
-.swiper-pagination-bullet-active{
-  background-color:transparent;
-  background-image:url('../img/Frame91.png');
-  background-size:cover;
-  width:2rem; height:2rem; opacity:1; transform:scale(1.1);
+  font-size: 1.5rem;
+  letter-spacing: .05em;
+  font-weight: 400;
+  margin-top: .5rem;
+  line-height: 1.4;
 }
 
+/* 버튼 컨테이너 */
 .hero__btn{
-  position:absolute;
-  bottom:4vw;          /* 90px */
-  left:   3.125vw;          /* 60px */
-  color:#fff; z-index:10; display:flex;
+  margin-top: 2rem;
 }
-.hero__btn a{ color:#fff; font-size:1.3rem;
-  font-weight: 300;
- }
+
+/* 버튼 a / li 스타일 정리 */
+.hero__btn a{
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}
+
 .hero__btn li{
+  list-style: none;
   --c:#fff;
   color:#fff;
   font-size:1.3rem;
-  border:0.1rem solid #fff; border-radius:2rem;
-  width:22em; height:3.2em; letter-spacing:.1em; 
-  text-align:center;  line-height:3.2em;
-  position:relative; 
-  overflow:hidden; z-index:1; transition:.5s; 
-  background:transparent; cursor:pointer; 
+  border:0.1rem solid #fff;
+  border-radius:2rem;
+  width:22em;
+  height:3.2em;
+  letter-spacing:.1em;
+  text-align:center;
+  line-height:3.2em;
+  position:relative;
+  overflow:hidden;
+  z-index:1;
+  transition:.5s;
+  background:transparent;
+  cursor:pointer;
   margin:0;
 }
+
 .hero__btn li span{
-  position:absolute; width:25%; height:100%;
-  background-color:var(--c); transform:translateY(150%); border-radius:50%;
-  transition:.5s; z-index:-1;
+  position:absolute;
+  width:25%;
+  height:100%;
+  background-color:var(--c);
+  transform:translateY(150%);
+  border-radius:50%;
+  transition:.5s;
+  z-index:-1;
 }
 .hero__btn li span:nth-child(2){ left:0;    transition-delay:0s; }
 .hero__btn li span:nth-child(3){ left:25%;  transition-delay:.1s; }
@@ -207,7 +392,164 @@ img{ max-width:100%; display:block; }
 .hero__btn li:hover{ color:#000; }
 .hero__btn li:hover span{ transform:translateY(0) scale(2); }
 
-/* Club Section */
+/* Swiper */
+.swiper-slide{
+  position: relative;
+  z-index: 2;
+}
+
+.swiper-pagination{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom: 2.4rem;
+  z-index:20;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:1rem;
+  pointer-events:auto;
+}
+.swiper-pagination-bullet{
+  width:1rem;
+  height:1rem;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:contain;
+  border:none;
+  opacity:.5;
+  transition:opacity .3s ease, transform .3s ease;
+  background-color:whitesmoke;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.swiper-pagination-bullet-active{
+  background-color:transparent;
+  background-image:url('../img/Frame91.png');
+  background-size:cover;
+  width:2rem;
+  height:2rem;
+  opacity:1;
+  transform:scale(1.1);
+}
+
+
+/* =========================
+   작은 태블릿 / 큰 모바일 (≤768px)
+========================= */
+@media (max-width: 768px){
+
+  .section-hero .hero__media img{
+    height: min(55vh, 40rem);
+    border-radius: 1.6rem;
+  }
+
+  .hero__content{
+    align-items: center;           /* 가운데 정렬 */
+    text-align: center;
+    padding: 0 8vw;
+  }
+
+  .hero__caption{
+    max-width: 28rem;
+  }
+
+  .hero__en{
+    font-size: 1.8rem;
+    letter-spacing: .06em;
+  }
+
+  .hero__ko{
+    font-size: 1.15rem;
+  }
+
+  .hero__btn{
+    margin-top: 1.4rem;
+  }
+
+  .hero__btn li{
+    width: 18em;
+    height: 2.9em;
+    line-height: 2.9em;
+    font-size: 1.05rem;
+  }
+
+  .swiper-pagination{
+    bottom: 1.8rem;
+  }
+}
+
+
+/* =========================
+   스마트폰 (≤480px)
+========================= */
+@media (min-width: 481px){
+  .hero__en{
+    white-space: nowrap;       /* 줄바꿈 금지 */
+    max-width: none;           /* 폭 제한 없음 */
+  }
+}
+@media (max-width: 480px){
+
+  .section-hero .hero__media img{
+    height: min(50vh, 32rem);
+    border-radius: 1.2rem;
+  }
+
+  .hero__content{
+    padding: 0 10%;
+    justify-content: center;
+  }
+
+  .hero__en{
+    font-size: 1.45rem;
+    letter-spacing: .05em;
+    line-height: 1.3;
+  white-space: normal;
+  }
+
+  .hero__ko{
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .hero__btn{
+    margin-top: 1.2rem;
+  }
+
+  .hero__btn li{
+    width: 100%;
+    max-width: 17rem;
+    height: 2.6rem;
+    line-height: 2.6rem;
+    font-size: .95rem;
+  }
+
+  .swiper-pagination{
+    bottom: 1.3rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/********************************************* Club Section */
 .section-club{
   margin:8rem 0; padding:8rem 0;
   background: radial-gradient(120rem 40rem at 50% -20rem, rgba(255,255,255,.35), rgba(0,0,0,0)),
@@ -381,6 +723,8 @@ img{ max-width:100%; display:block; }
   z-index:1;
   animation: twinkle-slow 3s 1.2s ease-in-out infinite; /* ✅ 딜레이 + 느림 */
 }
+
+
 
 /* 트윙클 키프레임 - 부드럽고 천천히 */
 @keyframes twinkle-slow {
@@ -998,167 +1342,3 @@ img{ max-width:100%; display:block; }
 .nespresso-logo{ font-weight:900; letter-spacing:.02em; }
 .copy{ font-size:1.3rem; }
 .footer__bottom{ padding:1rem 0 4rem; color:#888; font-size:1rem; line-height:1.6; max-width:80rem; margin:0 auto; text-align:center; }
-
-/* =========================
-   Responsive add-on (append)
-   1920 / 834 / 375
-========================= */
-
-/* 1) ≥1920px — 데스크톱 대형 레이아웃 보정 */
-@media (min-width: 1920px){
-  html{ font-size: 10px; } /* 1rem ≈ 10px 고정감 */
-  .wrap{ padding: 0 3rem; }
-
-  .section-hero .hero__media img{
-    height: 80rem; /* 상단 히어로 시네마 느낌 유지 */
-  }
-  .hero__content{ bottom: 12vw; left: 10vw; }
-  .swiper-pagination{ bottom: 8.333vw; }
-
-  .club__grid{
-    grid-template-columns: repeat(4, 30rem);
-    gap: 1.6rem;
-    padding: 3rem 5rem;
-    max-width: calc(30rem*4 + 1.6rem*3 + 5rem*2);
-  }
-  .club-card.glossy{ height: 32rem; width: 30rem; }
-
-  .compare-card{ height: 50rem; }
-
-  .steps__row{ max-width: 110rem; }
-}
-
-/* 2) ≤834px — 태블릿 레이아웃 */
-@media (max-width: 834px){
-
-  /* 타이포 스케일 다운(디자인 유지, 비율만 축소) */
-  .hero__en{ font-size: 2rem; }
-  .hero__ko{ font-size: 1.2rem; }
-  .hero__btn a,
-  .hero__btn li{ font-size: 1.1rem; }
-
-  /* 헤더: 로고/내비 정렬 */
-  .header .inner{
-    position: static;
-    height: 5.2rem;
-    grid-template-columns: 1fr auto 1fr;
-    padding: 0 1.6rem;
-    margin-top: 1rem;
-  }
-  .logo img{ width: 14rem; }
-  .nav ul{ gap: 2rem; font-size: 1.2rem; }
-
-  /* 히어로 */
-  .section-hero .hero__media img{
-    height: clamp(34rem, 52vw, 50rem);
-    border-radius: 1.6rem;
-  }
-  .hero__content{ bottom: 18vw; left: 6vw; }
-  .hero__caption{ bottom: 14vw; margin-left: 2.8vw; }
-  .swiper-pagination{ bottom: 12vw; }
-
-  .hero__btn{
-    bottom: 6vw; left: 2.8vw;
-  }
-  .hero__btn li{
-    height: 3rem; line-height: 3rem; width: 18em;
-    border-radius: 1.6rem;
-  }
-
-  /* Club: 4→2열 */
-  .club__grid{
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.4rem;
-    padding: 2rem 2rem;
-    max-width: 100%;
-  }
-  .club-card.glossy{
-    width: 100%; height: 28rem;
-  }
-  .glossy__info span{ font-size: 1.1rem; }
-
-  /* Compare: 2×2 → 1열 스택 (높이 자동) */
-  .compare__grid{
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    grid-template-areas:
-      "tl"
-      "tr"
-      "bl"
-      "br";
-    gap: 1.6rem;
-  }
-  .compare-card{
-    height: auto; min-height: 36rem;
-  }
-  .compare-card__content{
-    left: 1.2rem; right: 1.2rem; bottom: 1.2rem; padding: .6rem 1.2rem;
-  }
-  .compare-card__kicker{ font-size: 2.4rem; }
-  .compare-card__title{ font-size: 1.3rem; }
-
-  /* Compare 내 스와이퍼: 좌우 버튼 터치 간격 확보 */
-  .compare-card.is-swiper .swiper-button-prev,
-  .compare-card.is-swiper .swiper-button-next{
-    width: 4rem; height: 4rem;
-  }
-  .compare-card.is-swiper .swiper-slide{
-    gap: 1.6rem; padding: 1.6rem;
-  }
-  .compare-card.is-swiper .swiper-slide > img{
-    width: 44%; height: auto;
-  }
-
-  /* Steps: 3→2열 */
-  .steps__row{
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.8rem;
-  }
-  .step__icon{ width:5.2rem; height:5.2rem; font-size:2.4rem; }
-  .step__title{ font-size:1.6rem; }
-  .step__desc{ font-size:1.2rem; }
-  .steps__cta{ width: 18rem; }
-
-  /* Blue Bottle pill: 폭/정렬 */
-  .pill{
-    width: auto; margin: 0 1.6rem 2rem; height: 18rem;
-  }
-  .pill__thumb img{ width: 18rem; }
-  .pill__body{ padding: 0 1.2rem; }
-  .pill__title{ font-size: 1.6rem; }
-  .pill__meta{ font-size: 1.2rem; }
-  .pill__cta{ width: 11rem; height: 4.4rem; }
-
-  /* Coffee Letter: 프레임 폭 축소 */
-  :root{
-    --book-w: clamp(28rem, 80vw, 48rem);
-  }
-  .book-frame{ aspect-ratio: 16 / 9; }
-  .book__right{ padding: 1.6rem 1.6rem; }
-  .book__right h3{ font-size: 1.4rem; }
-  .book__right p{ font-size: 1.1rem; }
-  .coffeeletter-swiper .swiper-button-prev{ left: .4rem; right:auto; }
-  .coffeeletter-swiper .swiper-button-next{ right: .4rem; left:auto; }
-  /* compare 내부 스와이퍼 키커 폰트 축소 */
-  .swiper-slide__kicker{ font-size: 1.55rem; }
-
-  /* Dock: 더 컴팩트 */
-  .dock.dock--mini{
-    width: min(86vw, 460px);
-    gap: .5rem; padding: .6rem .7rem;
-  }
-  .dock__item{ height: 44px; border-radius: 14px; }
-  .dock__item .ic{ width: 22px; height: 22px; }
-  :root{ --dock-h: 58px; } /* cart-toast 위치 기준 */
-
-  /* Footer: 4→2열 */
-  .footer__top{
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2.4rem 2rem;
-    padding: 3.2rem 1.6rem 2.4rem;
-  }
-  .footer__jumpto{
-    right: 2rem; bottom: 6rem; width: 6.4rem; height: 5.6rem;
-  }
-}
-  스마트폰, 태블릿 두가지로 반응형 코드 구현
