@@ -982,7 +982,7 @@ img{ max-width:100%; display:block; }
 
   border-radius: 999px;
   border:none;
-  padding: 0 2.4rem;
+  padding:  2.4rem;
   min-width: 7rem;
   height: 2.8rem;
 
@@ -990,7 +990,7 @@ img{ max-width:100%; display:block; }
   font-weight: 600;
   letter-spacing: .06em;
 
-  background:#111;
+  background:#000000;
   color:#fff;
   cursor:pointer;
 
@@ -998,6 +998,7 @@ img{ max-width:100%; display:block; }
   writing-mode: horizontal-tb;  /* 혹시 상속된 vertical 모드 초기화 */
   word-break: keep-all;         /* 한글 한 글자씩 안 끊기게 */
   line-height:1;
+  
 }
 .subscribe__button:hover{
   background:#333;
@@ -2768,22 +2769,58 @@ img{ max-width:100%; display:block; }
 ========================= */
 @media (max-width: 400px){
 
-  .footer__top{
+   .footer__top{
+    grid-template-columns: 1fr;
+    text-align: center;
     padding-inline: 1.2rem;
+    gap: 2rem;
   }
 
+  /* 타이틀 중앙 */
   .footer__title{
     font-size: 1rem;
+    text-align:center;
   }
 
+  /* 링크들 가운데 정렬 */
+  .footer__links,
+  .footer__contacts{
+    text-align:center;
+  }
 
+  /* 아이콘 중앙 정렬 */
+  .contact-item{
+    grid-template-columns: 1fr;   /* 아이콘 위/텍스트 아래 */
+    justify-items:center;
+    text-align:center;
+  }
 
+  .contact-item .ic{
+    margin: 0 auto;
+  }
+
+  /* middle 영역 (TOP 버튼 있는 곳) */
+  .footer__middle-inner{
+    flex-direction: column;
+    justify-content:center;
+    text-align:center;
+    gap:1.2rem;
+  }
+
+  /* legal nav → 줄바꿈 + 중앙 */
   .footer__legal{
-    font-size: 0.9rem;
+    flex-wrap: wrap;
+    justify-content:center;
+    gap:1rem;
+    font-size: .9rem;
+    text-align:center;
   }
 
+  /* bottom 텍스트 */
   .footer__bottom{
     font-size: 0.85rem;
+    text-align:center;
+    padding-inline:1rem;
   }
 }
 /* CoffeeLetter 전용 TOP 버튼 */
