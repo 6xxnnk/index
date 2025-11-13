@@ -1528,43 +1528,119 @@ img{ max-width:100%; display:block; }
 
 
 /******************************************************************** Steps */
+
+/* =========================================
+   3 STEPS SECTION – 기본
+========================================= */
 .section-steps{
-  margin:7.2rem 0; padding:4.8rem 2.4rem; border-radius:2.4rem;
-  background: radial-gradient(120rem 40rem at 50% -20rem, rgba(255,255,255,.35), rgba(0,0,0,0)),
-             color-mix(in oklab,#EDE8DF 80%, #C7D1C1 20%);
-  overflow:hidden; position:relative;
+  margin:7.2rem 0;
+  padding:4.8rem 2.4rem;
+  border-radius:2.4rem;
+  background:
+    radial-gradient(120rem 40rem at 50% -20rem, rgba(255,255,255,.35), rgba(0,0,0,0)),
+    color-mix(in oklab,#EDE8DF 80%, #C7D1C1 20%);
+  overflow:hidden;
+  position:relative;
 }
-.steps__title{ display:block; margin-top:.6rem; color:#555; text-align:center; }
-.steps__title p{ font-size:2.6rem; font-weight:700; margin-bottom:.5rem; }
-.steps__title h3{ font-size:1.2rem; }
+
+.steps{
+  max-width: 110rem;
+  margin: 0 auto;
+}
+
+/* 헤드라인 */
+.steps__title{
+  display:block;
+  margin-top:.6rem;
+  color:#555;
+  text-align:center;
+}
+.steps__title p{
+  font-size:2.6rem;
+  font-weight:700;
+  margin-bottom:.5rem;
+}
+.steps__title h3{
+  font-size:1.2rem;
+}
+
+/* 리본 배지 */
 .steps__ribbon{
-  width:max-content; margin:1.4rem auto 2.8rem; padding:.6rem 1.4rem;
+  width:max-content;
+  margin:1.4rem auto 2.8rem;
+  padding:.6rem 1.4rem;
   font:600 1.2rem/1 "Manrope",system-ui;
-  color:#1f1f1f; background:#b8c194; border-radius:999rem; box-shadow:0 .1rem 0 rgba(0,0,0,.04) inset;
+  color:#1f1f1f;
+  background:#b8c194;
+  border-radius:999rem;
+  box-shadow:0 .1rem 0 rgba(0,0,0,.04) inset;
 }
+
+/* 3 스텝 카드 */
 .steps__row{
-  display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap: clamp(1.4rem, 2.8vw, 2.8rem);
-  align-items:stretch; max-width:110rem; margin:0 auto 2rem; position:relative;
+  align-items:stretch;
+  max-width:110rem;
+  margin:0 auto 2rem;
+  position:relative;
 }
+
 .step{
   --card-bg:#ffffff;
-  background:var(--card-bg); border-radius:1.8rem; padding:2.2rem 1.8rem 2rem; text-align:center;
-  box-shadow:0 .6rem 2.4rem rgba(0,0,0,.06); position:relative; overflow:hidden;
-  transition: transform .35s cubic-bezier(.2,.75,.2,1), box-shadow .35s;
+  background:var(--card-bg);
+  border-radius:1.8rem;
+  padding:2.2rem 1.8rem 2rem;
+  text-align:center;
+  box-shadow:0 .6rem 2.4rem rgba(0,0,0,.06);
+  position:relative;
+  overflow:hidden;
+  transition:
+    transform .35s cubic-bezier(.2,.75,.2,1),
+    box-shadow .35s;
 }
 .step__icon{
-  width:5.8rem; height:5.8rem; margin:1rem auto 1.2rem; border-radius:50%; display:grid; place-items:center;
+  width:5.8rem;
+  height:5.8rem;
+  margin:1rem auto 1.2rem;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
   font:800 2.8rem/1;
-  color:#5A6C4E; background:linear-gradient(#F3F7EE,#E8F1E0); border:.2rem solid #D7E8C7;
-  box-shadow:0 .6rem 1.8rem rgba(108,140,87,.15), inset 0 0 0 .6rem rgba(255,255,255,.6);
+  color:#5A6C4E;
+  background:linear-gradient(#F3F7EE,#E8F1E0);
+  border:.2rem solid #D7E8C7;
+  box-shadow:0 .6rem 1.8rem rgba(108,140,87,.15),
+             inset 0 0 0 .6rem rgba(255,255,255,.6);
 }
-.step__title{ font-weight:800; color:#2b2b2b; margin-bottom:.6rem; font-size:1.8rem; }
-.step__desc{ color:#6b6b6b; font-size:1.3rem; line-height:1.5; }
-.step:hover{ transform:translateY(-.4rem); box-shadow:0 1rem 2.8rem rgba(0,0,0,.08); }
+.step__title{
+  font-weight:800;
+  color:#2b2b2b;
+  margin-bottom:.6rem;
+  font-size:1.8rem;
+}
+.step__desc{
+  color:#6b6b6b;
+  font-size:1.3rem;
+  line-height:1.5;
+}
+
+.step:hover{
+  transform:translateY(-.4rem);
+  box-shadow:0 1rem 2.8rem rgba(0,0,0,.08);
+}
+
+/* 카드 사이 연결 동그라미 */
 .steps__row .step:not(:last-child)::after{
-  content:""; position:absolute; right:-1.4rem; top:50%; transform:translateY(-50%);
-  width:2.8rem; height:2.8rem; border-radius:50%;
+  content:"";
+  position:absolute;
+  right:-1.4rem;
+  top:50%;
+  transform:translateY(-50%);
+  width:2.8rem;
+  height:2.8rem;
+  border-radius:50%;
   background:
     radial-gradient(circle at 30% 30%, rgba(255,255,255,.9), rgba(255,255,255,0) 60%),
     conic-gradient(from 180deg at 50% 50%, #D7E8C7, #BFD9A6, #D7E8C7);
@@ -1572,22 +1648,216 @@ img{ max-width:100%; display:block; }
   mask: radial-gradient(circle at center, black 60%, transparent 61%);
   opacity:.9;
 }
+
+/* 3번 카드 아이콘 골드톤 */
 .steps__row > .step:nth-child(3) .step__icon{
-  border-color:#D2AA67; color:#D2AA67; background:linear-gradient(#FBF7F0,#F3E7D3);
-  box-shadow:0 .6rem 1.8rem rgba(210,170,103,.22), inset 0 0 0 .6rem rgba(255,255,255,.55);
+  border-color:#D2AA67;
+  color:#D2AA67;
+  background:linear-gradient(#FBF7F0,#F3E7D3);
+  box-shadow:0 .6rem 1.8rem rgba(210,170,103,.22),
+             inset 0 0 0 .6rem rgba(255,255,255,.55);
 }
-.steps__note{ text-align:center; color:#555; margin:2rem 0 1.2rem; font-size:1.2rem; }
+
+/* 하단 CTA */
+.steps__note{
+  text-align:center;
+  color:#555;
+  margin:2rem 0 1.2rem;
+  font-size:1.2rem;
+}
 .steps__cta{
-  display:flex; width:20rem; justify-content:center; margin:0 auto; padding:1rem 1.8rem;
-  border-radius:999rem; font-weight:700; text-decoration:none; color:#1f1f1f; 
-  background:#EAE8E4; border:.1rem solid #d9d6cf;
+  display:flex;
+  width:20rem;
+  justify-content:center;
+  margin:0 auto;
+  padding:1rem 1.8rem;
+  border-radius:999rem;
+  font-weight:700;
+  text-decoration:none;
+  color:#1f1f1f;
+  background:#EAE8E4;
+  border:.1rem solid #d9d6cf;
   box-shadow:0 .2rem 0 rgba(0,0,0,.05) inset;
   transition: transform .2s, box-shadow .2s, background .2s;
   font-size: 1rem;
 }
-.steps__cta:hover{ transform:translateY(-.1rem); box-shadow:0 .6rem 1.8rem rgba(0,0,0,.08); }
+.steps__cta:hover{
+  transform:translateY(-.1rem);
+  box-shadow:0 .6rem 1.8rem rgba(0,0,0,.08);
+}
 
-/* Collaboration Section */
+
+/* =========================================
+   반응형 – 1200px 이하 (간격·폰트 축소)
+========================================= */
+@media (max-width:1200px){
+
+  .section-steps{
+    margin:5.6rem 0;
+    padding:4rem 1.8rem;
+  }
+
+  .steps__title p{
+    font-size:2.2rem;
+  }
+  .steps__title h3{
+    font-size:1.1rem;
+  }
+
+  .steps__row{
+    gap:2rem;
+  }
+
+  .step__title{
+    font-size:1.6rem;
+  }
+  .step__desc{
+    font-size:1.15rem;
+  }
+}
+
+
+/* =========================================
+   반응형 – 태블릿 (≤ 834px)
+   3열 유지 + 카드 컴팩트하게
+========================================= */
+@media (max-width:834px){
+
+  .section-steps{
+    margin:4.4rem 0;
+    padding:3.4rem 1.6rem;
+    border-radius:2rem;
+  }
+
+  .steps__title p{
+    font-size:2rem;
+  }
+  .steps__title h3{
+    font-size:1.05rem;
+  }
+
+  .steps__ribbon{
+    margin:1.2rem auto 2.2rem;
+    font-size:1.05rem;
+    padding:.5rem 1.2rem;
+  }
+
+  .steps__row{
+    gap:1.6rem;
+  }
+
+  .step{
+    padding:1.8rem 1.4rem 1.6rem;
+  }
+  .step__icon{
+    width:4.8rem;
+    height:4.8rem;
+    font-size:2.2rem;
+    margin: .6rem auto 1rem;
+  }
+  .step__title{
+    font-size:1.4rem;
+  }
+  .step__desc{
+    font-size:1.05rem;
+  }
+}
+
+
+/* =========================================
+   반응형 – 모바일 (≤ 480px)
+   1열 세로 스텝 + 연결 점 숨김
+========================================= */
+@media (max-width:480px){
+
+  .section-steps{
+    margin:3.4rem 0;
+    padding:2.8rem 1.4rem;
+    border-radius:1.6rem;
+  }
+
+  .steps__title{
+    text-align:left;
+  }
+  .steps__title p{
+    font-size:1.8rem;
+  }
+  .steps__title h3{
+    font-size:.98rem;
+    line-height:1.5;
+  }
+
+  .steps__ribbon{
+    margin:1rem 0 2rem;
+  }
+
+  /* 카드 1열 스택 */
+  .steps__row{
+    grid-template-columns:minmax(0, 1fr);
+    gap:1.2rem;
+  }
+
+  .step{
+    text-align:left;
+    padding:1.6rem 1.4rem 1.5rem;
+  }
+
+  .step__icon{
+    width:4.2rem;
+    height:4.2rem;
+    font-size:2rem;
+    margin:0 0 1rem;
+  }
+
+  .step__title{
+    font-size:1.3rem;
+  }
+  .step__desc{
+    font-size:.98rem;
+  }
+
+  /* 연결 동그라미 제거 (세로 구조니까) */
+  .steps__row .step::after{
+    display:none;
+  }
+
+  /* CTA 버튼은 꽉 차게 */
+  .steps__cta{
+    width:100%;
+    max-width:none;
+    font-size:.95rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/******************************** Collaboration Section */
 .section-collab{
   background:url("../img/BBC_PLP_HumanMade_Desktop.webp") center/cover no-repeat;
   padding:4rem 2rem; border-radius:2rem; position:relative;
