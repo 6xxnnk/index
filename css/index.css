@@ -103,8 +103,8 @@ img{ max-width:100%; display:block; }
   letter-spacing: .02em;
   pointer-events: none;      /* 클릭 무시 */
   border-radius: 10rem;
-  margin-bottom: 1rem;
-  margin-top: 3rem;
+  margin-bottom: 2rem;
+  margin-top: 4rem;
 }
 
 /* =========================================
@@ -122,7 +122,7 @@ img{ max-width:100%; display:block; }
   align-items: center;
   color: #fff;
   pointer-events: auto;
-  margin-top: 1rem;
+  margin-top: 3rem;
 }
 
 /* 로고(정중앙) */
@@ -537,34 +537,58 @@ img{ max-width:100%; display:block; }
 
 
 /********************************************* Club Section */
+/* =========================
+   CLUB SECTION – 기본
+========================= */
 .section-club{
-  margin:8rem 0; padding:8rem 0;
-  background: radial-gradient(120rem 40rem at 50% -20rem, rgba(255,255,255,.35), rgba(0,0,0,0)),
-            color-mix(in oklab,#EDE8DF 80%, #C7D1C1 20%);
+  margin:8rem 0;
+  padding:8rem 0;
+  background:
+    radial-gradient(120rem 40rem at 50% -20rem, rgba(255,255,255,.35), rgba(0,0,0,0)),
+    color-mix(in oklab,#EDE8DF 80%, #C7D1C1 20%);
   border-radius:3rem;
 }
 
-.club__head{ text-align:center; margin-bottom:4rem; }
-.club__head h2{ font-size:2.6rem; font-weight:700; margin-bottom:.5rem; }
-.club__head p{ font-size:1.3rem; color:#555; }
+/* 헤더 컨테이너(가운데 정렬용) */
+.club__container{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5rem;
+}
+
+.club__head{
+  text-align:center;
+  margin-bottom:4rem;
+}
+.club__head h2{
+  font-size:2.6rem;
+  font-weight:700;
+  margin-bottom:.5rem;
+}
+.club__head p{
+  font-size:1.3rem;
+  color:#555;
+}
 
 /* 4-up 고정 + 중앙 정렬 */
 .club__grid{
   display:grid;
-  grid-template-columns: repeat(4, 30rem);  /* 카드 폭 ↓ */
+  grid-template-columns: repeat(4, 30rem);  /* 카드 폭 */
   gap:1.6rem;
   padding:3rem 5rem;
   margin:0 auto;
   justify-content:center;
-  max-width: calc(30rem*4 + 1.6rem*3 + 5rem*2); /* 계산식 일치 */
+  max-width: calc(30rem*4 + 1.6rem*3 + 5rem*2);
   box-sizing:border-box;
 }
 
 .club-card{
-  background:#fff; border-radius:1.6rem; overflow:hidden;
+  background:#fff;
+  border-radius:1.6rem;
+  overflow:hidden;
   box-shadow:0 0.2rem 1rem rgba(0,0,0,.04);
 }
-.club-card.glossy {
+.club-card.glossy{
   position: relative;
   height: 32rem;
   width: 30rem;
@@ -573,12 +597,13 @@ img{ max-width:100%; display:block; }
   transition: transform 0.6s cubic-bezier(.2,.75,.2,1);
 }
 
-.club-card.glossy .glossy__curve {
+/* 곡선 레이어 */
+.club-card.glossy .glossy__curve{
   position: absolute;
   left: 0;
-  bottom: -1px;           /* ✅ 완전 밀착 */
+  bottom: -1px;           /* 완전 밀착 */
   width: 100%;
-  height: 120%;           /* ✅ 세로 확장 */
+  height: 120%;           /* 세로 확장 */
   z-index: 1;
   pointer-events: none;
   opacity: 0;
@@ -586,85 +611,130 @@ img{ max-width:100%; display:block; }
   filter: blur(1px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
-
-.club-card.glossy:hover .glossy__curve {
+.club-card.glossy:hover .glossy__curve{
   opacity: 1;
   transform: translateY(0);
 }
-
-/* path 그대로 */
-.club-card.glossy .glossy__curve path {
+.club-card.glossy .glossy__curve path{
   fill: #fff;
   opacity: 0.9;
 }
 
 /* 배경 & 카드 */
 .club-card.glossy .glossy__background{
-  position:absolute; top:-4rem; left:-4rem; width:120%; height:120%;
-  background-image:var(--card-bg); background-size:cover; 
+  position:absolute;
+  top:-4rem;
+  left:-4rem;
+  width:120%;
+  height:120%;
+  background-image:var(--card-bg);
+  background-size:cover;
   background-position:center;
-  filter:blur(3rem); transform:scale(1.02); z-index:0;
+  filter:blur(3rem);
+  transform:scale(1.02);
+  z-index:0;
 }
 .club-card.glossy .glossy__card{
-  position:absolute; inset:0;
-  background-image:var(--card-bg); background-size:cover; background-position:center;
-  border-radius:1.2rem; box-shadow:0 0 8rem -1rem rgba(0,0,0,.8);
-  overflow:hidden; z-index:1;
+  position:absolute;
+  inset:0;
+  background-image:var(--card-bg);
+  background-size:cover;
+  background-position:center;
+  border-radius:1.2rem;
+  box-shadow:0 0 8rem -1rem rgba(0,0,0,.8);
+  overflow:hidden;
+  z-index:1;
   transition:transform .6s cubic-bezier(.2,.75,.2,1);
 }
 .club-card.glossy:hover .glossy__card{ transform:scale(1.02); }
 
 /* 어둡게 */
 .club-card.glossy .glossy__blur{
-  position:absolute; inset:0; background:#000; opacity:0; transition:opacity .2s ease-in;
+  position:absolute;
+  inset:0;
+  background:#000;
+  opacity:0;
+  transition:opacity .2s ease-in;
   z-index:0;
 }
 .club-card.glossy:hover .glossy__blur{ opacity:.6; }
 
-/* INFO: 최종 위치 bottom 기준(hover시 0으로 올라옴) */
+/* INFO 영역 */
 .club-card.glossy .glossy__info{
-  position:absolute; left:2rem; bottom:1.5rem; color:#000;
-  transform:translateY(22rem);                   /* 초기: 아래에 숨김 */
+  position:absolute;
+  left:2rem;
+  bottom:1.5rem;
+  color:#000;
+  transform:translateY(22rem);   /* 초기: 아래에 숨김 */
   transition: transform 1s cubic-bezier(.31,1.21,.64,1.02);
-  z-index:2;                                   /* curve 위 */
+  z-index:2;                     /* curve 위 */
+}
+.club-card.glossy:hover .glossy__info{
+  transform:translateY(0);
 }
 
 .glossy__info span{
-  display:block; font-weight:500; font-size:1.2rem; letter-spacing:.02em;
+  display:block;
+  font-weight:500;
+  font-size:1.2rem;
+  letter-spacing:.02em;
 }
 .glossy__info a{
-  display:block; margin-top:.8rem; color:#000; transition:color .3s ease;
+  display:block;
+  margin-top:.8rem;
+  color:#000;
+  transition:color .3s ease;
 }
-.club-card.glossy:hover .glossy__info{ transform:translateY(0); }
+.club-card__cta:hover{ color:#876C40; }
+
+.club-card__body{
+  padding:1.4rem 1.6rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
 
 /* 연결 아이콘 */
 .club-card.glossy .glossy__connections{
-  position:absolute; 
-  left:2rem; bottom:9rem; display:flex; gap:1.8rem; z-index:2; 
+  position:absolute;
+  left:2rem;
+  bottom:9rem;
+  display:flex;
+  gap:1.8rem;
+  z-index:2;
   margin:0;
   list-style:none;
 }
 .club-card.glossy .glossy__connection{
-  width:2.6rem; height:2.6rem; border-radius:50%;
+  width:2.6rem;
+  height:2.6rem;
+  border-radius:50%;
   transform:translateY(20rem);
   transition: transform 1s cubic-bezier(.46,1.48,.18,.81);
 }
-.club-card.glossy:hover .glossy__connection{ transform:translateY(0); margin:3rem 0; }
+.club-card.glossy:hover .glossy__connection{
+  transform:translateY(0);
+  margin:3rem 0;
+}
 .club-card.glossy .glossy__connection:nth-child(2){ transition-delay:.06s; }
 .club-card.glossy .glossy__connection:nth-child(3){ transition-delay:.12s; }
 
 /* 텍스트/CTA */
-.club-card__tag{ display:inline-block; font-weight:500; font-size:1.05rem; letter-spacing:.02em; }
-.club-card__cta{ display:block; margin-top:.8rem; color:#000; text-decoration:none; transition:color .3s ease; }
-.club-card__cta:hover{ color:#876C40; }
-.club-card__body{ padding:1.4rem 1.6rem; display:flex; justify-content:space-between; align-items:center; }
-
-
-
-
+.club-card__tag{
+  display:inline-block;
+  font-weight:500;
+  font-size:1.05rem;
+  letter-spacing:.02em;
+}
+.club-card__cta{
+  display:block;
+  margin-top:.8rem;
+  color:#000;
+  text-decoration:none;
+  transition:color .3s ease;
+}
 
 /* 리본 */
-/* ✨ 반짝이는 리본 - 느리고 크고 고급스럽게 */
 .club-card.glossy .club-card__ribbon{
   --ribbon-offset: 4rem;
   position:absolute;
@@ -673,48 +743,47 @@ img{ max-width:100%; display:block; }
   z-index:3;
   overflow:visible;
   background:linear-gradient(135deg,#fff5cf,#d2b967);
-  color:#111; font-weight:700; letter-spacing:.08em;
+  color:#111;
+  font-weight:700;
+  letter-spacing:.08em;
   padding:.7rem 5rem;
   font-size:1.2rem;
   box-shadow:0 0.8rem 2rem rgba(0,0,0,.25);
 }
 
-/* 메인 스파클 (크고 따뜻한 골드빛) */
+/* 메인 스파클 */
 .club-card.glossy .club-card__ribbon::after{
   content:"✦";
   position:absolute;
   top:-1.2rem;
   right: calc(var(--ribbon-offset) - 1rem);
-  font-size:2.2rem;                           /* ✅ 크기 UP (1.2rem → 2.2rem) */
+  font-size:2.2rem;
   color:#e5c882;
   text-shadow:0 0 .8rem rgba(230,200,130,.8);
   opacity:0;
   transform:scale(.3) rotate(0deg);
   pointer-events:none;
   z-index:1;
-  animation: twinkle-slow 3s ease-in-out infinite; /* ✅ 느리게 (3초 주기) */
+  animation: twinkle-slow 3s ease-in-out infinite;
 }
-
-/* 보조 스파클 (하얀빛, 딜레이 추가) */
+/* 보조 스파클 */
 .club-card.glossy .club-card__ribbon::before{
   content:"✧";
   position:absolute;
   top:-1.8rem;
   right: calc(var(--ribbon-offset) + .6rem);
-  font-size:1.8rem;                           /* ✅ 크기 UP */
+  font-size:1.8rem;
   color:#fff;
   text-shadow:0 0 1rem rgba(255,255,255,.6);
   opacity:0;
   transform:scale(.3) rotate(0deg);
   pointer-events:none;
   z-index:1;
-  animation: twinkle-slow 3s 1.2s ease-in-out infinite; /* ✅ 딜레이 + 느림 */
+  animation: twinkle-slow 3s 1.2s ease-in-out infinite;
 }
 
-
-
-/* 트윙클 키프레임 - 부드럽고 천천히 */
-@keyframes twinkle-slow {
+/* 트윙클 키프레임 */
+@keyframes twinkle-slow{
   0%, 100% { transform: scale(.3) rotate(0deg); opacity:0; }
   20%      { transform: scale(1.2) rotate(25deg); opacity:1; }
   50%      { transform: scale(.9) rotate(90deg); opacity:.7; }
@@ -722,53 +791,308 @@ img{ max-width:100%; display:block; }
 }
 
 
+/* =========================
+   반응형 – 1200px 이하 (2열 카드)
+========================= */
+@media (max-width: 1200px){
+
+  .club__container{
+    padding: 0 3rem;
+  }
+
+  .club__grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 100%;
+    padding:3rem 3rem;
+  }
+
+  .club-card.glossy{
+    width: 100%;
+  }
+}
+
+
+/* =========================
+   반응형 – 태블릿 (≤ 834px)
+========================= */
+@media (max-width: 834px){
+
+  .section-club{
+    margin:4rem 0;
+    padding:4rem 0;
+    border-radius:2rem;
+  }
+
+  .club__container{
+    padding: 0 2rem;
+  }
+
+  .club__head h2{
+    font-size:2.2rem;
+  }
+  .club__head p{
+    font-size:1.15rem;
+  }
+
+  .club__grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding:2.4rem 2rem;
+    gap:1.4rem;
+  }
+
+  .club-card.glossy{
+    height: 30rem;
+  }
+
+  .club-card.glossy .glossy__info{
+    left:1.6rem;
+    bottom:1.2rem;
+  }
+  .club-card.glossy .glossy__connections{
+    left:1.6rem;
+    bottom:8rem;
+  }
+
+}
 
 
 
+/* =========================
+   반응형 – 모바일 (≤ 480px)
+========================= */
+@media (max-width: 480px){
+
+  .section-club{
+    margin:3rem 0;
+    padding:3rem 0;
+    border-radius:1.5rem;
+  }
+
+  .club__container{
+    padding: 0 1.4rem;
+  }
+
+  .club__head{
+    margin-bottom:2.4rem;
+  }
+  .club__head h2{
+    font-size:1.8rem;
+  }
+  .club__head p{
+    font-size:1rem;
+  }
+
+  /* ===== GRID 1열 ===== */
+  .club__grid{
+    grid-template-columns: minmax(0, 1fr);  /* 1열 */
+    padding:2rem 1rem;
+    gap:1.2rem;
+  }
+
+  .club-card.glossy{
+    width:100%;
+    height:28rem;
+  }
+
+  .club-card.glossy .club-card__ribbon{
+    font-size:1rem;
+    padding:.6rem 3.4rem;
+    --ribbon-offset: 3rem;
+  }
+  .club-card.glossy .club-card__ribbon::after{
+    font-size:1.6rem;
+    top:-1rem;
+    right: calc(var(--ribbon-offset) - .8rem);
+  }
+  .club-card.glossy .club-card__ribbon::before{
+    font-size:1.4rem;
+    top:-1.4rem;
+    right: calc(var(--ribbon-offset) + .4rem);
+  }
+
+  .club-card.glossy .glossy__info{
+    left:1.2rem;
+    bottom:1rem;
+  }
+  .glossy__info span{
+    font-size:1rem;
+    line-height:1.35;
+  }
+  .glossy__info a{
+    font-size:1rem;
+    margin-top:.6rem;
+  }
+
+  .club-card.glossy .glossy__connections{
+    left:1.2rem;
+    bottom:7rem;
+    gap:1.2rem;
+  }
+  .club-card.glossy .glossy__connection{
+    width:2.2rem;
+    height:2.2rem;
+  }
+
+}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ****************************************************************Subscribe */
+/* =========================
+   SUBSCRIBE 영역
+========================= */
+/* =========================
+   SUBSCRIBE – 기본 (데스크탑)
+========================= */
 .subscribe{
-  display:inline-block;
-  padding:1rem 35rem;
-  font-size:.9rem; transition:background .3s ease;
-  margin-top:4rem; text-align:center; align-items:center; margin:0 auto; width:100%;
+  margin-top:4rem;
 }
-.subscribe .subscribe__form{ display:flex; gap:1.2rem; align-items:center; }
-.subscribe .subscribe__input{
-  height:4rem; width:50rem; flex:1;
-  padding:2rem; border:0.1rem solid #ccc; background:hsla(0,0%,100%,.473);
-  font-size:1.3rem; border-radius:2rem;
-}
-.subscribe .subscribe__button{
-  height:4rem; width:10rem; background:hsla(0,0%,100%,.473);
-  color:#9e9e9e; padding:1rem 1.8rem; 
-  border:0.1rem solid #ccc; 
-  border-radius:2rem;
-  font-size:1.3rem; transition:background .3s ease, border .3s ease;
-}
-.subscribe .subscribe__button:hover{ 
-  font-size:1.3rem;
-  background:#fff; 
-  border:#876C40 0.1rem solid;
-  color:#876C40;
-  text-align: center;}
 
-.subscribe__note{ margin-top:1.2rem; font-size:1.2rem; color:#918f8f; text-align:center; }
+.subscribe__inner{
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 2.4rem;
+}
+
+/* 인풋 + 버튼 한 줄 */
+.subscribe__form{
+  display:flex;
+  gap:1rem;
+  align-items:stretch;
+}
+
+.subscribe__input{
+  flex:1;
+  min-width:0;                  /* flex 안에서 줄바꿈 깨짐 방지 */
+  border-radius: 999px;
+  border: 1px solid #d0c7b5;
+  padding: 1rem 1.6rem;
+  font-size: 1.1rem;
+  outline: none;
+}
+.subscribe__input::placeholder{
+  color:#999;
+}
+
+/* 버튼 – 세로쓰기/줄갈라짐 방지 + 가운데 정렬 */
+.subscribe__button{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;               /* 인풋이 늘어나도 버튼 폭 안 줄어들게 */
+
+  border-radius: 999px;
+  border:none;
+  padding: 0 2.4rem;
+  min-width: 7rem;
+  height: 2.8rem;
+
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+
+  background:#111;
+  color:#fff;
+  cursor:pointer;
+
+  white-space: nowrap;          /* 한 줄 유지 */
+  writing-mode: horizontal-tb;  /* 혹시 상속된 vertical 모드 초기화 */
+  word-break: keep-all;         /* 한글 한 글자씩 안 끊기게 */
+  line-height:1;
+}
+.subscribe__button:hover{
+  background:#333;
+}
+
+/* 체크박스 + 약관 */
+.subscribe__note{
+  margin-top:1rem;
+  font-size:.95rem;
+  color:#555;
+
+  writing-mode: horizontal-tb;
+  word-break: keep-all;
+  line-height:1.4;
+}
+.subscribe__note .checkbox{
+  display:flex;
+  align-items:flex-start;
+  gap:.5rem;
+  flex-wrap: wrap;              /* 좁을 때 자연스럽게 다음 줄 */
+}
+.subscribe__note input[type="checkbox"]{
+  width:1.1rem;
+  height:1.1rem;
+}
+.subscribe__note a{
+  text-decoration:underline;
+}
+
+
+/* =========================
+   태블릿 (≤ 834px)
+========================= */
+@media (max-width: 834px){
+
+  .subscribe__inner{
+    max-width: 760px;
+    padding: 1.8rem 1.8rem;
+    border-radius: 1.6rem;
+  }
+
+  .subscribe__input{
+    font-size: 1rem;
+    padding: .9rem 1.4rem;
+  }
+  .subscribe__button{
+    font-size: 1rem;
+    height: 2.6rem;
+    padding: 0 2rem;
+  }
+
+  .subscribe__note{
+    font-size:.9rem;
+  }
+}
+
+
+/* =========================
+   모바일 (≤ 480px)
+========================= */
+@media (max-width: 480px){
+
+  .subscribe__inner{
+    padding:1.6rem 1.4rem;
+    border-radius:1.4rem;
+  }
+
+  /* 인풋/버튼 세로 스택 */
+  .subscribe__form{
+    flex-direction:column;
+    gap:.8rem;
+    align-items:stretch;
+  }
+
+  .subscribe__input{
+    font-size:1rem;
+    padding:.9rem 1.2rem;
+  }
+
+  .subscribe__button{
+    width:100%;
+    justify-content:center;
+    font-size:1rem;
+    padding:.9rem 1.2rem;
+  }
+
+  .subscribe__note{
+    font-size:.85rem;
+    margin-top:.8rem;
+  }
+}
+
+
+
+
 
 /* Compare Section */
 .section-compare{ margin:6rem 0; padding:2.8rem 1.8rem .8rem; border-radius:2.8rem; }
