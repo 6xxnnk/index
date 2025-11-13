@@ -104,6 +104,7 @@ img{ max-width:100%; display:block; }
   pointer-events: none;      /* 클릭 무시 */
   border-radius: 10rem;
   margin-bottom: 1rem;
+  margin-top: 3rem;
 }
 
 /* =========================================
@@ -535,20 +536,6 @@ img{ max-width:100%; display:block; }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /********************************************* Club Section */
 .section-club{
   margin:8rem 0; padding:8rem 0;
@@ -733,7 +720,28 @@ img{ max-width:100%; display:block; }
   50%      { transform: scale(.9) rotate(90deg); opacity:.7; }
   75%      { transform: scale(1.4) rotate(140deg); opacity:1; }
 }
-/* Subscribe */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ****************************************************************Subscribe */
 .subscribe{
   display:inline-block;
   padding:1rem 35rem;
